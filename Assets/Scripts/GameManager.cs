@@ -39,9 +39,11 @@ public class GameManager : MonoBehaviour
             if (child.CompareTag("StationItemSpawner"))
             {
                 int randomIdx = Random.Range(0, stationItems.Count);
-                GameObject itemInstance = Instantiate(stationItems[randomIdx]);
+                GameObject itemInstance = Instantiate(stationItems[randomIdx], child.parent);
+                Transform instanceChild = itemInstance.transform.GetChild(0);
+                instanceChild.gameObject.GetComponent<Renderer>().material.SetColor("_BaseColor", Random.ColorHSV(0, 1, 1, 1));
                 itemInstance.transform.position = child.transform.position;
-                itemInstance.transform.SetParent(child.parent);
+                //itemInstance.transform.SetParent(child.parent);
                 //stationItems.RemoveAt(randomIdx);
             }
         }
