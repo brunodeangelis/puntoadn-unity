@@ -5,28 +5,54 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private List<GameObject> spawns;
-    private List<GameObject> stations;
-    private List<GameObject> stationItems;
+    private List<GameObject> _spawns;
+    private List<GameObject> _stations;
+    private List<GameObject> _stationItems;
+
+    public static Transform RecursiveFindChild(Transform parent, string childName)
+    {
+        Transform child = null;
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            child = parent.GetChild(i);
+            if (child.name == childName)
+            {
+                break;
+            }
+            else
+            {
+                child = RecursiveFindChild(child, childName);
+                if (child != null)
+                {
+                    break;
+                }
+            }
+        }
+
+        return child;
+    }
 
     void Start()
     {
-        spawns = GameObject.FindGameObjectsWithTag("StationSpawner").ToList();
-        stations = GameObject.FindGameObjectsWithTag("Station").ToList();
-        stationItems = GameObject.FindGameObjectsWithTag("StationItem").ToList();
+        _spawns = GameObject.FindGameObjectsWithTag("StationSpawner").ToList();
+        _stations = GameObject.FindGameObjectsWithTag("Station").ToList();
+        _stationItems = GameObject.FindGameObjectsWithTag("StationItem").ToList();
 
         SpawnStations();
     }
 
     void SpawnStations()
     {
-        for (int i = 0; i < spawns.Count; i++)
+        for (int i = 0; i < _spawns.Count; i++)
         {
-            for (int j = stations.Count - 1; j >= 0; j--)
+            for (int j = _stations.Count - 1; j >= 0; j--)
             {
-                FillStation(stations[j]);
-                stations[j].transform.position = spawns[i].transform.position;
-                stations.RemoveAt(j);
+                Color randomColor = Random.ColorHSV(0, 1, 1, 1, 1, 1);
+                FillStation(_stations[j]);
+                Transform stationMesh = RecursiveFindChild(_stations[j].transform, "mesh");
+                stationMesh.gameObject.GetComponent<Renderer>().material.SetColor("_FresnelColor", randomColor * 25);
+                _stations[j].transform.position = _spawns[i].transform.position;
+                _stations.RemoveAt(j);
                 break;
             }
         }
@@ -38,8 +64,8 @@ public class GameManager : MonoBehaviour
         {
             if (child.CompareTag("StationItemSpawner"))
             {
-                int randomIdx = Random.Range(0, stationItems.Count);
-                GameObject itemInstance = Instantiate(stationItems[randomIdx], child.parent);
+                int randomIdx = Random.Range(0, _stationItems.Count);
+                GameObject itemInstance = Instantiate(_stationItems[randomIdx], child.parent);
                 Transform instanceChild = itemInstance.transform.GetChild(0);
                 instanceChild.gameObject.GetComponent<Renderer>().material.SetColor("_BaseColor", Random.ColorHSV(0, 1, 1, 1));
                 itemInstance.transform.position = child.transform.position;

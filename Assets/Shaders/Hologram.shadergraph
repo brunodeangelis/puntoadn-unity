@@ -4,7 +4,7 @@
             "typeInfo": {
                 "fullName": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty"
             },
-            "JSONnodeData": "{\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"7dff199a-c892-48d6-81b8-482d759b7dd8\"\n    },\n    \"m_Name\": \"Base Color\",\n    \"m_DefaultReferenceName\": \"Color_813A91E7\",\n    \"m_OverrideReferenceName\": \"Base_Color\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Precision\": 0,\n    \"m_GPUInstanced\": false,\n    \"m_Hidden\": false,\n    \"m_Value\": {\n        \"r\": 0.4462442100048065,\n        \"g\": 0.6410911083221436,\n        \"b\": 0.8679245114326477,\n        \"a\": 0.0\n    },\n    \"m_ColorMode\": 0\n}"
+            "JSONnodeData": "{\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"7dff199a-c892-48d6-81b8-482d759b7dd8\"\n    },\n    \"m_Name\": \"Base Color\",\n    \"m_DefaultReferenceName\": \"Color_813A91E7\",\n    \"m_OverrideReferenceName\": \"_BaseColor\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Precision\": 0,\n    \"m_GPUInstanced\": false,\n    \"m_Hidden\": false,\n    \"m_Value\": {\n        \"r\": 0.4462442100048065,\n        \"g\": 0.6410911083221436,\n        \"b\": 0.8679245114326477,\n        \"a\": 0.0\n    },\n    \"m_ColorMode\": 0\n}"
         },
         {
             "typeInfo": {
@@ -28,7 +28,7 @@
             "typeInfo": {
                 "fullName": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty"
             },
-            "JSONnodeData": "{\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"cfb534f2-f1b9-4d64-8d13-28072500cce9\"\n    },\n    \"m_Name\": \"Fresnel Color\",\n    \"m_DefaultReferenceName\": \"Color_A393F89C\",\n    \"m_OverrideReferenceName\": \"Fresnel_Color\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Precision\": 0,\n    \"m_GPUInstanced\": false,\n    \"m_Hidden\": false,\n    \"m_Value\": {\n        \"r\": 95.87451171875,\n        \"g\": 33.63137435913086,\n        \"b\": 95.87451171875,\n        \"a\": 0.0\n    },\n    \"m_ColorMode\": 1\n}"
+            "JSONnodeData": "{\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"cfb534f2-f1b9-4d64-8d13-28072500cce9\"\n    },\n    \"m_Name\": \"Fresnel Color\",\n    \"m_DefaultReferenceName\": \"Color_A393F89C\",\n    \"m_OverrideReferenceName\": \"_FresnelColor\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Precision\": 0,\n    \"m_GPUInstanced\": false,\n    \"m_Hidden\": false,\n    \"m_Value\": {\n        \"r\": 95.87451171875,\n        \"g\": 33.63137435913086,\n        \"b\": 95.87451171875,\n        \"a\": 0.0\n    },\n    \"m_ColorMode\": 1\n}"
         },
         {
             "typeInfo": {
