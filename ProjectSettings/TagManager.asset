@@ -9,6 +9,7 @@ TagManager:
   - GameManager
   - StationItem
   - StationItemSpawner
+  - Path
   layers:
   - Default
   - TransparentFX
