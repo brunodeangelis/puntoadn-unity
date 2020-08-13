@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_YoutubePlayer
+  m_Name: SG_Youtube_Player
   m_Shader: {fileID: -6465566751694194690, guid: 2ada25b5f4d0fb446bc6a2437af67bcd,
     type: 3}
   m_ShaderKeywords: 
@@ -26,5 +26,5 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats: []
     m_Colors:
-    - Color_2A8ABC5E: {r: 1.39772, g: 1.39772, b: 1.39772, a: 0}
+    - Color_2A8ABC5E: {r: 11.984314, g: 11.984314, b: 11.984314, a: 0}
   m_BuildTextureStacks: []

@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     private GameObject[] _paths;
     private MaterialPropertyBlock _materialPropertyBlock;
 
+    private int[] _hueValues = new int[] { 0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360 };
+    private List<int> _hueValuesList = new List<int>();
+
     public static Transform RecursiveFindChild(Transform parent, string childName)
     {
         Transform child = null;
@@ -35,11 +38,14 @@ public class GameManager : MonoBehaviour
         return child;
     }
 
-    private int[] _hueValues = new int[] { 0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360 };
-    private List<int> _hueValuesList = new List<int>();
+    public Checkpoint lastCheckpoint;
 
     private void Start()
     {
+        // Register events
+        Checkpoint.OnCheckpointHit += Checkpoint_OnCheckpointHit;
+        Player.OnPlayerDeath += Player_OnPlayerDeath;
+
         _spawns = GameObject.FindGameObjectsWithTag("StationSpawner").ToList();
         _stations = GameObject.FindGameObjectsWithTag("Station").ToList();
         _stationItems = GameObject.FindGameObjectsWithTag("StationItem").ToList();
@@ -51,9 +57,26 @@ public class GameManager : MonoBehaviour
         _hueValuesList = _hueValues.ToList();
     }
 
+    private void Player_OnPlayerDeath(Player player)
+    {
+        player.transform.position = lastCheckpoint.transform.position;
+    }
+
+    private void Checkpoint_OnCheckpointHit(Checkpoint checkpoint)
+    {
+        lastCheckpoint = checkpoint;
+        Debug.Log(lastCheckpoint);
+    }
+    private void OnDestroy()
+    {
+        // Remove registered events
+        Checkpoint.OnCheckpointHit -= Checkpoint_OnCheckpointHit;
+        Player.OnPlayerDeath -= Player_OnPlayerDeath;
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             int index = 0;
             foreach (GameObject path in _paths)
