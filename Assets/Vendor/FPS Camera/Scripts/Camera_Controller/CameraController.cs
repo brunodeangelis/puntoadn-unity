@@ -49,11 +49,13 @@ namespace VHS
 
             void LateUpdate()
             {
-                CalculateRotation();
-                SmoothRotation();
-                ApplyRotation();
-                HandleZoom();
-            }
+                if (!GameManager.Instance.isVideoPlaying) {
+                    CalculateRotation();
+                    SmoothRotation();
+                    ApplyRotation();
+                    HandleZoom();
+                }
+        }
         #endregion
 
         #region Custom Methods

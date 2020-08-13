@@ -38,8 +38,26 @@ public class GameManager : MonoBehaviour
         return child;
     }
 
-    public Checkpoint lastCheckpoint;
+    [HideInInspector] public Checkpoint lastCheckpoint;
+    [HideInInspector] public bool isVideoPlaying;
+    [HideInInspector] public bool isInsideScreenRange;
 
+    #region Singleton
+        private static GameManager _instance;
+        public static GameManager Instance { get { return _instance; } }
+        private void Awake()
+        {
+            if (_instance != null && _instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                _instance = this;
+            }
+        }
+    #endregion
+    
     private void Start()
     {
         // Register events
@@ -67,6 +85,7 @@ public class GameManager : MonoBehaviour
         lastCheckpoint = checkpoint;
         Debug.Log(lastCheckpoint);
     }
+
     private void OnDestroy()
     {
         // Remove registered events
@@ -85,6 +104,7 @@ public class GameManager : MonoBehaviour
                 index++;
             }
         }
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             foreach (GameObject path in _paths)

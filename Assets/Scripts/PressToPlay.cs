@@ -1,42 +1,74 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using YoutubePlayer;
 
-namespace YoutubePlayer { 
+namespace YoutubePlayer {
+
+    [RequireComponent(typeof(YoutubePlayer))]
     public class PressToPlay : MonoBehaviour
     {
         private GameObject _ui;
-        private GameObject _player;
+        private Player _player;
 
-        [SerializeField]
-        private string _videoUrl;
+        //public static event Action<PressToPlay> OnEnterScreenRange;
+        //public static event Action<PressToPlay> OnLeaveScreenRange;
 
-        private bool _isVideoPlaying;
-
-        private void Awake()
+        private void Start()
         {
-            _player = GameObject.FindGameObjectWithTag("Player");
-            _ui = GameObject.Find("Key Press Text");
+            //OnEnterScreenRange += PressToPlay_OnEnterScreenRange;
+            //OnLeaveScreenRange += PressToPlay_OnLeaveScreenRange;
+
+            _player = Player.Instance;
+            _ui = GameObject.Find("Interact Text");
+        }
+
+        //private void PressToPlay_OnLeaveScreenRange(PressToPlay obj)
+        //{
+        //    _ui.SetActive(false);
+        //}
+
+        //private void PressToPlay_OnEnterScreenRange(PressToPlay screen)
+        //{
+        //    _ui.SetActive(true);
+
+
+    //}
+
+    //private void OnDestroy()
+    //{
+    //    OnEnterScreenRange -= PressToPlay_OnEnterScreenRange;
+    //    OnLeaveScreenRange -= PressToPlay_OnLeaveScreenRange;
+    //}
+
+    private void OnTriggerEnter(Collider other)
+        {
+            if (other.transform.tag == "Player") _player.isInsideScreenRange = true;
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.transform.tag == "Player") _player.isInsideScreenRange = false;
         }
 
         private void Update()
         {
-            float distance = Vector3.Distance(_player.transform.position, transform.position);
-
-            if (distance < 8)
+            if (_player.isInsideScreenRange)
             {
-                if (!_isVideoPlaying) _ui.SetActive(true);
-                else _ui.SetActive(false);
+                _ui.SetActive(true);
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    _isVideoPlaying = true;
-                    Debug.Log("hi!");
-
                     GetComponent<YoutubePlayer>().enabled = true;
+
+                    GameManager.Instance.isVideoPlaying = true;
+
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
                 }
-            } else
+            }
+            else
             {
                 _ui.SetActive(false);
             }

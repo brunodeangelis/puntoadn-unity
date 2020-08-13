@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     public static Player Instance { get { return _instance; } }
     public static event Action<Player> OnPlayerDeath;
 
+    [HideInInspector]
+    public bool isInsideScreenRange = false;
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
