@@ -1,7 +1,11 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Video;
+using YoutubePlayer;
 
 public class GameManager : MonoBehaviour
 {
@@ -42,20 +46,23 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool isVideoPlaying;
     [HideInInspector] public bool isInsideScreenRange;
 
+    private GameObject _backdrop;
+    private GameObject _canvasLoadingVideo;
+
     #region Singleton
-        private static GameManager _instance;
-        public static GameManager Instance { get { return _instance; } }
-        private void Awake()
+    private static GameManager _instance;
+    public static GameManager Instance { get { return _instance; } }
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
         {
-            if (_instance != null && _instance != this)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                _instance = this;
-            }
+            Destroy(this.gameObject);
         }
+        else
+        {
+            _instance = this;
+        }
+    }
     #endregion
     
     private void Start()
@@ -63,16 +70,42 @@ public class GameManager : MonoBehaviour
         // Register events
         Checkpoint.OnCheckpointHit += Checkpoint_OnCheckpointHit;
         Player.OnPlayerDeath += Player_OnPlayerDeath;
+        PressToPlay.OnMainVideoStartLoading += PressToPlay_OnMainVideoStartLoading;
+        CloseVideo.OnVideoEnd += CloseVideo_OnVideoEnd;
 
         _spawns = GameObject.FindGameObjectsWithTag("StationSpawner").ToList();
         _stations = GameObject.FindGameObjectsWithTag("Station").ToList();
         _stationItems = GameObject.FindGameObjectsWithTag("StationItem").ToList();
+
+        _backdrop = GameObject.Find("Backdrop");
+        _canvasLoadingVideo = GameObject.Find("Loading Video");
 
         SpawnStations();
 
         _paths = GameObject.FindGameObjectsWithTag("Path");
 
         _hueValuesList = _hueValues.ToList();
+    }
+
+    private void CloseVideo_OnVideoEnd()
+    {
+        isVideoPlaying = false;
+        
+        _canvasLoadingVideo.GetComponent<VideoPlayer>().enabled = false;
+        _canvasLoadingVideo.GetComponent<RawImage>().DOColor(new Color(1, 1, 1, 0), 0.3f)
+            .OnComplete(() => _canvasLoadingVideo.GetComponent<RawImage>().enabled = false);
+        _backdrop.GetComponent<Image>().DOColor(new Color(0, 0, 0, 0), 0.3f);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    private void PressToPlay_OnMainVideoStartLoading()
+    {
+        _canvasLoadingVideo.GetComponent<VideoPlayer>().enabled = true;
+        _canvasLoadingVideo.GetComponent<RawImage>().enabled = true;
+        _canvasLoadingVideo.GetComponent<RawImage>().DOColor(new Color(1, 1, 1, 1), 0.3f);
+        _backdrop.GetComponent<Image>().DOColor(new Color(0, 0, 0, 0.7f), 0.3f);
     }
 
     private void Player_OnPlayerDeath(Player player)
@@ -91,6 +124,13 @@ public class GameManager : MonoBehaviour
         // Remove registered events
         Checkpoint.OnCheckpointHit -= Checkpoint_OnCheckpointHit;
         Player.OnPlayerDeath -= Player_OnPlayerDeath;
+        PressToPlay.OnMainVideoStartLoading -= PressToPlay_OnMainVideoStartLoading;
+        CloseVideo.OnVideoEnd -= CloseVideo_OnVideoEnd;
+
+        RenderTexture _loadingVideoTexture = Resources.Load<RenderTexture>("RenderTextures/Loading Video");
+        RenderTexture _youtubeVideoTexture = Resources.Load<RenderTexture>("RenderTextures/Youtube Video");
+        _loadingVideoTexture.Release();
+        _youtubeVideoTexture.Release();
     }
 
     private void Update()
