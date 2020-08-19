@@ -149,10 +149,10 @@ namespace VHS
 
             protected virtual void Update()
             {
-                if(m_yawTransform != null && !GameManager.Instance.isVideoPlaying)
+                if(m_yawTransform != null && !GameManager.Instance._isVideoPlaying)
                     RotateTowardsCamera();
 
-                if(m_characterController && !GameManager.Instance.isVideoPlaying)
+                if(m_characterController && !GameManager.Instance._isVideoPlaying)
                 {
                     // Check if Grounded,Wall etc
                     CheckIfGrounded();

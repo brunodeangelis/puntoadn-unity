@@ -9,6 +9,8 @@ using YoutubePlayer;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private GameObject _closeVideo;
+
     private List<GameObject> _spawns;
     private List<GameObject> _stations;
     private List<GameObject> _stationItems;
@@ -42,9 +44,9 @@ public class GameManager : MonoBehaviour
         return child;
     }
 
-    [HideInInspector] public Checkpoint lastCheckpoint;
-    [HideInInspector] public bool isVideoPlaying;
-    [HideInInspector] public bool isInsideScreenRange;
+    [HideInInspector] public Checkpoint _lastCheckpoint;
+    [HideInInspector] public bool _isVideoPlaying;
+    [HideInInspector] public bool _isInsideScreenRange;
 
     private GameObject _backdrop;
     private GameObject _canvasLoadingVideo;
@@ -71,7 +73,7 @@ public class GameManager : MonoBehaviour
         Checkpoint.OnCheckpointHit += Checkpoint_OnCheckpointHit;
         Player.OnPlayerDeath += Player_OnPlayerDeath;
         PressToPlay.OnMainVideoStartLoading += PressToPlay_OnMainVideoStartLoading;
-        CloseVideo.OnVideoEnd += CloseVideo_OnVideoEnd;
+        CloseVideo.OnCloseVideo += CloseVideo_OnCloseVideo;
 
         _spawns = GameObject.FindGameObjectsWithTag("StationSpawner").ToList();
         _stations = GameObject.FindGameObjectsWithTag("Station").ToList();
@@ -87,14 +89,14 @@ public class GameManager : MonoBehaviour
         _hueValuesList = _hueValues.ToList();
     }
 
-    private void CloseVideo_OnVideoEnd()
+    private void CloseVideo_OnCloseVideo()
     {
-        isVideoPlaying = false;
+        _isVideoPlaying = false;
         
         _canvasLoadingVideo.GetComponent<VideoPlayer>().enabled = false;
-        _canvasLoadingVideo.GetComponent<RawImage>().DOColor(new Color(1, 1, 1, 0), 0.3f)
+        _canvasLoadingVideo.GetComponent<RawImage>().DOFade(0f, 0.3f)
             .OnComplete(() => _canvasLoadingVideo.GetComponent<RawImage>().enabled = false);
-        _backdrop.GetComponent<Image>().DOColor(new Color(0, 0, 0, 0), 0.3f);
+        _backdrop.GetComponent<Image>().DOFade(0f, 0.3f);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -104,19 +106,20 @@ public class GameManager : MonoBehaviour
     {
         _canvasLoadingVideo.GetComponent<VideoPlayer>().enabled = true;
         _canvasLoadingVideo.GetComponent<RawImage>().enabled = true;
-        _canvasLoadingVideo.GetComponent<RawImage>().DOColor(new Color(1, 1, 1, 1), 0.3f);
-        _backdrop.GetComponent<Image>().DOColor(new Color(0, 0, 0, 0.7f), 0.3f);
+        _canvasLoadingVideo.GetComponent<RawImage>().DOFade(1f, 0.3f);
+        _backdrop.GetComponent<Image>().DOFade(0.7f, 0.3f);
+        _closeVideo.GetComponent<Text>().DOFade(1f, 0.3f);
     }
 
     private void Player_OnPlayerDeath(Player player)
     {
-        player.transform.position = lastCheckpoint.transform.position;
+        player.transform.position = _lastCheckpoint.transform.position;
     }
 
     private void Checkpoint_OnCheckpointHit(Checkpoint checkpoint)
     {
-        lastCheckpoint = checkpoint;
-        Debug.Log(lastCheckpoint);
+        _lastCheckpoint = checkpoint;
+        Debug.Log(_lastCheckpoint);
     }
 
     private void OnDestroy()
@@ -125,7 +128,7 @@ public class GameManager : MonoBehaviour
         Checkpoint.OnCheckpointHit -= Checkpoint_OnCheckpointHit;
         Player.OnPlayerDeath -= Player_OnPlayerDeath;
         PressToPlay.OnMainVideoStartLoading -= PressToPlay_OnMainVideoStartLoading;
-        CloseVideo.OnVideoEnd -= CloseVideo_OnVideoEnd;
+        CloseVideo.OnCloseVideo -= CloseVideo_OnCloseVideo;
 
         RenderTexture _loadingVideoTexture = Resources.Load<RenderTexture>("RenderTextures/Loading Video");
         RenderTexture _youtubeVideoTexture = Resources.Load<RenderTexture>("RenderTextures/Youtube Video");
@@ -149,13 +152,13 @@ public class GameManager : MonoBehaviour
         {
             foreach (GameObject path in _paths)
             {
-                MaterialPropertyBlock materialPropertyBlock = new MaterialPropertyBlock();
+                MaterialPropertyBlock _materialPropertyBlock = new MaterialPropertyBlock();
                 
                 //Color color = Color.HSVToRGB(30f * (index + 1) / 360, 1, 1, true);
-                materialPropertyBlock.SetColor("_EmissionColor", Random.ColorHSV(0, 1, 1, 1, 1, 1) * 3);
+                _materialPropertyBlock.SetColor("_EmissionColor", Random.ColorHSV(0, 1, 1, 1, 1, 1) * 3);
 
-                path.transform.GetChild(0).GetComponent<Renderer>().SetPropertyBlock(materialPropertyBlock);
-                path.transform.GetChild(1).GetComponent<Renderer>().SetPropertyBlock(materialPropertyBlock);
+                path.transform.GetChild(0).GetComponent<Renderer>().SetPropertyBlock(_materialPropertyBlock);
+                path.transform.GetChild(1).GetComponent<Renderer>().SetPropertyBlock(_materialPropertyBlock);
             }
         }
     }
@@ -166,10 +169,13 @@ public class GameManager : MonoBehaviour
         {
             for (int j = _stations.Count - 1; j >= 0; j--)
             {
-                Color randomColor = Random.ColorHSV(0, 1, 1, 1, 1, 1);
+                MaterialPropertyBlock _materialPropertyBlock = new MaterialPropertyBlock();
+                _materialPropertyBlock.SetColor("_FresnelColor", Random.ColorHSV(0, 1, 1, 1, 1, 1) * 25);
+
                 FillStation(_stations[j]);
-                Transform stationMesh = RecursiveFindChild(_stations[j].transform, "mesh");
-                stationMesh.gameObject.GetComponent<Renderer>().material.SetColor("_FresnelColor", randomColor * 25);
+                Transform _stationMesh = RecursiveFindChild(_stations[j].transform, "mesh");
+                _stationMesh.gameObject.GetComponent<Renderer>().SetPropertyBlock(_materialPropertyBlock);
+
                 _stations[j].transform.position = _spawns[i].transform.position;
                 _stations.RemoveAt(j);
                 break;
@@ -179,15 +185,20 @@ public class GameManager : MonoBehaviour
 
     private void FillStation(GameObject station)
     {
-        foreach (Transform child in station.transform)
+        foreach (Transform _child in station.transform)
         {
-            if (child.CompareTag("StationItemSpawner"))
+            if (_child.CompareTag("StationItemSpawner"))
             {
-                int randomIdx = Random.Range(0, _stationItems.Count);
-                GameObject itemInstance = Instantiate(_stationItems[randomIdx], child.parent);
-                Transform instanceChild = itemInstance.transform.GetChild(0);
-                instanceChild.gameObject.GetComponent<Renderer>().material.SetColor("_BaseColor", Random.ColorHSV(0, 1, 1, 1));
-                itemInstance.transform.position = child.transform.position;
+                MaterialPropertyBlock _materialPropertyBlock = new MaterialPropertyBlock();
+                _materialPropertyBlock.SetColor("_BaseColor", Random.ColorHSV(0, 1, 1, 1));
+
+                int _randomIdx = Random.Range(0, _stationItems.Count);
+
+                GameObject _itemInstance = Instantiate(_stationItems[_randomIdx], _child.parent);
+                Transform _instanceChild = _itemInstance.transform.GetChild(0);
+                _instanceChild.gameObject.GetComponent<Renderer>().SetPropertyBlock(_materialPropertyBlock);
+                _itemInstance.transform.position = _child.transform.position;
+
                 //itemInstance.transform.SetParent(child.parent);
                 //stationItems.RemoveAt(randomIdx);
             }

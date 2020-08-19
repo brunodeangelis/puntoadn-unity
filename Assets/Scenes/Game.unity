@@ -153,7 +153,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 65787248}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3768fe280903842fdaa2a016022624f1, type: 3}
   m_Name: 
@@ -184,7 +184,7 @@ VideoPlayer:
   - {fileID: 0}
   m_DirectAudioVolumes:
   - 1
-  m_Url: https://r3---sn-j5cax8pnpvo-x1xel.googlevideo.com/videoplayback?expire=1597814132&ei=FGE8X-qIDIHFwgSakZHwBA&ip=190.244.69.235&id=o-AFy31RfOAB5ZmvL7pvzYE_yjv1VXCu1ffHnZstcAU6L4&itag=22&source=youtube&requiressl=yes&mh=y4&mm=31%2C29&mn=sn-j5cax8pnpvo-x1xel%2Csn-j5cax8pnpvo-x1xek&ms=au%2Crdu&mv=m&mvi=3&pcm2cms=yes&pl=24&initcwndbps=675000&vprv=1&mime=video%2Fmp4&ratebypass=yes&dur=76.649&lmt=1594932377515103&mt=1597792421&fvip=3&fexp=23883098&c=WEB&txp=6216222&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRQIgXeqdmsZLMqIcQHIyYi2KSw1pLRvXPy88G2I85eEQInUCIQDyARoTU_QTpNFcFaEKZJ2USBi9E-poumljQq39hsDprQ%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpcm2cms%2Cpl%2Cinitcwndbps&lsig=AG3C_xAwRQIhAKM6IhKZKDULoE3J6i8NN4um9nc9F4NnZLDYfyV_8NwUAiAil2fzJjPSATiONE-O11otQB-ievNHzC7bVIEX4ILxNg%3D%3D
+  m_Url: 
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 01
   m_ControlledAudioTrackCount: 1
@@ -773,9 +773,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2418e33a1b125954aad8a977a7f223f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastCheckpoint: {fileID: 0}
-  isVideoPlaying: 0
-  isInsideScreenRange: 0
+  _closeVideo: {fileID: 1777357141}
+  _lastCheckpoint: {fileID: 0}
+  _isVideoPlaying: 0
+  _isInsideScreenRange: 0
 --- !u!4 &626353739
 Transform:
   m_ObjectHideFlags: 0
@@ -1651,151 +1652,6 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 97008581}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1336654574
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1336654575}
-  - component: {fileID: 1336654579}
-  - component: {fileID: 1336654578}
-  - component: {fileID: 1336654577}
-  - component: {fileID: 1336654576}
-  m_Layer: 5
-  m_Name: Close Video
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1336654575
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1336654574}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1777357142}
-  m_Father: {fileID: 1928167457}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -82, y: -67}
-  m_SizeDelta: {x: 31.113281, y: 32.45343}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1336654576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1336654574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc9d5d4cb6014804a8868a5eea132900, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1336654577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1336654574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 0.101960786, g: 0.1254902, b: 0.17254902, a: 1}
-    m_HighlightedColor: {r: 0.18912424, g: 0.23300108, b: 0.3207547, a: 1}
-    m_PressedColor: {r: 0.0734692, g: 0.08985998, b: 0.122641504, a: 1}
-    m_SelectedColor: {r: 0.101960786, g: 0.1254902, b: 0.17254902, a: 1}
-    m_DisabledColor: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 1}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1336654578}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1336654576}
-        m_TargetAssemblyTypeName: CloseVideo, Assembly-CSharp
-        m_MethodName: EndVideo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1336654578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1336654574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.101960786, g: 0.1254902, b: 0.17254902, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1336654579
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1336654574}
-  m_CullTransparentMesh: 0
 --- !u!1 &1389680177
 GameObject:
   m_ObjectHideFlags: 0
@@ -2322,8 +2178,10 @@ GameObject:
   - component: {fileID: 1777357142}
   - component: {fileID: 1777357144}
   - component: {fileID: 1777357143}
+  - component: {fileID: 1777357146}
+  - component: {fileID: 1777357145}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Close Video
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2340,13 +2198,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1336654575}
-  m_RootOrder: 0
+  m_Father: {fileID: 1928167457}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -82, y: -67}
+  m_SizeDelta: {x: 31.113281, y: 32.45343}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1777357143
 MonoBehaviour:
@@ -2361,7 +2219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2390,6 +2248,73 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1777357141}
   m_CullTransparentMesh: 0
+--- !u!114 &1777357145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777357141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc9d5d4cb6014804a8868a5eea132900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1777357146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777357141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 0
+  m_Colors:
+    m_NormalColor: {r: 0.101960786, g: 0.1254902, b: 0.17254902, a: 1}
+    m_HighlightedColor: {r: 0.18912424, g: 0.23300108, b: 0.3207547, a: 1}
+    m_PressedColor: {r: 0.0734692, g: 0.08985998, b: 0.122641504, a: 1}
+    m_SelectedColor: {r: 0.101960786, g: 0.1254902, b: 0.17254902, a: 1}
+    m_DisabledColor: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 1}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1777357143}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1777357145}
+        m_TargetAssemblyTypeName: CloseVideo, Assembly-CSharp
+        m_MethodName: EndVideo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1928167453
 GameObject:
   m_ObjectHideFlags: 0
@@ -2481,7 +2406,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1461770283}
-  - {fileID: 1336654575}
+  - {fileID: 1777357142}
   - {fileID: 955278152}
   - {fileID: 241736993}
   - {fileID: 245899685}
@@ -3185,7 +3110,7 @@ VideoPlayer:
   - {fileID: 0}
   m_DirectAudioVolumes:
   - 1
-  m_Url: https://r3---sn-j5cax8pnpvo-x1xel.googlevideo.com/videoplayback?expire=1597806914&ei=4kQ8X7vjJInWwwTghrxQ&ip=190.244.69.235&id=o-AO0mHlScZc3UMbi2sLzUsFbrLPD0LLdCVcKoA4gMbVEL&itag=22&source=youtube&requiressl=yes&mh=y4&mm=31%2C29&mn=sn-j5cax8pnpvo-x1xel%2Csn-j5cax8pnpvo-x1xek&ms=au%2Crdu&mv=m&mvi=3&pl=24&initcwndbps=715000&vprv=1&mime=video%2Fmp4&ratebypass=yes&dur=76.649&lmt=1594932377515103&mt=1597785281&fvip=3&fexp=23883098&c=WEB&txp=6216222&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRAIgAyjYQrYtMI6j-yIOVDj2Jq9Dl7EERZzo1nE8dLEn9s4CIAwmJknU_MvztgSOMrSaKM6vw-aok-VP4l9ra_vhLrBF&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&lsig=AG3C_xAwRQIgW4Mu2KyH3W9L66y7irFePCrx7jeJmDjrlTz4hUkO6B8CIQDOOG7jc_hkfyqma-aNEBmHFMMrFA4KJNl1_eFmc9yfrg%3D%3D
+  m_Url: https://r3---sn-j5cax8pnpvo-x1xel.googlevideo.com/videoplayback?expire=1597901190&ei=JrU9X728M4LAwwTZ9pygAw&ip=190.244.69.235&id=o-ALxlIR07_Fj43ct9jUR8zwYxpeHx8agSy5mbT7SEEFYM&itag=22&source=youtube&requiressl=yes&mh=y4&mm=31%2C29&mn=sn-j5cax8pnpvo-x1xel%2Csn-j5cax8pnpvo-x1xek&ms=au%2Crdu&mv=m&mvi=3&pl=24&initcwndbps=630000&vprv=1&mime=video%2Fmp4&ratebypass=yes&dur=76.649&lmt=1594932377515103&mt=1597879417&fvip=3&c=WEB&txp=6216222&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRAIgNH4UEB1A0pVVCJkKoZDOs0A7mQ3rUrcLBIL57AIHu-wCIBBaKnJBhRz42V7e79qpB6NmGLAt_06KbmfmZCVgpHT1&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&lsig=AG3C_xAwRQIgaFxdPEg-IuFOJpqX2Lkaw_t38EZqMXmbADUbt6zT2HMCIQDjDfcPblXe4_iUH1JElrKFnNjLw1eWuqnjkhV1SEH22g%3D%3D
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1

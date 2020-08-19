@@ -19,7 +19,7 @@ namespace YoutubePlayer {
 
         private void Start()
         {
-            CloseVideo.OnVideoEnd += CloseVideo_OnVideoEnd;
+            CloseVideo.OnCloseVideo += CloseVideo_OnVideoEnd;
             //OnEnterScreenRange += PressToPlay_OnEnterScreenRange;
             //OnLeaveScreenRange += PressToPlay_OnLeaveScreenRange;
 
@@ -62,7 +62,7 @@ namespace YoutubePlayer {
 
         private void Update()
         {
-            if (_player.isInsideScreenRange && !GameManager.Instance.isVideoPlaying)
+            if (_player.isInsideScreenRange && !GameManager.Instance._isVideoPlaying)
             {
                 _ui.SetActive(true);
 
@@ -72,7 +72,7 @@ namespace YoutubePlayer {
 
                     GetComponent<YoutubePlayer>().enabled = true;
 
-                    GameManager.Instance.isVideoPlaying = true;
+                    GameManager.Instance._isVideoPlaying = true;
 
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
