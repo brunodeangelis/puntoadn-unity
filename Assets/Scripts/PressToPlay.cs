@@ -8,17 +8,15 @@ using YoutubePlayer;
 namespace YoutubePlayer {
 
     [RequireComponent(typeof(YoutubePlayer))]
-    public class PressToPlay : MonoBehaviour
-    {
+    public class PressToPlay : MonoBehaviour {
         private GameObject _ui;
         private Player _player;
 
         //public static event Action<PressToPlay> OnEnterScreenRange;
         //public static event Action<PressToPlay> OnLeaveScreenRange;
-        public static event Action OnMainVideoStartLoading;
+        public static event Action<GameObject> OnMainVideoStartLoading;
 
-        private void Start()
-        {
+        private void Start() {
             CloseVideo.OnCloseVideo += CloseVideo_OnVideoEnd;
             //OnEnterScreenRange += PressToPlay_OnEnterScreenRange;
             //OnLeaveScreenRange += PressToPlay_OnLeaveScreenRange;
@@ -27,8 +25,7 @@ namespace YoutubePlayer {
             _ui = GameObject.Find("Interact Text");
         }
 
-        private void CloseVideo_OnVideoEnd()
-        {
+        private void CloseVideo_OnVideoEnd() {
             Debug.Log("video ended!!");
         }
 
@@ -50,36 +47,25 @@ namespace YoutubePlayer {
         //    OnLeaveScreenRange -= PressToPlay_OnLeaveScreenRange;
         //}
 
-        private void OnTriggerEnter(Collider other)
-        {
+        private void OnTriggerEnter(Collider other) {
             if (other.transform.tag == "Player") _player.isInsideScreenRange = true;
         }
 
-        private void OnTriggerExit(Collider other)
-        {
+        private void OnTriggerExit(Collider other) {
             if (other.transform.tag == "Player") _player.isInsideScreenRange = false;
         }
 
-        private void Update()
-        {
-            if (_player.isInsideScreenRange && !GameManager.Instance._isVideoPlaying)
-            {
+        private void Update() {
+            if (_player.isInsideScreenRange && !GameManager.Instance._isVideoPlaying) {
                 _ui.SetActive(true);
 
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    OnMainVideoStartLoading?.Invoke();
-
+                if (Input.GetKeyDown(KeyCode.E)) {
+                    GetComponent<VideoPlayer>().enabled = true;
                     GetComponent<YoutubePlayer>().enabled = true;
 
-                    GameManager.Instance._isVideoPlaying = true;
-
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = true;
+                    OnMainVideoStartLoading?.Invoke(gameObject);
                 }
-            }
-            else
-            {
+            } else {
                 _ui.SetActive(false);
             }
         }

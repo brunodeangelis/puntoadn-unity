@@ -23,6 +23,19 @@ namespace YoutubePlayer
 
         private Image playbackProgress;
         private RectTransform rectTransform;
+
+        #region Singleton
+        private static VideoPlayerProgress _instance;
+        public static VideoPlayerProgress Instance { get { return _instance; } }
+        private void Awake() {
+            if (_instance != null && _instance != this) {
+                Destroy(this.gameObject);
+            } else {
+                _instance = this;
+            }
+        }
+        #endregion
+
         private void Start()
         {
             rectTransform = GetComponent<RectTransform>();
