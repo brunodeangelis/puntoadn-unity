@@ -20,6 +20,13 @@ public class GameManager : MonoBehaviour {
     private int[] _hueValues = new int[] { 0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360 };
     private List<int> _hueValuesList = new List<int>();
 
+    private GameObject _backdrop;
+    private GameObject _canvasLoadingVideo;
+    private GameObject _canvasPlayingVideo;
+
+    private RenderTexture _loadingVideoTexture;
+    private RenderTexture _youtubeVideoTexture;
+
     public static Transform RecursiveFindChild(Transform parent, string childName) {
         Transform child = null;
         for (int i = 0; i < parent.childCount; i++) {
@@ -39,15 +46,7 @@ public class GameManager : MonoBehaviour {
 
     [HideInInspector] public Checkpoint _lastCheckpoint;
 
-    private GameObject _backdrop;
-    private GameObject _canvasLoadingVideo;
-    private GameObject _canvasPlayingVideo;
-
-    private RenderTexture _loadingVideoTexture;
-    private RenderTexture _youtubeVideoTexture;
-
     [HideInInspector] public bool _isVideoPlaying;
-    [HideInInspector] public bool _isInsideScreenRange;
     [HideInInspector] public GameObject playingVideo;
 
     #region Singleton
@@ -63,7 +62,6 @@ public class GameManager : MonoBehaviour {
     #endregion
 
     private void Start() {
-        // Register events
         Checkpoint.OnCheckpointHit += Checkpoint_OnCheckpointHit;
         Player.OnPlayerDeath += Player_OnPlayerDeath;
         PressToPlay.OnMainVideoStartLoading += PressToPlay_OnMainVideoStartLoading;
@@ -100,15 +98,19 @@ public class GameManager : MonoBehaviour {
 
         _backdrop.GetComponent<Image>().DOFade(0f, 0.3f);
 
-        VideoPlayerProgress.Instance.GetComponent<Image>().DOFade(0.0f, 0.3f);
+        //VideoPlayerProgress.Instance.GetComponent<Image>().DOFade(0.0f, 0.3f);
+        VideoPlayerProgress.Instance.transform.parent.GetComponent<CanvasGroup>().DOFade(0.0f, 0.3f);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        playingVideo = null;
     }
 
     private void PressToPlay_OnMainVideoStartLoading(GameObject videoGO) {
         _isVideoPlaying = true;
         playingVideo = videoGO;
+        
         VideoPlayerProgress.Instance.videoPlayer = playingVideo.GetComponent<VideoPlayer>();
 
         #region Show UI
@@ -121,7 +123,8 @@ public class GameManager : MonoBehaviour {
         _backdrop.GetComponent<Image>().DOFade(0.7f, 0.3f);
         _closeVideo.GetComponent<Text>().DOFade(1f, 0.3f);
 
-        VideoPlayerProgress.Instance.GetComponent<Image>().DOFade(1.0f, 0.3f);
+        //VideoPlayerProgress.Instance.GetComponent<Image>().DOFade(1.0f, 0.3f);
+        VideoPlayerProgress.Instance.transform.parent.GetComponent<CanvasGroup>().DOFade(1.0f, 0.3f);
         VideoPlayerProgress.Instance.GetComponent<Image>().fillAmount = 0.0f;
 
         Cursor.lockState = CursorLockMode.None;

@@ -548,3 +548,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28c6cf410f9719f41b5eab60bacf330e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInsideScreenRange: 0
