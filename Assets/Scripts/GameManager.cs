@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject _closeVideo;
 
     private List<GameObject> _spawns;
-    private List<GameObject> _stations;
-    private List<GameObject> _stationItems;
+    //private List<GameObject> _stations;
+    //private List<GameObject> _stationItems;
 
     private GameObject[] _paths;
     private MaterialPropertyBlock _materialPropertyBlock;
@@ -44,7 +45,13 @@ public class GameManager : MonoBehaviour {
         return child;
     }
 
-    [HideInInspector] public Checkpoint _lastCheckpoint;
+    public List<Station> _stationBlueprints = new List<Station>();
+    public List<GameObject> _stations = new List<GameObject>();
+    public List<GameObject> _stationItems = new List<GameObject>();
+
+    static System.Random rnd = new System.Random();
+
+    [HideInInspector] public Vector3 _lastCheckpointPosition;
 
     [HideInInspector] public bool _isVideoPlaying;
     [HideInInspector] public GameObject playingVideo;
@@ -61,15 +68,20 @@ public class GameManager : MonoBehaviour {
     }
     #endregion
 
-    private void Start() {
+    private void Start() { 
+        foreach (var path in FindObjectsOfType<WalkingPath>())
+        {
+            path.transform.localScale = new Vector3(0, 0, 1);
+        }
+
         Checkpoint.OnCheckpointHit += Checkpoint_OnCheckpointHit;
         Player.OnPlayerDeath += Player_OnPlayerDeath;
         PressToPlay.OnMainVideoStartLoading += PressToPlay_OnMainVideoStartLoading;
         CloseVideo.OnCloseVideo += CloseVideo_OnCloseVideo;
 
         _spawns = GameObject.FindGameObjectsWithTag("StationSpawner").ToList();
-        _stations = GameObject.FindGameObjectsWithTag("Station").ToList();
-        _stationItems = GameObject.FindGameObjectsWithTag("StationItem").ToList();
+        //_stations = GameObject.FindGameObjectsWithTag("Station").ToList();
+        //_stationItems = GameObject.FindGameObjectsWithTag("StationItem").ToList();
 
         _backdrop = GameObject.Find("Backdrop");
         _canvasLoadingVideo = GameObject.Find("Loading Video");
@@ -110,7 +122,8 @@ public class GameManager : MonoBehaviour {
     private void PressToPlay_OnMainVideoStartLoading(GameObject videoGO) {
         _isVideoPlaying = true;
         playingVideo = videoGO;
-        
+        playingVideo.GetComponent<VideoPlayer>().enabled = true;
+
         VideoPlayerProgress.Instance.videoPlayer = playingVideo.GetComponent<VideoPlayer>();
 
         #region Show UI
@@ -133,12 +146,12 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Player_OnPlayerDeath(Player player) {
-        player.transform.position = _lastCheckpoint.transform.position;
+        player.transform.position = _lastCheckpointPosition;
     }
 
     private void Checkpoint_OnCheckpointHit(Checkpoint checkpoint) {
-        _lastCheckpoint = checkpoint;
-        Debug.Log(_lastCheckpoint);
+        _lastCheckpointPosition = checkpoint.gameObject.transform.position;
+        Destroy(checkpoint.gameObject);
     }
 
     private void OnDestroy() {
@@ -156,7 +169,8 @@ public class GameManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.T)) {
             int index = 0;
             foreach (GameObject path in _paths) {
-                path.GetComponent<Animator>().Play("path_scale");
+                path.transform.DOScale(new Vector3(1, 1, 1), 1f);
+                //path.GetComponent<Animator>().SetBool("show", true);
                 index++;
             }
         }
@@ -166,7 +180,7 @@ public class GameManager : MonoBehaviour {
                 MaterialPropertyBlock _materialPropertyBlock = new MaterialPropertyBlock();
 
                 //Color color = Color.HSVToRGB(30f * (index + 1) / 360, 1, 1, true);
-                _materialPropertyBlock.SetColor("_EmissionColor", Random.ColorHSV(0, 1, 1, 1, 1, 1) * 3);
+                _materialPropertyBlock.SetColor("_EmissionColor", UnityEngine.Random.ColorHSV(0, 1, 1, 1, 1, 1) * 3);
 
                 path.transform.GetChild(0).GetComponent<Renderer>().SetPropertyBlock(_materialPropertyBlock);
                 path.transform.GetChild(1).GetComponent<Renderer>().SetPropertyBlock(_materialPropertyBlock);
@@ -175,29 +189,49 @@ public class GameManager : MonoBehaviour {
     }
 
     private void SpawnStations() {
-        for (int i = 0; i < _spawns.Count; i++) {
-            for (int j = _stations.Count - 1; j >= 0; j--) {
-                MaterialPropertyBlock _materialPropertyBlock = new MaterialPropertyBlock();
-                _materialPropertyBlock.SetColor("_FresnelColor", Random.ColorHSV(0, 1, 1, 1, 1, 1) * 25);
+        //for (int i = 0; i < _spawns.Count; i++) {
+        //    for (int j = _stations.Count - 1; j >= 0; j--) {
+        //        MaterialPropertyBlock _materialPropertyBlock = new MaterialPropertyBlock();
+        //        _materialPropertyBlock.SetColor("_FresnelColor", Random.ColorHSV(0, 1, 1, 1, 1, 1) * 25);
 
-                FillStation(_stations[j]);
-                Transform _stationMesh = RecursiveFindChild(_stations[j].transform, "mesh");
-                _stationMesh.gameObject.GetComponent<Renderer>().SetPropertyBlock(_materialPropertyBlock);
+        //        FillStation(_stations[j]);
+        //        Transform _stationMesh = RecursiveFindChild(_stations[j].transform, "mesh");
+        //        _stationMesh.gameObject.GetComponent<Renderer>().SetPropertyBlock(_materialPropertyBlock);
 
-                _stations[j].transform.position = _spawns[i].transform.position;
-                _stations.RemoveAt(j);
-                break;
-            }
-        }
+        //        _stations[j].transform.position = _spawns[i].transform.position;
+        //        _stations.RemoveAt(j);
+        //        break;
+        //    }
+        //}
+
+        //List<StationSpawner> stationSpawns = FindObjectsOfType<StationSpawner>().ToList();
+        //var pathDirs = Enum.GetValues(typeof(PathDirection)).Cast<PathDirection>();
+        //List<GameObject> stationsClone = _stations;
+
+        //foreach (var stationSpawn in stationSpawns)
+        //{
+        //    if (stationSpawn._pathDirection == PathDirection.NORTH)
+        //    {
+        //        int r = rnd.Next(stationsClone.Count);
+        //        GameObject instancedStation = Instantiate(stationsClone[r]);
+        //        stationsClone[r].transform.position = stationSpawn.transform.position;
+        //        stationsClone.RemoveAt(r);
+        //        Debug.Log("count antes de replenish: " + stationsClone.Count);
+        //    }
+
+        //    stationsClone = _stations;
+
+        //    Debug.Log("count despues de replenish: " + stationsClone.Count);
+        //}
     }
 
     private void FillStation(GameObject station) {
         foreach (Transform _child in station.transform) {
             if (_child.CompareTag("StationItemSpawner")) {
                 MaterialPropertyBlock _materialPropertyBlock = new MaterialPropertyBlock();
-                _materialPropertyBlock.SetColor("_BaseColor", Random.ColorHSV(0, 1, 1, 1));
+                _materialPropertyBlock.SetColor("_BaseColor", UnityEngine.Random.ColorHSV(0, 1, 1, 1));
 
-                int _randomIdx = Random.Range(0, _stationItems.Count);
+                int _randomIdx = UnityEngine.Random.Range(0, _stationItems.Count);
 
                 GameObject _itemInstance = Instantiate(_stationItems[_randomIdx], _child.parent);
                 Transform _instanceChild = _itemInstance.transform.GetChild(0);

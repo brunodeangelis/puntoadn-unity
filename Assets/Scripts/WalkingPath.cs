@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WalkingPath : MonoBehaviour
 {
+    public PathDirection _pathDirection;
 
     // Start is called before the first frame update
     void Start()

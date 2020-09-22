@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1182409678163790489}
   - component: {fileID: 4002631478855810643}
   - component: {fileID: 3210161016450097029}
-  - component: {fileID: 5724823542966669608}
   - component: {fileID: 910441143405418598}
   m_Layer: 0
   m_Name: Walking Path
@@ -100,25 +99,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5741174448488666723, guid: 0489c51006bf2b547bec3a9529666c39, type: 3}
---- !u!95 &5724823542966669608
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3210161016450097030}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f5dd4657327633d4785e805b7f401361, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &910441143405418598
 MonoBehaviour:
   m_ObjectHideFlags: 0
