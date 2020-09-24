@@ -67,6 +67,11 @@ namespace YoutubePlayer
                     Transform screen = stationItem.transform.Find("Screen");
                     Transform childYoutubePlayer = screen.transform.Find("Youtube Player");
 
+                    if (project._videoClip == null)
+                    {
+                        Debug.Log("es NULL");
+                    }
+
                     screen.GetComponent<VideoPlayer>().clip = project._videoClip;
                     screen.GetComponent<VideoPlayer>().enabled = true;
 

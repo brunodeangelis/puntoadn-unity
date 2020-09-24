@@ -205,6 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 711b93eac095ae04195aa4661075670c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clip: {fileID: 32900000, guid: e8ad3d856826aad45a512f24bba4e14c, type: 3}
   _mainYoutubePlayer: {fileID: 3955710983772862936}
 --- !u!1001 &7445205670984397729
 PrefabInstance:
@@ -213,11 +214,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7369080138759787344}
     m_Modifications:
-    - target: {fileID: 5888224734731815524, guid: a13a1e4880aee1e40b42e3dcf2ec0e73,
-        type: 3}
-      propertyPath: m_DataSource
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5888224734731815526, guid: a13a1e4880aee1e40b42e3dcf2ec0e73,
         type: 3}
       propertyPath: m_LocalPosition.x
