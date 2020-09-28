@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour {
     public List<Station> _stationBlueprints = new List<Station>();
     public List<GameObject> _stations = new List<GameObject>();
     public List<GameObject> _stationItems = new List<GameObject>();
+    public List<GameObject> _minigames = new List<GameObject>();
 
     static System.Random rnd = new System.Random();
 
