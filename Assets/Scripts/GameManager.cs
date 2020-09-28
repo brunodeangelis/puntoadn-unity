@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour {
 
     private void CloseVideo_OnCloseVideo() {
         _isVideoPlaying = false;
-        _youtubeVideoTexture.Release();
+        //_youtubeVideoTexture.DiscardContents();
 
         playingVideo.GetComponent<VideoPlayer>().enabled = false;
         _canvasPlayingVideo.GetComponent<RawImage>().DOFade(0f, 0.3f);
@@ -122,6 +122,7 @@ public class GameManager : MonoBehaviour {
 
     private void PressToPlay_OnMainVideoStartLoading(GameObject videoGO) {
         _isVideoPlaying = true;
+        //_youtubeVideoTexture.Create();
         playingVideo = videoGO;
         playingVideo.GetComponent<VideoPlayer>().enabled = true;
 

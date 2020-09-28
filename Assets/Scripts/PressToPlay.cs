@@ -54,12 +54,12 @@ namespace YoutubePlayer {
             //_mainYoutubePlayer.GetComponent<YoutubePlayer>().youtubeUrl = GetComponent<YoutubePlayer>().youtubeUrl;
             //Debug.Log(GetComponent<VideoPlayer>());
             //Debug.Log(_mainYoutubePlayer.GetComponent<VideoPlayer>());
-            //_mainYoutubePlayer.GetComponent<VideoPlayer>().enabled = true;
             Debug.Log(_clip);
             _mainYoutubePlayer.GetComponent<VideoPlayer>().clip = _clip;
-            _mainYoutubePlayer.GetComponent<VideoPlayer>().Play();
+            _mainYoutubePlayer.GetComponent<VideoPlayer>().enabled = true;
+            //_mainYoutubePlayer.GetComponent<VideoPlayer>().Play();
             //Debug.Log(_mainYoutubePlayer.GetComponent<VideoPlayer>().clip);
-            //OnMainVideoStartLoading?.Invoke(_mainYoutubePlayer);
+            OnMainVideoStartLoading?.Invoke(_mainYoutubePlayer);
         }
 
         private void CloseVideo_OnCloseVideo() {
