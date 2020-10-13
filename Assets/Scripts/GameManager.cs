@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour {
         _canvasLoadingVideo.GetComponent<RawImage>().DOFade(0f, 0.3f)
             .OnComplete(() => _canvasLoadingVideo.GetComponent<RawImage>().enabled = false);
 
-        _backdrop.GetComponent<Image>().DOFade(0f, 0.3f);
+        //_backdrop.GetComponent<Image>().DOFade(0f, 0.3f);
 
         //VideoPlayerProgress.Instance.GetComponent<Image>().DOFade(0.0f, 0.3f);
         VideoPlayerProgress.Instance.transform.parent.GetComponent<CanvasGroup>().DOFade(0.0f, 0.3f);
@@ -138,7 +138,7 @@ public class GameManager : MonoBehaviour {
         _canvasLoadingVideo.GetComponent<RawImage>().enabled = true;
         _canvasLoadingVideo.GetComponent<RawImage>().DOFade(1f, 0.3f);
 
-        _backdrop.GetComponent<Image>().DOFade(0.7f, 0.3f);
+        //_backdrop.GetComponent<Image>().DOFade(0.7f, 0.3f);
         _closeVideo.GetComponent<Text>().DOFade(1f, 0.3f);
 
         //VideoPlayerProgress.Instance.GetComponent<Image>().DOFade(1.0f, 0.3f);
