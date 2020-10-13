@@ -11,7 +11,7 @@ public class PathWallTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            wall.transform.DOScaleX(0.15f, 0.2f);
+            wall.transform.DOScale(new Vector3(0.15f, 8f, transform.localScale.z), 0.2f);
             Destroy(gameObject);
         }
     }
