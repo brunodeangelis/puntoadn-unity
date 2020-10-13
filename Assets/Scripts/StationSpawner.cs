@@ -15,6 +15,9 @@ namespace YoutubePlayer
         {
             if (other.CompareTag("Player"))
             {
+                if (GameManager.Instance._lastStationSpawned != null)
+                    Destroy(GameManager.Instance._lastStationSpawned);
+
                 SpawnRandomStation();
             }
         }
@@ -27,12 +30,11 @@ namespace YoutubePlayer
             int r2 = UnityEngine.Random.Range(0, stationBlueprints.Count);
 
             Station stationBlueprint = Instantiate(stationBlueprints[r2]);
-            //Debug.Log("random blueprint selected: " + stationBlueprint);
-            //Debug.Log("blueprints count: " + stationBlueprints.Count);
             GameObject instancedStation = Instantiate(stations[r]);
 
             FillStation(instancedStation, stationBlueprint);
 
+            // Ubico estación en la posición del "Station Position"
             instancedStation.transform.position = transform.GetChild(0).transform.position;
 
             stations.RemoveAt(r);
@@ -40,6 +42,8 @@ namespace YoutubePlayer
 
             GameManager.Instance._stations = stations;
             GameManager.Instance._stationBlueprints = stationBlueprints;
+            GameManager.Instance._lastStationSpawned = instancedStation;
+
             Destroy(gameObject);
         }
 
@@ -67,21 +71,8 @@ namespace YoutubePlayer
                     Transform screen = stationItem.transform.Find("Screen");
                     Transform childYoutubePlayer = screen.transform.Find("Youtube Player");
 
-                    if (project._videoClip == null)
-                    {
-                        Debug.Log("es NULL");
-                    }
-
                     screen.GetComponent<VideoPlayer>().clip = project._videoClip;
                     screen.GetComponent<VideoPlayer>().enabled = true;
-
-                    //screen.GetComponent<YoutubePlayer>().youtubeUrl = project._videoUrl;
-                    //screen.GetComponent<VideoPlayer>().enabled = true;
-                    //screen.GetComponent<YoutubePlayer>().enabled = true;
-
-                    //childYoutubePlayer.GetComponent<YoutubePlayer>().youtubeUrl = project._videoUrl;
-                    //childYoutubePlayer.GetComponent<VideoPlayer>().enabled = true;
-                    //childYoutubePlayer.GetComponent<YoutubePlayer>().enabled = true;
 
                     // Saco el proyecto de la lista, ya lo usé
                     stationBlueprint._stationData._projects.Remove(project);

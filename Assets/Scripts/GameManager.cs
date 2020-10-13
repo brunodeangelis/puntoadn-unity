@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour {
     //private List<GameObject> _stations;
     //private List<GameObject> _stationItems;
 
-    private GameObject[] _paths;
+    private WalkingPath[] _paths;
     private MaterialPropertyBlock _materialPropertyBlock;
 
     private int[] _hueValues = new int[] { 0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360 };
@@ -49,6 +49,9 @@ public class GameManager : MonoBehaviour {
     public List<GameObject> _stations = new List<GameObject>();
     public List<GameObject> _stationItems = new List<GameObject>();
     public List<GameObject> _minigames = new List<GameObject>();
+    public GameObject _lastStationSpawned;
+
+    public GameObject _interactText;
 
     static System.Random rnd = new System.Random();
 
@@ -70,11 +73,6 @@ public class GameManager : MonoBehaviour {
     #endregion
 
     private void Start() { 
-        foreach (var path in FindObjectsOfType<WalkingPath>())
-        {
-            path.transform.localScale = new Vector3(0, 0, 1);
-        }
-
         Checkpoint.OnCheckpointHit += Checkpoint_OnCheckpointHit;
         Player.OnPlayerDeath += Player_OnPlayerDeath;
         PressToPlay.OnMainVideoStartLoading += PressToPlay_OnMainVideoStartLoading;
@@ -91,10 +89,15 @@ public class GameManager : MonoBehaviour {
         _loadingVideoTexture = Resources.Load<RenderTexture>("RenderTextures/Loading Video");
         _youtubeVideoTexture = Resources.Load<RenderTexture>("RenderTextures/Youtube Video");
 
-        _paths = GameObject.FindGameObjectsWithTag("Path");
+        _paths = FindObjectsOfType<WalkingPath>();
+        foreach (var path in _paths)
+        {
+            path.transform.localScale = new Vector3(0, 0, 0);
+        }
 
         _hueValuesList = _hueValues.ToList();
 
+        RenderSettings.fog = true;
         SpawnStations();
     }
 
@@ -169,16 +172,13 @@ public class GameManager : MonoBehaviour {
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.T)) {
-            int index = 0;
-            foreach (GameObject path in _paths) {
-                path.transform.DOScale(new Vector3(1, 1, 1), 1f);
-                //path.GetComponent<Animator>().SetBool("show", true);
-                index++;
+            foreach (WalkingPath path in _paths) {
+                path.transform.DOScale(path._scale, 1f);
             }
         }
 
         if (Input.GetKeyDown(KeyCode.Q)) {
-            foreach (GameObject path in _paths) {
+            foreach (WalkingPath path in _paths) {
                 MaterialPropertyBlock _materialPropertyBlock = new MaterialPropertyBlock();
 
                 //Color color = Color.HSVToRGB(30f * (index + 1) / 360, 1, 1, true);

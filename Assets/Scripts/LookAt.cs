@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class LookAt : MonoBehaviour
 {
-    public Transform target;
+    private Transform _playerTransform;
+    private void Awake()
+    {
+        _playerTransform = FindObjectOfType<Player>().transform;
+    }
 
     void Update() {
-        transform.LookAt(target, Vector3.up);
+        transform.LookAt(_playerTransform, Vector3.up);
     }
 }

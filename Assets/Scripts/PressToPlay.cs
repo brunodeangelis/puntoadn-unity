@@ -10,10 +10,8 @@ namespace YoutubePlayer {
     [RequireComponent(typeof(YoutubePlayer))]
     public class PressToPlay : MonoBehaviour {
         private GameObject _ui;
-        private Player _player;
 
         private bool _isPlayerInsideScreen = false;
-        [SerializeField] private VideoClip _clip;
 
         public GameObject _mainYoutubePlayer;
 
@@ -21,13 +19,8 @@ namespace YoutubePlayer {
 
         private void Awake() {
             CloseVideo.OnCloseVideo += CloseVideo_OnCloseVideo;
-        }
 
-        private void Start() {
-            _player = Player.Instance;
-            _ui = GameObject.Find("Interact Text");
-            _clip = GetComponent<VideoPlayer>().clip;
-            //Debug.Log(_mainYoutubePlayer.name);
+            _ui = GameManager.Instance._interactText;
         }
 
         private void OnTriggerEnter(Collider other) {
@@ -41,29 +34,23 @@ namespace YoutubePlayer {
         private void Update() {
             if (_isPlayerInsideScreen && !GameManager.Instance._isVideoPlaying)
             {
-                //_ui.SetActive(true);
+                _ui.SetActive(true);
+
                 if (Input.GetKeyDown(KeyCode.E))
                     PlayVideo();
             } else
             {
-                //_ui.SetActive(false);
+                _ui.SetActive(false);
             }
         }
         
         private void PlayVideo() {
-            //_mainYoutubePlayer.GetComponent<YoutubePlayer>().youtubeUrl = GetComponent<YoutubePlayer>().youtubeUrl;
-            //Debug.Log(GetComponent<VideoPlayer>());
-            //Debug.Log(_mainYoutubePlayer.GetComponent<VideoPlayer>());
-            Debug.Log(_clip);
-            _mainYoutubePlayer.GetComponent<VideoPlayer>().clip = _clip;
+            _mainYoutubePlayer.GetComponent<VideoPlayer>().clip = GetComponent<VideoPlayer>().clip;
             _mainYoutubePlayer.GetComponent<VideoPlayer>().enabled = true;
-            //_mainYoutubePlayer.GetComponent<VideoPlayer>().Play();
-            //Debug.Log(_mainYoutubePlayer.GetComponent<VideoPlayer>().clip);
             OnMainVideoStartLoading?.Invoke(_mainYoutubePlayer);
         }
 
         private void CloseVideo_OnCloseVideo() {
-            //_mainYoutubePlayer.GetComponent<YoutubePlayer>().enabled = false;
             _mainYoutubePlayer.GetComponent<VideoPlayer>().enabled = false;
         }
     }
