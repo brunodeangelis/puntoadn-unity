@@ -1197,6 +1197,9 @@ MonoBehaviour:
   - {fileID: 2190497905069481582, guid: 975b63def4685e64885ec5611cd3b463, type: 3}
   _minigames:
   - {fileID: 616849042403732374, guid: 2b330795721c3b14494f658164875a62, type: 3}
+  - {fileID: 616849042403732374, guid: 2b330795721c3b14494f658164875a62, type: 3}
+  - {fileID: 616849042403732374, guid: 2b330795721c3b14494f658164875a62, type: 3}
+  - {fileID: 616849042403732374, guid: 2b330795721c3b14494f658164875a62, type: 3}
   _lastStationSpawned: {fileID: 0}
   _interactText: {fileID: 955278151}
   _lastCheckpointPosition: {x: 0, y: 0, z: 0}
@@ -2953,6 +2956,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Minigame Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 4568293276593062919, guid: f3abc0fc81f339848bdd4ce7076e2a5c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3abc0fc81f339848bdd4ce7076e2a5c, type: 3}
 --- !u!1 &1742989169
@@ -3148,7 +3156,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1928123071
 Transform:
   m_ObjectHideFlags: 0
