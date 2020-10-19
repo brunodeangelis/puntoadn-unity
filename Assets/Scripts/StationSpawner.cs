@@ -56,20 +56,20 @@ namespace YoutubePlayer
 
             foreach (Transform child in station.transform)
             {
-                if (child.CompareTag("StationItemSpawner"))
+                if (child.CompareTag("StationItemSpawner") && stationBlueprint._stationData._projects.Count >= 0)
                 {
                     // Agarro proyecto random de la lista
                     int r2 = UnityEngine.Random.Range(0, stationBlueprint._stationData._projects.Count);
-                    //Debug.Log("projects count: " + stationBlueprint._stationData._projects.Count);
-                    //Debug.Log("random for project: " + r2);
 
                     Project project = stationBlueprint._stationData._projects[r2];
+
+                    Debug.Log(stationBlueprint._stationData._projects);
+                    Debug.Log(r2);
 
                     GameObject stationItem = Instantiate(GameManager.Instance._stationItems[r], child.parent);
                     stationItem.transform.position = child.transform.position;
 
                     Transform screen = stationItem.transform.Find("Screen");
-                    Transform childYoutubePlayer = screen.transform.Find("Youtube Player");
 
                     screen.GetComponent<VideoPlayer>().clip = project._videoClip;
                     screen.GetComponent<VideoPlayer>().enabled = true;

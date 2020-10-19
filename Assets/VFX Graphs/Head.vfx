@@ -186,8 +186,8 @@ MonoBehaviour:
   m_UISuperCollapsed: 0
   m_UIInfos: {fileID: 114340500867371532}
   m_ParameterInfo:
-  - name: color
-    path: color
+  - name: Color
+    path: Color
     tooltip: 
     sheetType: m_Vector4f
     realType: Color
@@ -199,8 +199,8 @@ MonoBehaviour:
     min: -Infinity
     max: Infinity
     descendantCount: 0
-  - name: size
-    path: size
+  - name: Size
+    path: Size
     tooltip: 
     sheetType: m_Float
     realType: Single
@@ -212,8 +212,8 @@ MonoBehaviour:
     min: -Infinity
     max: Infinity
     descendantCount: 0
-  - name: trailsSpawnRate
-    path: trailsSpawnRate
+  - name: Trails Spawn Rate
+    path: Trails Spawn Rate
     tooltip: 
     sheetType: m_Float
     realType: Single
@@ -225,8 +225,8 @@ MonoBehaviour:
     min: -Infinity
     max: Infinity
     descendantCount: 0
-  - name: trailsLifetime
-    path: trailsLifetime
+  - name: Trails Lifetime
+    path: Trails Lifetime
     tooltip: 
     sheetType: m_Float
     realType: Single
@@ -238,8 +238,8 @@ MonoBehaviour:
     min: -Infinity
     max: Infinity
     descendantCount: 0
-  - name: noiseAmplitude
-    path: noiseAmplitude
+  - name: Noise Amplitude
+    path: Noise Amplitude
     tooltip: 
     sheetType: m_Float
     realType: Single
@@ -251,8 +251,8 @@ MonoBehaviour:
     min: -Infinity
     max: Infinity
     descendantCount: 0
-  - name: noiseFrequency
-    path: noiseFrequency
+  - name: Noise Frequency
+    path: Noise Frequency
     tooltip: 
     sheetType: m_Float
     realType: Single
@@ -264,8 +264,8 @@ MonoBehaviour:
     min: -Infinity
     max: Infinity
     descendantCount: 0
-  - name: noiseComplexity
-    path: noiseComplexity
+  - name: Noise Complexity
+    path: Noise Complexity
     tooltip: 
     sheetType: m_Float
     realType: Single
@@ -277,8 +277,8 @@ MonoBehaviour:
     min: -Infinity
     max: Infinity
     descendantCount: 0
-  - name: spawnRate
-    path: spawnRate
+  - name: Spawn Rate
+    path: Spawn Rate
     tooltip: 
     sheetType: m_Float
     realType: Single
@@ -290,8 +290,8 @@ MonoBehaviour:
     min: -Infinity
     max: Infinity
     descendantCount: 0
-  - name: outerParticleSize
-    path: outerParticleSize
+  - name: Outer Particle Size
+    path: Outer Particle Size
     tooltip: 
     sheetType: m_Float
     realType: Single
@@ -303,8 +303,8 @@ MonoBehaviour:
     min: -Infinity
     max: Infinity
     descendantCount: 0
-  - name: sphereOffset
-    path: sphereOffset
+  - name: Sphere Offset
+    path: Sphere Offset
     tooltip: 
     sheetType: m_Vector2f
     realType: Vector2
@@ -3263,7 +3263,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661614697}
-  m_ExposedName: trailsSpawnRate
+  m_ExposedName: Trails Spawn Rate
   m_Exposed: 1
   m_Order: 2
   m_Category: 
@@ -3515,7 +3515,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661614704}
-  m_ExposedName: color
+  m_ExposedName: Color
   m_Exposed: 1
   m_Order: 0
   m_Category: 
@@ -4076,7 +4076,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661614719}
-  m_ExposedName: size
+  m_ExposedName: Size
   m_Exposed: 1
   m_Order: 1
   m_Category: 
@@ -4331,7 +4331,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661614725}
-  m_ExposedName: trailsLifetime
+  m_ExposedName: Trails Lifetime
   m_Exposed: 1
   m_Order: 3
   m_Category: 
@@ -9091,7 +9091,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661614893}
-  m_ExposedName: spawnRate
+  m_ExposedName: Spawn Rate
   m_Exposed: 1
   m_Order: 7
   m_Category: 
@@ -12282,7 +12282,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661614991}
-  m_ExposedName: noiseAmplitude
+  m_ExposedName: Noise Amplitude
   m_Exposed: 1
   m_Order: 4
   m_Category: 
@@ -12633,7 +12633,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661615008}
-  m_ExposedName: outerParticleSize
+  m_ExposedName: Outer Particle Size
   m_Exposed: 1
   m_Order: 8
   m_Category: 
@@ -12710,7 +12710,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661615012}
-  m_ExposedName: sphereOffset
+  m_ExposedName: Sphere Offset
   m_Exposed: 1
   m_Order: 9
   m_Category: 
@@ -13223,7 +13223,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661615070}
-  m_ExposedName: noiseFrequency
+  m_ExposedName: Noise Frequency
   m_Exposed: 1
   m_Order: 5
   m_Category: 
@@ -13300,7 +13300,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661615072}
-  m_ExposedName: noiseComplexity
+  m_ExposedName: Noise Complexity
   m_Exposed: 1
   m_Order: 6
   m_Category: 
