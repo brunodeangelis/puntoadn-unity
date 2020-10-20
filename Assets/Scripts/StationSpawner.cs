@@ -56,7 +56,7 @@ namespace YoutubePlayer
 
             foreach (Transform child in station.transform)
             {
-                if (child.CompareTag("StationItemSpawner") && stationBlueprint._stationData._projects.Count >= 0)
+                if (child.CompareTag("StationItemSpawner") && stationBlueprint._stationData._projects.Count > 0)
                 {
                     // Agarro proyecto random de la lista
                     int r2 = UnityEngine.Random.Range(0, stationBlueprint._stationData._projects.Count);
