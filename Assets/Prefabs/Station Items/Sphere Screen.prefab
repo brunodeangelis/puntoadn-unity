@@ -131,7 +131,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: -5731547941117289742, guid: d7a18c64f2e23df4aaf579d86e00deaa, type: 3}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!65 &4303561971018223884
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -205,7 +205,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 711b93eac095ae04195aa4661075670c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 32900000, guid: e8ad3d856826aad45a512f24bba4e14c, type: 3}
   _mainYoutubePlayer: {fileID: 3955710983772862936}
 --- !u!1001 &7445205670984397729
 PrefabInstance:
