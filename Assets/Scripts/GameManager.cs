@@ -60,6 +60,8 @@ public class GameManager : MonoBehaviour {
     [HideInInspector] public bool _isVideoPlaying;
     [HideInInspector] public GameObject playingVideo;
 
+    [HideInInspector] public PathDirection _chosenDirection;
+
     #region Singleton
     private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }

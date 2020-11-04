@@ -20,6 +20,7 @@ public class MinigameSpawner : MonoBehaviour
 
         GameObject instancedMinigame = Instantiate(minigames[r]);
         instancedMinigame.transform.position = transform.GetChild(0).transform.position;
+        instancedMinigame.transform.LookAt(Player.Instance.transform);
 
         minigames.RemoveAt(r);
 

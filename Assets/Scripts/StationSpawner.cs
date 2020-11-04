@@ -36,6 +36,7 @@ namespace YoutubePlayer
 
             // Ubico estación en la posición del "Station Position"
             instancedStation.transform.position = transform.GetChild(0).transform.position;
+            instancedStation.transform.LookAt(Player.Instance.transform);
 
             stations.RemoveAt(r);
             stationBlueprints.RemoveAt(r2);
