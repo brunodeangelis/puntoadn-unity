@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1972081657741645392}
   - component: {fileID: 8214583164423304558}
   - component: {fileID: 718589730775258120}
+  - component: {fileID: 400339569}
   m_Layer: 8
   m_Name: TShirt
   m_TagString: TShirt
@@ -46,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52ab61588cfe4924197e92930b44d060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isCorrectTShirt: 0
+  _isCorrectTShirt: 1
 --- !u!65 &718589730775258120
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -58,8 +59,27 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.51, y: 1.51, z: 1.71}
-  m_Center: {x: 0, y: 0.74, z: -0.23}
+  m_Size: {x: 1.06, y: 1.46, z: 0.61}
+  m_Center: {x: 0, y: 0.71, z: -0.2}
+--- !u!95 &400339569
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972081657741645395}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ff30470f21506574eaa2e2718cad098d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3325380101474645003
 GameObject:
   m_ObjectHideFlags: 0

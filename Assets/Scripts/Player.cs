@@ -11,6 +11,13 @@ public class Player : MonoBehaviour
     public static event Action<Player> OnPlayerDeath;
 
     private Camera _mainCamera;
+    public GameObject _cameraPivot;
+
+    // These methods will be called on the object it hits.
+    const string OnRaycastExitMessage = "OnRaycastExit";
+    const string OnRaycastEnterMessage = "OnRaycastEnter";
+
+    GameObject previous;
 
     private void Awake()
     {
@@ -23,6 +30,29 @@ public class Player : MonoBehaviour
         }
 
         _mainCamera = Camera.main;
+        
+    }
+
+
+    private void Update()
+    {
+        RaycastHit hit;
+
+        Debug.DrawRay(_cameraPivot.transform.position, _cameraPivot.transform.forward * 100f, Color.magenta);
+        if (Physics.Raycast(_cameraPivot.transform.position, _cameraPivot.transform.forward, out hit, 10f))
+        {
+            GameObject current = hit.collider.gameObject;
+            if (previous != current)
+            {
+                SendMessageTo(previous, OnRaycastExitMessage);
+                SendMessageTo(current, OnRaycastEnterMessage);
+                previous = current;
+            }
+        } else
+        {
+            SendMessageTo(previous, OnRaycastExitMessage);
+            previous = null;
+        }
     }
 
     private void LateUpdate()
@@ -31,5 +61,12 @@ public class Player : MonoBehaviour
         {
             OnPlayerDeath?.Invoke(this);
         }
+    }
+
+    void SendMessageTo(GameObject target, string message)
+    {
+        if (target)
+            target.SendMessage(message, gameObject,
+                    SendMessageOptions.DontRequireReceiver);
     }
 }

@@ -91,6 +91,8 @@ public class GameManager : MonoBehaviour {
         _loadingVideoTexture = Resources.Load<RenderTexture>("RenderTextures/Loading Video");
         _youtubeVideoTexture = Resources.Load<RenderTexture>("RenderTextures/Youtube Video");
 
+        Player.Instance.transform.Find("Visibility Sphere").gameObject.SetActive(true);
+
         _paths = FindObjectsOfType<WalkingPath>();
         foreach (var path in _paths)
         {
