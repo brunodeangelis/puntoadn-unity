@@ -55,7 +55,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":8.470588684082032,"g":2.6980390548706056,"b":11.48235034942627,"a":1.0}'
+      m_SerializableObject: '{"r":10.162601470947266,"g":3.2433831691741945,"b":13.76636028289795,"a":1.0}'
     min: -Infinity
     max: Infinity
     descendantCount: 0
@@ -175,7 +175,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 50
+      m_SerializableObject: 400
     m_Space: 2147483647
   m_Property:
     name: Rate
@@ -580,7 +580,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614583}
   - {fileID: 8926484042661614585}
   dataType: 0
-  capacity: 500
+  capacity: 200
   stripCapacity: 16
   particlePerStripCount: 16
   m_Space: 0
@@ -818,7 +818,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.Vector, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"vector":{"x":0.3330000042915344,"y":1.0,"z":0.3330000042915344}}'
+      m_SerializableObject: '{"vector":{"x":0.3330000042915344,"y":0.5,"z":0.3330000042915344}}'
     m_Space: 0
   m_Property:
     name: B
@@ -2069,7 +2069,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.Vector, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"vector":{"x":0.0,"y":2.0,"z":0.0}}'
+      m_SerializableObject: '{"vector":{"x":0.0,"y":0.5,"z":0.0}}'
     m_Space: 0
   m_Property:
     name: Force
@@ -3012,7 +3012,7 @@ MonoBehaviour:
       inputSlot: {fileID: 8926484042661614675}
     position: {x: 643, y: 786}
     expandedSlots: []
-    expanded: 0
+    expanded: 1
 --- !u!114 &8926484042661614691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3041,7 +3041,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":8.470588684082032,"g":2.6980390548706056,"b":11.48235034942627,"a":1.0}'
+      m_SerializableObject: '{"r":10.162601470947266,"g":3.2433831691741945,"b":13.76636028289795,"a":1.0}'
     m_Space: 2147483647
   m_Property:
     name: o

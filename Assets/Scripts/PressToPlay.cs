@@ -11,7 +11,7 @@ namespace YoutubePlayer {
     public class PressToPlay : MonoBehaviour {
         private GameObject _ui;
 
-        private bool _isPlayerInsideScreen = false;
+        private bool _isPlayerLooking = false;
 
         public GameObject _mainYoutubePlayer;
 
@@ -23,20 +23,20 @@ namespace YoutubePlayer {
             _ui = GameManager.Instance._interactText;
         }
 
-        private void OnTriggerEnter(Collider other) {
-            if (other.transform.tag == "Player") _isPlayerInsideScreen = true;
+        private void OnRaycastEnter(GameObject sender) {
+            if (sender.transform.tag == "Player") _isPlayerLooking = true;
         }
 
-        private void OnTriggerExit(Collider other) {
-            if (other.transform.tag == "Player") _isPlayerInsideScreen = false;
+        private void OnRaycastExit(GameObject sender) {
+            if (sender.transform.tag == "Player") _isPlayerLooking = false;
         }
 
         private void Update() {
-            if (_isPlayerInsideScreen && !GameManager.Instance._isVideoPlaying)
+            if (_isPlayerLooking && !GameManager.Instance._isVideoPlaying)
             {
                 _ui.SetActive(true);
 
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetMouseButtonDown(0))
                     PlayVideo();
             } else
             {

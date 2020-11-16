@@ -5,10 +5,10 @@ using UnityEngine;
 public static class SoundManager
 {
     public static void PlayAudioClip(AudioClip clip) {
-        GameObject _soundGameObject = new GameObject("One Shot Sound");
-        AudioSource _audioSource = _soundGameObject.AddComponent<AudioSource>();
-        _audioSource.PlayOneShot(clip);
+        GameObject soundGameObject = new GameObject("One Shot Sound");
+        AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+        audioSource.PlayOneShot(clip);
 
-        Object.Destroy(_soundGameObject, clip.length);
+        Object.Destroy(soundGameObject, clip.length);
     }
 }

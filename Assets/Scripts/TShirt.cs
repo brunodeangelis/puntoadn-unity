@@ -2,29 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class TShirt : MonoBehaviour
 {
     [SerializeField] private bool _isCorrectTShirt;
     private bool _isPlayerLooking;
+    [SerializeField] private VisualEffect _particlesVFX;
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        _isPlayerLooking = true;
-    //        Debug.Log("player entered");
-    //    }
-    //}
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        _isPlayerLooking = false;
-    //        Debug.Log("player left");
-    //    }
-    //}
+    //public GameObject _TShirtBase;
+    public Wall _wall;
 
     private void Update()
     {
@@ -34,14 +21,12 @@ public class TShirt : MonoBehaviour
             {
                 if (_isCorrectTShirt)
                 {
-                    TShirt[] tshirts = FindObjectsOfType<TShirt>();
-                    foreach (TShirt tshirt in tshirts)
-                    {
-                        tshirt.transform.DOMoveY(20f, 2f);
-                    }
+                    transform.DOMoveY(2f, 2f);
+                    _particlesVFX.SetVector4("Color", new Vector4(7f, 36f, 7f, 5f)); // Green
+                    _wall.Down();
                 } else
                 {
-                    
+                    _particlesVFX.SetVector4("Color", new Vector4(32f, 0f, 0f, 5f)); // Red
                 }
             }
         }
@@ -49,15 +34,13 @@ public class TShirt : MonoBehaviour
 
     void OnRaycastEnter(GameObject sender)
     {
-        //GetComponentInChildren<MeshRenderer>().material.color = new Color(136f, 87f, 162f, 1f);
         _isPlayerLooking = true;
-        transform.DOScale(transform.localScale + new Vector3(0.1f, 0.1f, 0.1f), 0.3f);
+        //transform.DOScale(transform.localScale + new Vector3(0.1f, 0.1f, 0.1f), 0.3f);
     }
 
     void OnRaycastExit(GameObject sender)
     {
-        //GetComponentInChildren<MeshRenderer>().material.color = Color.white;
         _isPlayerLooking = false;
-        transform.DOScale(transform.localScale - new Vector3(0.1f, 0.1f, 0.1f), 0.3f);
+        //transform.DOScale(transform.localScale - new Vector3(0.1f, 0.1f, 0.1f), 0.3f);
     }
 }
