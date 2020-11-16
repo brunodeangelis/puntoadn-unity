@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LookAt : MonoBehaviour
+public class LookAtPlayer : MonoBehaviour
 {
     private Transform _playerTransform;
+
     private void Awake()
     {
-        _playerTransform = FindObjectOfType<Player>().transform;
+        // Traigo la "cabeza" del jugador (cámara)
+        _playerTransform = FindObjectOfType<Player>().transform.GetChild(0).GetChild(0);
     }
 
-    void Update() {
+    void Update()
+    {
         transform.LookAt(_playerTransform, Vector3.up);
     }
 }

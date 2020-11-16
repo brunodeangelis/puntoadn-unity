@@ -34,13 +34,13 @@ namespace YoutubePlayer {
         private void Update() {
             if (_isPlayerLooking && !GameManager.Instance._isVideoPlaying)
             {
-                _ui.SetActive(true);
+                //_ui.SetActive(true);
 
                 if (Input.GetMouseButtonDown(0))
                     PlayVideo();
             } else
             {
-                _ui.SetActive(false);
+                //_ui.SetActive(false);
             }
         }
         

@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
     {
         RaycastHit hit;
 
-        Debug.DrawRay(_cameraPivot.transform.position, _cameraPivot.transform.forward * 100f, Color.magenta);
+        //Debug.DrawRay(_cameraPivot.transform.position, _cameraPivot.transform.forward * 100f, Color.magenta);
         if (Physics.Raycast(_cameraPivot.transform.position, _cameraPivot.transform.forward, out hit, 10f))
         {
             GameObject current = hit.collider.gameObject;
