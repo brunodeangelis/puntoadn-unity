@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -7,12 +8,8 @@ public class InputArrow : MonoBehaviour
 {
     private bool _isPlayerLooking;
 
-    [SerializeField] private ArrowType _arrowType;
+    [SerializeField] private InputArrowType _arrowType;
     [SerializeField] private TextMeshProUGUI _input;
-
-    void Start()
-    {
-    }
 
     void Update()
     {
@@ -20,9 +17,17 @@ public class InputArrow : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                int inputValue = int.Parse(_input.text);
+                int inputValue;
 
-                if (_arrowType == ArrowType.UP)
+                if (_input.text == "?")
+                {
+                    inputValue = 1;
+                } else
+                {
+                    inputValue = int.Parse(_input.text);
+                }
+
+                if (_arrowType == InputArrowType.UP)
                 {
                     if (inputValue >= 9) return;
                     _input.text = (inputValue + 1).ToString();
@@ -46,7 +51,7 @@ public class InputArrow : MonoBehaviour
     }
 }
 
-enum ArrowType
+enum InputArrowType
 {
     UP,
     DOWN

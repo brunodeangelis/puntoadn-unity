@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour {
 
     public GameObject _interactText;
 
+    public string inputStationWinnerNumber;
+
     static System.Random rnd = new System.Random();
 
     [HideInInspector] public Vector3 _lastCheckpointPosition;

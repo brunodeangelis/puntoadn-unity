@@ -1727,6 +1727,7 @@ MonoBehaviour:
   - {fileID: 2707302086080671406, guid: aabd1912a0077e049ac36716782e3760, type: 3}
   _lastStationSpawned: {fileID: 0}
   _interactText: {fileID: 955278151}
+  inputStationWinnerNumber: 12345
   _lastCheckpointPosition: {x: 0, y: 0, z: 0}
   _isVideoPlaying: 0
   playingVideo: {fileID: 0}
