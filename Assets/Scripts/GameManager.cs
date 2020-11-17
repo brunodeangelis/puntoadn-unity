@@ -14,17 +14,13 @@ public class GameManager : MonoBehaviour {
     private List<GameObject> _spawns;
     //private List<GameObject> _stations;
     //private List<GameObject> _stationItems;
-
     private WalkingPath[] _paths;
     private MaterialPropertyBlock _materialPropertyBlock;
-
     private int[] _hueValues = new int[] { 0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360 };
     private List<int> _hueValuesList = new List<int>();
-
     private GameObject _backdrop;
     private GameObject _canvasLoadingVideo;
     private GameObject _canvasPlayingVideo;
-
     private RenderTexture _loadingVideoTexture;
     private RenderTexture _youtubeVideoTexture;
 
@@ -44,25 +40,21 @@ public class GameManager : MonoBehaviour {
 
         return child;
     }
-
     public List<Station> _stationBlueprints = new List<Station>();
     public List<GameObject> _stations = new List<GameObject>();
     public List<GameObject> _stationItems = new List<GameObject>();
     public List<GameObject> _minigames = new List<GameObject>();
     public GameObject _lastStationSpawned;
-
     public GameObject _interactText;
-
-    public string inputStationWinnerNumber;
-
-    static System.Random rnd = new System.Random();
+    public string _inputStationWinnerNumber;
+    public float _wallCheckRadius = 15f;
 
     [HideInInspector] public Vector3 _lastCheckpointPosition;
-
     [HideInInspector] public bool _isVideoPlaying;
-    [HideInInspector] public GameObject playingVideo;
-
+    [HideInInspector] public GameObject _playingVideo;
     [HideInInspector] public PathDirection _chosenDirection;
+
+    static System.Random rnd = new System.Random();
 
     #region Singleton
     private static GameManager _instance;
@@ -104,14 +96,13 @@ public class GameManager : MonoBehaviour {
         _hueValuesList = _hueValues.ToList();
 
         RenderSettings.fog = true;
-        SpawnStations();
     }
 
     private void CloseVideo_OnCloseVideo() {
         _isVideoPlaying = false;
         //_youtubeVideoTexture.DiscardContents();
 
-        playingVideo.GetComponent<VideoPlayer>().enabled = false;
+        _playingVideo.GetComponent<VideoPlayer>().enabled = false;
         _canvasPlayingVideo.GetComponent<RawImage>().DOFade(0f, 0.3f);
 
         _canvasLoadingVideo.GetComponent<VideoPlayer>().enabled = false;
@@ -126,16 +117,16 @@ public class GameManager : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        playingVideo = null;
+        _playingVideo = null;
     }
 
     private void PressToPlay_OnMainVideoStartLoading(GameObject videoGO) {
         _isVideoPlaying = true;
         //_youtubeVideoTexture.Create();
-        playingVideo = videoGO;
-        playingVideo.GetComponent<VideoPlayer>().enabled = true;
+        _playingVideo = videoGO;
+        _playingVideo.GetComponent<VideoPlayer>().enabled = true;
 
-        VideoPlayerProgress.Instance.videoPlayer = playingVideo.GetComponent<VideoPlayer>();
+        VideoPlayerProgress.Instance.videoPlayer = _playingVideo.GetComponent<VideoPlayer>();
 
         #region Show UI
         _canvasPlayingVideo.GetComponent<RawImage>().DOFade(1f, 0.3f);
@@ -196,59 +187,15 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private void SpawnStations() {
-        //for (int i = 0; i < _spawns.Count; i++) {
-        //    for (int j = _stations.Count - 1; j >= 0; j--) {
-        //        MaterialPropertyBlock _materialPropertyBlock = new MaterialPropertyBlock();
-        //        _materialPropertyBlock.SetColor("_FresnelColor", Random.ColorHSV(0, 1, 1, 1, 1, 1) * 25);
+    public void OpenNearbyWall()
+    {
+        int wallsLayerMask = 1 << LayerMask.NameToLayer("Walls");
+        Collider[] hitColliders = Physics.OverlapSphere(Player.Instance.transform.position, _wallCheckRadius, wallsLayerMask);
 
-        //        FillStation(_stations[j]);
-        //        Transform _stationMesh = RecursiveFindChild(_stations[j].transform, "mesh");
-        //        _stationMesh.gameObject.GetComponent<Renderer>().SetPropertyBlock(_materialPropertyBlock);
-
-        //        _stations[j].transform.position = _spawns[i].transform.position;
-        //        _stations.RemoveAt(j);
-        //        break;
-        //    }
-        //}
-
-        //List<StationSpawner> stationSpawns = FindObjectsOfType<StationSpawner>().ToList();
-        //var pathDirs = Enum.GetValues(typeof(PathDirection)).Cast<PathDirection>();
-        //List<GameObject> stationsClone = _stations;
-
-        //foreach (var stationSpawn in stationSpawns)
-        //{
-        //    if (stationSpawn._pathDirection == PathDirection.NORTH)
-        //    {
-        //        int r = rnd.Next(stationsClone.Count);
-        //        GameObject instancedStation = Instantiate(stationsClone[r]);
-        //        stationsClone[r].transform.position = stationSpawn.transform.position;
-        //        stationsClone.RemoveAt(r);
-        //        Debug.Log("count antes de replenish: " + stationsClone.Count);
-        //    }
-
-        //    stationsClone = _stations;
-
-        //    Debug.Log("count despues de replenish: " + stationsClone.Count);
-        //}
-    }
-
-    private void FillStation(GameObject station) {
-        foreach (Transform _child in station.transform) {
-            if (_child.CompareTag("StationItemSpawner")) {
-                MaterialPropertyBlock _materialPropertyBlock = new MaterialPropertyBlock();
-                _materialPropertyBlock.SetColor("_BaseColor", UnityEngine.Random.ColorHSV(0, 1, 1, 1));
-
-                int _randomIdx = UnityEngine.Random.Range(0, _stationItems.Count);
-
-                GameObject _itemInstance = Instantiate(_stationItems[_randomIdx], _child.parent);
-                Transform _instanceChild = _itemInstance.transform.GetChild(0);
-                _instanceChild.gameObject.GetComponent<Renderer>().SetPropertyBlock(_materialPropertyBlock);
-                _itemInstance.transform.position = _child.transform.position;
-
-                //itemInstance.transform.SetParent(child.parent);
-                //stationItems.RemoveAt(randomIdx);
-            }
+        foreach (var hitCollider in hitColliders)
+        {
+            Wall wall = hitCollider.GetComponent<Wall>();
+            if (wall != null) wall.Down();
         }
     }
 }

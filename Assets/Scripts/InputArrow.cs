@@ -53,6 +53,6 @@ public class InputArrow : MonoBehaviour
 
 enum InputArrowType
 {
-    UP,
-    DOWN
+    UP = 0,
+    DOWN = 1
 }

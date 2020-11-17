@@ -29,8 +29,9 @@ public class InputNumbersWinButton : MonoBehaviour
                 Array.Reverse(charArray);
                 string reversedValues = new string(charArray);
 
-                if (reversedValues == GameManager.Instance.inputStationWinnerNumber)
+                if (reversedValues == GameManager.Instance._inputStationWinnerNumber)
                 {
+                    GameManager.Instance.OpenNearbyWall();
                     Debug.Log("ganaste!");
                 } else
                 {

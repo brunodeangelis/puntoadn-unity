@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 {
     private static Player _instance;
 
+    [SerializeField] private float _pointAndClickLength = 6f;
+
     public static Player Instance { get { return _instance; } }
     public static event Action<Player> OnPlayerDeath;
 
@@ -39,7 +41,7 @@ public class Player : MonoBehaviour
         RaycastHit hit;
 
         //Debug.DrawRay(_cameraPivot.transform.position, _cameraPivot.transform.forward * 100f, Color.magenta);
-        if (Physics.Raycast(_cameraPivot.transform.position, _cameraPivot.transform.forward, out hit, 10f))
+        if (Physics.Raycast(_cameraPivot.transform.position, _cameraPivot.transform.forward, out hit, _pointAndClickLength))
         {
             GameObject current = hit.collider.gameObject;
             if (previous != current)
