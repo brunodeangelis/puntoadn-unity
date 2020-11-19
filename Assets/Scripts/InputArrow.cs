@@ -19,7 +19,7 @@ public class InputArrow : MonoBehaviour
             {
                 int inputValue;
 
-                if (_input.text == "?")
+                if (_input.text == "X")
                 {
                     inputValue = 1;
                 } else
@@ -29,12 +29,14 @@ public class InputArrow : MonoBehaviour
 
                 if (_arrowType == InputArrowType.UP)
                 {
-                    if (inputValue >= 9) return;
-                    _input.text = (inputValue + 1).ToString();
+                    inputValue++;
+                    if (inputValue > 9) inputValue = 0;
+                    _input.text = inputValue.ToString();
                 } else
                 {
-                    if (inputValue <= 0) return;
-                    _input.text = (inputValue - 1).ToString();
+                    inputValue--;
+                    if (inputValue < 0) inputValue = 9;
+                    _input.text = inputValue.ToString();
                 }
             }
         }
