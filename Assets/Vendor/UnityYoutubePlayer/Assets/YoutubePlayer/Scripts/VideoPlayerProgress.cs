@@ -15,7 +15,7 @@ namespace YoutubePlayer
         /// Is seeking through the video enabled?
         /// </summary>
         public bool SeekingEnabled;
-        
+
         /// <summary>
         /// The VideoPlayer to synchronize with
         /// </summary>
@@ -27,10 +27,13 @@ namespace YoutubePlayer
         #region Singleton
         private static VideoPlayerProgress _instance;
         public static VideoPlayerProgress Instance { get { return _instance; } }
-        private void Awake() {
-            if (_instance != null && _instance != this) {
+        private void Awake()
+        {
+            if (_instance != null && _instance != this)
+            {
                 Destroy(this.gameObject);
-            } else {
+            } else
+            {
                 _instance = this;
             }
         }
@@ -40,7 +43,7 @@ namespace YoutubePlayer
         {
             rectTransform = GetComponent<RectTransform>();
             playbackProgress = GetComponent<Image>();
-            
+
             if (playbackProgress.sprite == null)
             {
                 var texture = Texture2D.whiteTexture;
@@ -52,10 +55,13 @@ namespace YoutubePlayer
         // Update is called once per frame
         private void Update()
         {
-            if (videoPlayer.isPlaying)
+            if (videoPlayer != null)
             {
-                playbackProgress.fillAmount =
-                    (float) (videoPlayer.length > 0 ? videoPlayer.time / videoPlayer.length : 0);
+                if (videoPlayer.isPlaying)
+                {
+                    playbackProgress.fillAmount =
+                        (float)(videoPlayer.length > 0 ? videoPlayer.time / videoPlayer.length : 0);
+                }
             }
         }
 
@@ -81,15 +87,15 @@ namespace YoutubePlayer
 
         private void Seek(Vector2 cursorPosition)
         {
-            if(!SeekingEnabled || !videoPlayer.canSetTime)
+            if (!SeekingEnabled || !videoPlayer.canSetTime)
                 return;
 
-            if(!RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 rectTransform, cursorPosition, null, out var localPoint))
                 return;
 
             var rect = rectTransform.rect;
-            var progress = (localPoint.x - rect.x)  / rect.width;
+            var progress = (localPoint.x - rect.x) / rect.width;
 
             videoPlayer.time = videoPlayer.length * progress;
             playbackProgress.fillAmount = progress;

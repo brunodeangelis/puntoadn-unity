@@ -32,9 +32,7 @@ public class Player : MonoBehaviour
         }
 
         _mainCamera = Camera.main;
-        
     }
-
 
     private void Update()
     {

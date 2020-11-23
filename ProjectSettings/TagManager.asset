@@ -11,6 +11,7 @@ TagManager:
   - StationItemSpawner
   - Path
   - TShirt
+  - Level
   layers:
   - Default
   - TransparentFX

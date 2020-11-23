@@ -11,6 +11,9 @@ public class InputArrow : MonoBehaviour
     [SerializeField] private InputArrowType _arrowType;
     [SerializeField] private TextMeshProUGUI _input;
 
+    public static event Action OnPointToClickableObject;
+    public static event Action OnExitClickableObject;
+
     void Update()
     {
         if (_isPlayerLooking)
@@ -45,11 +48,13 @@ public class InputArrow : MonoBehaviour
     private void OnRaycastEnter(GameObject sender)
     {
         if (sender.transform.tag == "Player") _isPlayerLooking = true;
+        OnPointToClickableObject?.Invoke();
     }
 
     private void OnRaycastExit(GameObject sender)
     {
         if (sender.transform.tag == "Player") _isPlayerLooking = false;
+        OnExitClickableObject?.Invoke();
     }
 }
 
