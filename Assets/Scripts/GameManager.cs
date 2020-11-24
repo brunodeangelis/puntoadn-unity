@@ -85,6 +85,11 @@ public class GameManager : MonoBehaviour {
         _loadingVideoTexture = Resources.Load<RenderTexture>("RenderTextures/Loading Video");
         _youtubeVideoTexture = Resources.Load<RenderTexture>("RenderTextures/Youtube Video");
 
+        InitializeGame();
+    }
+
+    private void InitializeGame()
+    {
         Player.Instance.transform.Find("Visibility Sphere").gameObject.SetActive(true);
 
         _paths = FindObjectsOfType<WalkingPath>();
@@ -95,7 +100,13 @@ public class GameManager : MonoBehaviour {
 
         _hueValuesList = _hueValues.ToList();
 
-        RenderSettings.fog = true;
+        //RenderSettings.fog = true;
+
+        //var levels = GameObject.FindGameObjectsWithTag("Level");
+        //foreach (var level in levels)
+        //{
+        //    level.SetActive(false);
+        //}
     }
 
     private void CloseVideo_OnCloseVideo() {
