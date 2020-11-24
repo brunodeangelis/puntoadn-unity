@@ -461,6 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e23b62d7b966674fb367c8302d5db09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputIndex: 1
 --- !u!1 &1066472171112582537
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,6 +718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e23b62d7b966674fb367c8302d5db09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputIndex: 4
 --- !u!1 &1801829661371310963
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,6 +867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e23b62d7b966674fb367c8302d5db09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputIndex: 0
 --- !u!1 &2707302086080671406
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,6 +877,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 444367734544949316}
+  - component: {fileID: 2915239191329319727}
   m_Layer: 0
   m_Name: Input Numbers Minigame
   m_TagString: Untagged
@@ -909,6 +913,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2915239191329319727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2707302086080671406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca842cd157f4ae458c9f646cded502c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5473470893570014613
 GameObject:
   m_ObjectHideFlags: 0
@@ -1057,6 +1073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e23b62d7b966674fb367c8302d5db09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputIndex: 2
 --- !u!1 &5630194217289326052
 GameObject:
   m_ObjectHideFlags: 0
@@ -1308,6 +1325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e23b62d7b966674fb367c8302d5db09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputIndex: 3
 --- !u!1001 &368676371842867123
 PrefabInstance:
   m_ObjectHideFlags: 0

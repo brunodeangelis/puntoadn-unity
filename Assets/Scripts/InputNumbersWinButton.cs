@@ -17,19 +17,17 @@ public class InputNumbersWinButton : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 NumberInput[] inputs = FindObjectsOfType<NumberInput>();
-                string concatenatedValues = "";
+                string[] values = new string[5];
 
                 foreach (NumberInput input in inputs)
                 {
-                    string inputText = input.GetComponent<TextMeshProUGUI>().text;
-                    concatenatedValues += inputText;
+                    values[input._index] = input.GetComponent<TextMeshProUGUI>().text;
                 }
 
-                char[] charArray = concatenatedValues.ToCharArray();
-                Array.Reverse(charArray);
-                string reversedValues = new string(charArray);
+                string concatenatedValues = string.Join("", values);
+                Debug.Log(concatenatedValues);
 
-                if (reversedValues == GameManager.Instance._inputStationWinnerNumber)
+                if (concatenatedValues == GameManager.Instance._inputStationWinnerNumber)
                 {
                     GameManager.Instance.OpenNearbyWall();
                     Debug.Log("ganaste!");
