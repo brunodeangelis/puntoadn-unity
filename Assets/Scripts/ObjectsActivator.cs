@@ -8,11 +8,15 @@ public class ObjectsActivator : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        foreach (var gameObject in _objectsToActivate)
+        if (other.CompareTag("Player"))
         {
-            gameObject.SetActive(true);
-        }
+            foreach (var objectToActivate in _objectsToActivate)
+            {
+                objectToActivate.SetActive(true);
+                Debug.Log(objectToActivate.name + " activated!");
+            }
 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 }

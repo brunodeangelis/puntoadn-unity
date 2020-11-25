@@ -22,6 +22,9 @@ public class MinigameSpawner : MonoBehaviour
         instancedMinigame.transform.position = transform.GetChild(0).transform.position;
         instancedMinigame.transform.LookAt(Player.Instance.transform);
 
+        if (instancedMinigame.GetComponent<DisableAtStart>() != null)
+            instancedMinigame.SetActive(true);
+
         minigames.RemoveAt(r);
 
         GameManager.Instance._minigames = minigames;
