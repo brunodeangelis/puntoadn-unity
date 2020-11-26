@@ -92,21 +92,15 @@ public class GameManager : MonoBehaviour {
     {
         Player.Instance.transform.Find("Visibility Sphere").gameObject.SetActive(true);
 
-        _paths = FindObjectsOfType<WalkingPath>();
-        foreach (var path in _paths)
-        {
-            path.transform.localScale = new Vector3(0, 0, 0);
-        }
+        //_paths = FindObjectsOfType<WalkingPath>();
+        //foreach (var path in _paths)
+        //{
+        //    path.transform.localScale = new Vector3(0, 0, 0);
+        //}
 
         _hueValuesList = _hueValues.ToList();
 
-        //RenderSettings.fog = true;
-
-        //var levels = GameObject.FindGameObjectsWithTag("Level");
-        //foreach (var level in levels)
-        //{
-        //    level.SetActive(false);
-        //}
+        RenderSettings.fog = true;
     }
 
     private void CloseVideo_OnCloseVideo() {
@@ -179,11 +173,11 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.T)) {
-            foreach (WalkingPath path in _paths) {
-                path.transform.DOScale(path._scale, 1f);
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.T)) {
+        //    foreach (WalkingPath path in _paths) {
+        //        path.transform.DOScale(path._scale, 1f);
+        //    }
+        //}
 
         if (Input.GetKeyDown(KeyCode.Q)) {
             foreach (WalkingPath path in _paths) {
