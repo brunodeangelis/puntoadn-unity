@@ -7,7 +7,7 @@ using YoutubePlayer;
 
 namespace YoutubePlayer {
 
-    [RequireComponent(typeof(YoutubePlayer))]
+    [RequireComponent(typeof(VideoPlayer))]
     public class PressToPlay : MonoBehaviour {
         private GameObject _ui;
 

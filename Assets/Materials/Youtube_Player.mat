@@ -21,9 +21,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Youtube_Player
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_ShaderKeywords: _EMISSION _SPECULAR_SETUP
-  m_LightmapFlags: 2
+  m_Shader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
   m_CustomRenderQueue: 2000
@@ -118,7 +118,7 @@ Material:
     - Vector2_6CFCBF9A: {r: 1, g: 1, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 1.7207954, g: 1.7207954, b: 1.7207954, a: 0}
+    - _EmissionColor: {r: 1.4980392, g: 1.4980392, b: 1.4980392, a: 0}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _FresnelColor: {r: 506.0286, g: 177.50742, b: 506.0286, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
