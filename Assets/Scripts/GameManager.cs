@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour {
     public GameObject _interactText;
     public string _inputStationWinnerNumber;
     public float _wallCheckRadius = 15f;
+    public bool _isCutscenePlaying;
 
     [HideInInspector] public Vector3 _lastCheckpointPosition;
     [HideInInspector] public bool _isVideoPlaying;
@@ -202,5 +203,10 @@ public class GameManager : MonoBehaviour {
             Wall wall = hitCollider.GetComponent<Wall>();
             if (wall != null) wall.Down();
         }
+    }
+
+    public void EndCutscene()
+    {
+        _isCutscenePlaying = false;
     }
 }
