@@ -131,6 +131,7 @@ public class GameManager : MonoBehaviour {
         //_youtubeVideoTexture.Create();
         _playingVideo = videoGO;
         _playingVideo.GetComponent<VideoPlayer>().enabled = true;
+        _playingVideo.GetComponent<VideoPlayer>().loopPointReached += OnMainVideoEnded;
 
         VideoPlayerProgress.Instance.videoPlayer = _playingVideo.GetComponent<VideoPlayer>();
 
@@ -151,6 +152,11 @@ public class GameManager : MonoBehaviour {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         #endregion
+    }
+
+    private void OnMainVideoEnded(VideoPlayer source)
+    {
+        CloseVideo_OnCloseVideo();
     }
 
     private void Player_OnPlayerDeath(Player player) {
