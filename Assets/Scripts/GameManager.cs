@@ -8,8 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 using YoutubePlayer;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject _closeVideo;
 
     private List<GameObject> _spawns;
@@ -25,21 +24,18 @@ public class GameManager : MonoBehaviour
     private GameObject _canvasPlayingVideo;
     private RenderTexture _loadingVideoTexture;
     private RenderTexture _youtubeVideoTexture;
+    private int _coroutineCount = 0;
 
-    public static Transform RecursiveFindChild(Transform parent, string childName)
-    {
+
+    public static Transform RecursiveFindChild(Transform parent, string childName) {
         Transform child = null;
-        for (int i = 0; i < parent.childCount; i++)
-        {
+        for (int i = 0; i < parent.childCount; i++) {
             child = parent.GetChild(i);
-            if (child.name == childName)
-            {
+            if (child.name == childName) {
                 break;
-            } else
-            {
+            } else {
                 child = RecursiveFindChild(child, childName);
-                if (child != null)
-                {
+                if (child != null) {
                     break;
                 }
             }
@@ -56,6 +52,7 @@ public class GameManager : MonoBehaviour
     public string _inputStationWinnerNumber;
     public float _wallCheckRadius = 15f;
     public bool _isCutscenePlaying;
+    public int _choosePathsColorCycles = 6;
 
     [HideInInspector] public Vector3 _lastCheckpointPosition;
     [HideInInspector] public bool _isVideoPlaying;
@@ -67,20 +64,16 @@ public class GameManager : MonoBehaviour
     #region Singleton
     private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
-    private void Awake()
-    {
-        if (_instance != null && _instance != this)
-        {
+    private void Awake() {
+        if (_instance != null && _instance != this) {
             Destroy(this.gameObject);
-        } else
-        {
+        } else {
             _instance = this;
         }
     }
     #endregion
 
-    private void Start()
-    {
+    private void Start() {
         Checkpoint.OnCheckpointHit += Checkpoint_OnCheckpointHit;
         Player.OnPlayerDeath += Player_OnPlayerDeath;
         PressToPlay.OnMainVideoStartLoading += PressToPlay_OnMainVideoStartLoading;
@@ -98,14 +91,15 @@ public class GameManager : MonoBehaviour
         _loadingVideoTexture = Resources.Load<RenderTexture>("RenderTextures/Loading Video");
         _youtubeVideoTexture = Resources.Load<RenderTexture>("RenderTextures/Youtube Video");
 
+        //GameObject.Find("Start Station Pillar").transform.DOScale(new Vector3(0, 0, 0), 0f);
+
         InitializeGame();
     }
 
-    private void InitializeGame()
-    {
-        Player.Instance.transform.Find("Visibility Sphere").gameObject.SetActive(true);
+    private void InitializeGame() {
+        //Player.Instance.transform.Find("Visibility Sphere").gameObject.SetActive(true);
 
-        //_paths = FindObjectsOfType<WalkingPath>();
+        _paths = FindObjectsOfType<WalkingPath>();
         //foreach (var path in _paths)
         //{
         //    path.transform.localScale = new Vector3(0, 0, 0);
@@ -116,8 +110,7 @@ public class GameManager : MonoBehaviour
         RenderSettings.fog = true;
     }
 
-    private void CloseVideo()
-    {
+    private void CloseVideo() {
         _isVideoPlaying = false;
         //_youtubeVideoTexture.DiscardContents();
 
@@ -140,8 +133,7 @@ public class GameManager : MonoBehaviour
         _playingVideo = null;
     }
 
-    private void PressToPlay_OnMainVideoStartLoading(GameObject videoGO)
-    {
+    private void PressToPlay_OnMainVideoStartLoading(GameObject videoGO) {
         _isVideoPlaying = true;
         //_youtubeVideoTexture.Create();
         _playingVideo = videoGO;
@@ -171,24 +163,20 @@ public class GameManager : MonoBehaviour
         #endregion
     }
 
-    private void OnMainVideoEnded(VideoPlayer source)
-    {
+    private void OnMainVideoEnded(VideoPlayer source) {
         CloseVideo();
     }
 
-    private void Player_OnPlayerDeath(Player player)
-    {
+    private void Player_OnPlayerDeath(Player player) {
         player.transform.position = _lastCheckpointPosition;
     }
 
-    private void Checkpoint_OnCheckpointHit(Checkpoint checkpoint)
-    {
+    private void Checkpoint_OnCheckpointHit(Checkpoint checkpoint) {
         _lastCheckpointPosition = checkpoint.gameObject.transform.position;
         Destroy(checkpoint.gameObject);
     }
 
-    private void OnDestroy()
-    {
+    private void OnDestroy() {
         // Remove registered events
         Checkpoint.OnCheckpointHit -= Checkpoint_OnCheckpointHit;
         Player.OnPlayerDeath -= Player_OnPlayerDeath;
@@ -199,51 +187,84 @@ public class GameManager : MonoBehaviour
         _youtubeVideoTexture.Release();
     }
 
-    private void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.T)) {
-        //    foreach (WalkingPath path in _paths) {
-        //        path.transform.DOScale(path._scale, 1f);
-        //    }
+    public void GrowPaths() {
+        foreach (var path in _paths) {
+            path.transform.DOScale(path._scale, 5f);
+        }
+    }
+
+    private void Update() {
+        //if (Input.GetKeyDown(KeyCode.Q)) {
+
         //}
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            foreach (WalkingPath path in _paths)
-            {
-                MaterialPropertyBlock _materialPropertyBlock = new MaterialPropertyBlock();
-
-                //Color color = Color.HSVToRGB(30f * (index + 1) / 360, 1, 1, true);
-                _materialPropertyBlock.SetColor("_EmissionColor", UnityEngine.Random.ColorHSV(0, 1, 1, 1, 1, 1) * 3);
-
-                path.transform.GetChild(0).GetComponent<Renderer>().SetPropertyBlock(_materialPropertyBlock);
-                path.transform.GetChild(1).GetComponent<Renderer>().SetPropertyBlock(_materialPropertyBlock);
-            }
-        }
-
-        if (_isVideoPlaying)
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
+        if (_isVideoPlaying) {
+            if (Input.GetKeyDown(KeyCode.Escape)) {
                 CloseVideo();
             }
         }
     }
 
-    public void OpenNearbyWall()
-    {
+    public void OpenNearbyWall() {
         int wallsLayerMask = 1 << LayerMask.NameToLayer("Walls");
         Collider[] hitColliders = Physics.OverlapSphere(Player.Instance.transform.position, _wallCheckRadius, wallsLayerMask);
 
-        foreach (var hitCollider in hitColliders)
-        {
+        foreach (var hitCollider in hitColliders) {
             Wall wall = hitCollider.GetComponent<Wall>();
             if (wall != null) wall.Down();
         }
     }
 
-    public void EndCutscene()
-    {
+    public void EndCutscene() {
         _isCutscenePlaying = false;
+        _crosshair.GetComponent<Image>().DOFade(1f, 0.3f);
+        //_crosshair.SetActive(true);
+    }
+
+    public void StartCutscene() {
+        _isCutscenePlaying = true;
+        _crosshair.GetComponent<Image>().DOFade(0f, 0f);
+        //_crosshair.SetActive(false);
+    }
+
+    public void StartPathsColorCoroutine() {
+        StartCoroutine("SetPathsColor");
+    }
+
+    IEnumerator SetPathsColor() {
+        while (true) {
+            if (_coroutineCount >= _choosePathsColorCycles) {
+                _coroutineCount = 0;
+                yield break;
+            }
+
+            foreach (var path in _paths) {
+                MaterialPropertyBlock _materialPropertyBlock = new MaterialPropertyBlock();
+
+                //Color color = Color.HSVToRGB(30f * (index + 1) / 360, 1, 1, true);
+                _materialPropertyBlock.SetColor("_EmissionColor", UnityEngine.Random.ColorHSV(0, 1, 1, 1, 1, 1) * 2);
+
+                var led1 = path.transform.GetChild(0);
+                var led2 = path.transform.GetChild(1);
+
+                led1.gameObject.SetActive(true);
+                led2.gameObject.SetActive(true);
+
+                if (_coroutineCount == 0) {
+                    led1.transform.localScale = new Vector3(0f, led1.transform.localScale.y, led1.transform.localScale.z);
+                    led2.transform.localScale = new Vector3(0f, led1.transform.localScale.y, led1.transform.localScale.z);
+
+                    led1.transform.DOScaleX(2f, 3f);
+                    led2.transform.DOScaleX(2f, 3f);
+                }
+
+                led1.GetComponent<Renderer>().SetPropertyBlock(_materialPropertyBlock);
+                led2.GetComponent<Renderer>().SetPropertyBlock(_materialPropertyBlock);
+            }
+
+            _coroutineCount++;
+
+            yield return new WaitForSeconds(0.4f);
+        }
     }
 }
