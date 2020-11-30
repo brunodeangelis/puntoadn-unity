@@ -8,7 +8,8 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 using YoutubePlayer;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
     [SerializeField] private GameObject _closeVideo;
 
     private List<GameObject> _spawns;
@@ -19,20 +20,26 @@ public class GameManager : MonoBehaviour {
     private int[] _hueValues = new int[] { 0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360 };
     private List<int> _hueValuesList = new List<int>();
     private GameObject _backdrop;
+    private GameObject _crosshair;
     private GameObject _canvasLoadingVideo;
     private GameObject _canvasPlayingVideo;
     private RenderTexture _loadingVideoTexture;
     private RenderTexture _youtubeVideoTexture;
 
-    public static Transform RecursiveFindChild(Transform parent, string childName) {
+    public static Transform RecursiveFindChild(Transform parent, string childName)
+    {
         Transform child = null;
-        for (int i = 0; i < parent.childCount; i++) {
+        for (int i = 0; i < parent.childCount; i++)
+        {
             child = parent.GetChild(i);
-            if (child.name == childName) {
+            if (child.name == childName)
+            {
                 break;
-            } else {
+            } else
+            {
                 child = RecursiveFindChild(child, childName);
-                if (child != null) {
+                if (child != null)
+                {
                     break;
                 }
             }
@@ -60,26 +67,31 @@ public class GameManager : MonoBehaviour {
     #region Singleton
     private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
-    private void Awake() {
-        if (_instance != null && _instance != this) {
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
             Destroy(this.gameObject);
-        } else {
+        } else
+        {
             _instance = this;
         }
     }
     #endregion
 
-    private void Start() { 
+    private void Start()
+    {
         Checkpoint.OnCheckpointHit += Checkpoint_OnCheckpointHit;
         Player.OnPlayerDeath += Player_OnPlayerDeath;
         PressToPlay.OnMainVideoStartLoading += PressToPlay_OnMainVideoStartLoading;
-        CloseVideo.OnCloseVideo += CloseVideo_OnCloseVideo;
+        global::CloseVideo.OnCloseVideo += CloseVideo;
 
         _spawns = GameObject.FindGameObjectsWithTag("StationSpawner").ToList();
         //_stations = GameObject.FindGameObjectsWithTag("Station").ToList();
         //_stationItems = GameObject.FindGameObjectsWithTag("StationItem").ToList();
 
         _backdrop = GameObject.Find("Backdrop");
+        _crosshair = GameObject.Find("Crosshair");
         _canvasLoadingVideo = GameObject.Find("Loading Video");
         _canvasPlayingVideo = GameObject.Find("Playing Video");
 
@@ -104,7 +116,8 @@ public class GameManager : MonoBehaviour {
         RenderSettings.fog = true;
     }
 
-    private void CloseVideo_OnCloseVideo() {
+    private void CloseVideo()
+    {
         _isVideoPlaying = false;
         //_youtubeVideoTexture.DiscardContents();
 
@@ -116,6 +129,7 @@ public class GameManager : MonoBehaviour {
             .OnComplete(() => _canvasLoadingVideo.GetComponent<RawImage>().enabled = false);
 
         //_backdrop.GetComponent<Image>().DOFade(0f, 0.3f);
+        _crosshair.SetActive(true);
 
         //VideoPlayerProgress.Instance.GetComponent<Image>().DOFade(0.0f, 0.3f);
         VideoPlayerProgress.Instance.transform.parent.GetComponent<CanvasGroup>().DOFade(0.0f, 0.3f);
@@ -126,7 +140,8 @@ public class GameManager : MonoBehaviour {
         _playingVideo = null;
     }
 
-    private void PressToPlay_OnMainVideoStartLoading(GameObject videoGO) {
+    private void PressToPlay_OnMainVideoStartLoading(GameObject videoGO)
+    {
         _isVideoPlaying = true;
         //_youtubeVideoTexture.Create();
         _playingVideo = videoGO;
@@ -143,7 +158,9 @@ public class GameManager : MonoBehaviour {
         _canvasLoadingVideo.GetComponent<RawImage>().DOFade(1f, 0.3f);
 
         //_backdrop.GetComponent<Image>().DOFade(0.7f, 0.3f);
-        _closeVideo.GetComponent<Text>().DOFade(1f, 0.3f);
+        _crosshair.SetActive(false);
+
+        //_closeVideo.GetComponent<Text>().DOFade(1f, 0.3f);
 
         //VideoPlayerProgress.Instance.GetComponent<Image>().DOFade(1.0f, 0.3f);
         VideoPlayerProgress.Instance.transform.parent.GetComponent<CanvasGroup>().DOFade(1.0f, 0.3f);
@@ -156,38 +173,44 @@ public class GameManager : MonoBehaviour {
 
     private void OnMainVideoEnded(VideoPlayer source)
     {
-        CloseVideo_OnCloseVideo();
+        CloseVideo();
     }
 
-    private void Player_OnPlayerDeath(Player player) {
+    private void Player_OnPlayerDeath(Player player)
+    {
         player.transform.position = _lastCheckpointPosition;
     }
 
-    private void Checkpoint_OnCheckpointHit(Checkpoint checkpoint) {
+    private void Checkpoint_OnCheckpointHit(Checkpoint checkpoint)
+    {
         _lastCheckpointPosition = checkpoint.gameObject.transform.position;
         Destroy(checkpoint.gameObject);
     }
 
-    private void OnDestroy() {
+    private void OnDestroy()
+    {
         // Remove registered events
         Checkpoint.OnCheckpointHit -= Checkpoint_OnCheckpointHit;
         Player.OnPlayerDeath -= Player_OnPlayerDeath;
         PressToPlay.OnMainVideoStartLoading -= PressToPlay_OnMainVideoStartLoading;
-        CloseVideo.OnCloseVideo -= CloseVideo_OnCloseVideo;
+        global::CloseVideo.OnCloseVideo -= CloseVideo;
 
         _loadingVideoTexture.Release();
         _youtubeVideoTexture.Release();
     }
 
-    private void Update() {
+    private void Update()
+    {
         //if (Input.GetKeyDown(KeyCode.T)) {
         //    foreach (WalkingPath path in _paths) {
         //        path.transform.DOScale(path._scale, 1f);
         //    }
         //}
 
-        if (Input.GetKeyDown(KeyCode.Q)) {
-            foreach (WalkingPath path in _paths) {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            foreach (WalkingPath path in _paths)
+            {
                 MaterialPropertyBlock _materialPropertyBlock = new MaterialPropertyBlock();
 
                 //Color color = Color.HSVToRGB(30f * (index + 1) / 360, 1, 1, true);
@@ -195,6 +218,14 @@ public class GameManager : MonoBehaviour {
 
                 path.transform.GetChild(0).GetComponent<Renderer>().SetPropertyBlock(_materialPropertyBlock);
                 path.transform.GetChild(1).GetComponent<Renderer>().SetPropertyBlock(_materialPropertyBlock);
+            }
+        }
+
+        if (_isVideoPlaying)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                CloseVideo();
             }
         }
     }
