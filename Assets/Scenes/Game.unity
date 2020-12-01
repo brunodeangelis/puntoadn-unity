@@ -412,22 +412,22 @@ PrefabInstance:
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.5269261
+      value: 0.5272339
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.20802854
+      value: -0.20815006
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.13495907
+      value: 0.13503788
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.81303126
+      value: 0.81268865
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
@@ -646,7 +646,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 166985876}
-  m_LocalRotation: {x: 0.5272339, y: -0.20815006, z: 0.1350379, w: 0.8126886}
+  m_LocalRotation: {x: 0.5272339, y: -0.20815006, z: 0.13503788, w: 0.81268865}
   m_LocalPosition: {x: 11.2, y: 52.2, z: -20.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2603,6 +2603,7 @@ MonoBehaviour:
   _inputStationWinnerNumber: 12345
   _wallCheckRadius: 20
   _isCutscenePlaying: 0
+  _choosePathsColorCycles: 6
   _lastCheckpointPosition: {x: 0, y: 0, z: 0}
   _isVideoPlaying: 0
   _playingVideo: {fileID: 0}
@@ -2819,7 +2820,7 @@ PlayableDirector:
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 8fd17f2bea57d68408d579c574e452f7, type: 2}
   m_InitialState: 1
-  m_WrapMode: 2
+  m_WrapMode: 0
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
@@ -2837,8 +2838,11 @@ PlayableDirector:
     value: {fileID: 166985879}
   - key: {fileID: 7390425184078025354, guid: 8fd17f2bea57d68408d579c574e452f7, type: 2}
     value: {fileID: 6931528842153992757}
+  - key: {fileID: -2928962153054445432, guid: 8fd17f2bea57d68408d579c574e452f7, type: 2}
+    value: {fileID: 166985876}
   m_ExposedReferences:
     m_References:
+    - 9eb21863d3fa1d346b7eb4ea5830e42f: {fileID: 166985876}
     - 3ae726d49cbd25b4a96a93f5371956d5: {fileID: 1642319821}
     - b678d1a3a390d7a4e99764e6ea943f28: {fileID: 6931528842153992756}
     - ad5e4bd2932d63a45bd040b18f244014: {fileID: 924516436}
