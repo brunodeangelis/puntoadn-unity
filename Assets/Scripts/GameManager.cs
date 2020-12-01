@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using YoutubePlayer;
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour {
     private int[] _hueValues = new int[] { 0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360 };
     private List<int> _hueValuesList = new List<int>();
     private GameObject _backdrop;
-    private GameObject _crosshair;
+    public GameObject _crosshair;
     private GameObject _canvasLoadingVideo;
     private GameObject _canvasPlayingVideo;
     private RenderTexture _loadingVideoTexture;
@@ -223,6 +224,11 @@ public class GameManager : MonoBehaviour {
     public void StartCutscene() {
         _isCutscenePlaying = true;
         _crosshair.GetComponent<Image>().DOFade(0f, 0f);
+    }
+
+    public void PlayTimeline(string name) {
+        PlayableDirector timeline = GameObject.Find(name).GetComponent<PlayableDirector>();
+        timeline?.Play();
     }
 
     public void StartPathsColorCoroutine() {
