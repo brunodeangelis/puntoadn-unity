@@ -218,13 +218,11 @@ public class GameManager : MonoBehaviour {
     public void EndCutscene() {
         _isCutscenePlaying = false;
         _crosshair.GetComponent<Image>().DOFade(1f, 0.3f);
-        //_crosshair.SetActive(true);
     }
 
     public void StartCutscene() {
         _isCutscenePlaying = true;
         _crosshair.GetComponent<Image>().DOFade(0f, 0f);
-        //_crosshair.SetActive(false);
     }
 
     public void StartPathsColorCoroutine() {
