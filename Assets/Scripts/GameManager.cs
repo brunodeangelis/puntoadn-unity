@@ -265,4 +265,13 @@ public class GameManager : MonoBehaviour {
             yield return new WaitForSeconds(0.4f);
         }
     }
+
+    public void SetFog(float amount) {
+        DOTween.To(
+            () => RenderSettings.fogEndDistance,
+            x => RenderSettings.fogEndDistance = x,
+            amount,
+            2f
+        );
+    }
 }
