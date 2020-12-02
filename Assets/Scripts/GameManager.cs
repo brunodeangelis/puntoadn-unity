@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour {
     private List<GameObject> _spawns;
     //private List<GameObject> _stations;
     //private List<GameObject> _stationItems;
-    private WalkingPath[] _paths;
+    private GameObject[] _paths;
     private MaterialPropertyBlock _materialPropertyBlock;
     private int[] _hueValues = new int[] { 0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360 };
     private List<int> _hueValuesList = new List<int>();
@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour {
     private void InitializeGame() {
         //Player.Instance.transform.Find("Visibility Sphere").gameObject.SetActive(true);
 
-        _paths = FindObjectsOfType<WalkingPath>();
+        _paths = GameObject.FindGameObjectsWithTag("Path");
         //foreach (var path in _paths)
         //{
         //    path.transform.localScale = new Vector3(0, 0, 0);
@@ -190,7 +190,7 @@ public class GameManager : MonoBehaviour {
 
     public void GrowPaths() {
         foreach (var path in _paths) {
-            path.transform.DOScale(path._scale, 5f);
+            path.transform.DOScale(path.GetComponent<WalkingPath>()._scale, 5f);
         }
     }
 
@@ -258,8 +258,8 @@ public class GameManager : MonoBehaviour {
                     led1.transform.localScale = new Vector3(0f, led1.transform.localScale.y, led1.transform.localScale.z);
                     led2.transform.localScale = new Vector3(0f, led1.transform.localScale.y, led1.transform.localScale.z);
 
-                    led1.transform.DOScaleX(2f, 3f);
-                    led2.transform.DOScaleX(2f, 3f);
+                    led1.transform.DOScaleX(1f, 5f);
+                    led2.transform.DOScaleX(1f, 5f);
                 }
 
                 led1.GetComponent<Renderer>().SetPropertyBlock(_materialPropertyBlock);
