@@ -72,6 +72,7 @@ namespace YoutubePlayer
 
                     Transform screen = stationItem.transform.Find("Screen");
 
+                    screen.GetComponent<Label>()._text = $"Reproducir '{project._name}'";
                     screen.GetComponent<VideoPlayer>().clip = project._videoClip;
                     screen.GetComponent<VideoPlayer>().enabled = true;
 

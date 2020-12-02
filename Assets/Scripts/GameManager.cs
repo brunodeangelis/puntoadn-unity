@@ -8,9 +8,11 @@ using UnityEngine.Playables;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using YoutubePlayer;
+using TMPro;
 
 public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject _closeVideo;
+    [SerializeField] private GameObject _taskPrefab;
 
     private List<GameObject> _spawns;
     //private List<GameObject> _stations;
@@ -21,6 +23,7 @@ public class GameManager : MonoBehaviour {
     private List<int> _hueValuesList = new List<int>();
     private GameObject _backdrop;
     public GameObject _crosshair;
+    public TextMeshProUGUI _actionLabel;
     private GameObject _canvasLoadingVideo;
     private GameObject _canvasPlayingVideo;
     private RenderTexture _loadingVideoTexture;
@@ -52,13 +55,13 @@ public class GameManager : MonoBehaviour {
     public GameObject _interactText;
     public string _inputStationWinnerNumber;
     public float _wallCheckRadius = 15f;
-    public bool _isCutscenePlaying;
     public int _choosePathsColorCycles = 6;
 
     [HideInInspector] public Vector3 _lastCheckpointPosition;
     [HideInInspector] public bool _isVideoPlaying;
     [HideInInspector] public GameObject _playingVideo;
     [HideInInspector] public PathDirection _chosenDirection;
+    [HideInInspector] public bool _isCutscenePlaying;
 
     static System.Random rnd = new System.Random();
 
@@ -143,7 +146,7 @@ public class GameManager : MonoBehaviour {
 
         VideoPlayerProgress.Instance.videoPlayer = _playingVideo.GetComponent<VideoPlayer>();
 
-        #region Show UI
+        #region UI
         _canvasPlayingVideo.GetComponent<RawImage>().DOFade(1f, 0.3f);
 
         _canvasLoadingVideo.GetComponent<VideoPlayer>().enabled = true;
@@ -152,6 +155,8 @@ public class GameManager : MonoBehaviour {
 
         //_backdrop.GetComponent<Image>().DOFade(0.7f, 0.3f);
         _crosshair.SetActive(false);
+
+        _actionLabel.DOFade(0f, 0.2f);
 
         //_closeVideo.GetComponent<Text>().DOFade(1f, 0.3f);
 
@@ -279,5 +284,10 @@ public class GameManager : MonoBehaviour {
             amount,
             2f
         );
+    }
+
+    public void CreateTask(string task) {
+        var taskGO = Instantiate(_taskPrefab);
+        taskGO.GetComponent<Task>()._text = task;
     }
 }
