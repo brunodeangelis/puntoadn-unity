@@ -13,7 +13,7 @@ using TMPro;
 public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject _closeVideo;
     [SerializeField] private GameObject _taskPrefab;
-    [SerializeField] private List<Color> _colorsToChooseFromForPaths = new List<Color>();
+    [SerializeField] private List<Color> _colorsForPaths = new List<Color>();
 
     private List<GameObject> _spawns;
     //private List<GameObject> _stations;
@@ -268,7 +268,7 @@ public class GameManager : MonoBehaviour {
                 yield break;
             }
 
-            List<Color> clonedColors = new List<Color>(_colorsToChooseFromForPaths);
+            List<Color> clonedColors = new List<Color>(_colorsForPaths);
 
             foreach (var path in _paths) {
                 MaterialPropertyBlock _materialPropertyBlock = new MaterialPropertyBlock();

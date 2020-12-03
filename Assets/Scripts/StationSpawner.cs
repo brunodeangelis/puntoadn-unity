@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -26,8 +23,8 @@ namespace YoutubePlayer
             List<GameObject> stations = GameManager._i._stations;
             List<Station> stationBlueprints = GameManager._i._stationBlueprints;
 
-            int r = UnityEngine.Random.Range(0, stations.Count);
-            int r2 = UnityEngine.Random.Range(0, stationBlueprints.Count);
+            int r = Random.Range(0, stations.Count - 1);
+            int r2 = Random.Range(0, stationBlueprints.Count - 1);
 
             Station stationBlueprint = Instantiate(stationBlueprints[r2]);
             GameObject instancedStation = Instantiate(stations[r]);
@@ -53,7 +50,7 @@ namespace YoutubePlayer
         private void FillStation(GameObject station, Station stationBlueprint)
         {
             // Preparo para agarrar un stationItem aleatorio
-            int r = UnityEngine.Random.Range(0, GameManager._i._stationItems.Count);
+            int r = Random.Range(0, GameManager._i._stationItems.Count - 1);
 
             MaterialPropertyBlock mpb = new MaterialPropertyBlock();
 
@@ -62,7 +59,7 @@ namespace YoutubePlayer
                 if (child.CompareTag("StationItemSpawner") && stationBlueprint._stationData._projects.Count > 0)
                 {
                     // Agarro proyecto random de la lista
-                    int r2 = UnityEngine.Random.Range(0, stationBlueprint._stationData._projects.Count);
+                    int r2 = Random.Range(0, stationBlueprint._stationData._projects.Count - 1);
 
                     Project project = stationBlueprint._stationData._projects[r2];
 

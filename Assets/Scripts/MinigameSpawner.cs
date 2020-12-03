@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class MinigameSpawner : MonoBehaviour
@@ -16,7 +14,7 @@ public class MinigameSpawner : MonoBehaviour
     {
         List<GameObject> minigames = GameManager._i._minigames;
 
-        int r = UnityEngine.Random.Range(0, minigames.Count);
+        int r = Random.Range(0, minigames.Count - 1);
 
         GameObject instancedMinigame = Instantiate(minigames[r]);
         instancedMinigame.transform.position = transform.GetChild(0).transform.position;
