@@ -18,7 +18,7 @@ public class CutsceneTrigger : MonoBehaviour
         if (other.CompareTag("Player") && _timeline != null)
         {
             _timeline.Play();
-            GameManager.Instance._isCutscenePlaying = true;
+            GameManager._i._isCutscenePlaying = true;
 
             foreach (var collider in GetComponents<BoxCollider>())
             {

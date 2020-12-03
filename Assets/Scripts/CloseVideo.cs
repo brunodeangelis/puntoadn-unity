@@ -9,7 +9,7 @@ public class CloseVideo : MonoBehaviour {
     public static event Action OnCloseVideo;
 
     public void EndVideo() {
-        if (GameManager.Instance._isVideoPlaying) {
+        if (GameManager._i._isVideoPlaying) {
             OnCloseVideo?.Invoke();
             GetComponent<Text>().DOFade(0f, 0.3f);
         }

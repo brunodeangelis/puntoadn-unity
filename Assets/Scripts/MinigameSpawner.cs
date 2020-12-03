@@ -14,7 +14,7 @@ public class MinigameSpawner : MonoBehaviour
     }
     private void SpawnRandomMinigame()
     {
-        List<GameObject> minigames = GameManager.Instance._minigames;
+        List<GameObject> minigames = GameManager._i._minigames;
 
         int r = UnityEngine.Random.Range(0, minigames.Count);
 
@@ -27,7 +27,7 @@ public class MinigameSpawner : MonoBehaviour
 
         minigames.RemoveAt(r);
 
-        GameManager.Instance._minigames = minigames;
+        GameManager._i._minigames = minigames;
         Destroy(gameObject);
     }
 }

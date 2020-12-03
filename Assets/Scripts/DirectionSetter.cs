@@ -10,7 +10,7 @@ public class DirectionSetter : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance._chosenDirection = _direction;
+            GameManager._i._chosenDirection = _direction;
         }
     }
 }

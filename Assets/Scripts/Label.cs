@@ -14,8 +14,8 @@ public class Label : MonoBehaviour {
     public string _text;
     
     void Start() {
-        _actionLabel = GameManager.Instance._actionLabel;
-        _crosshair = GameManager.Instance._crosshair;
+        _actionLabel = GameManager._i._actionLabel;
+        _crosshair = GameManager._i._crosshair;
         _rectTransform = _crosshair.GetComponent<RectTransform>();
     }
 

@@ -20,7 +20,7 @@ namespace YoutubePlayer {
         private void Awake() {
             CloseVideo.OnCloseVideo += CloseVideo_OnCloseVideo;
 
-            _ui = GameManager.Instance._interactText;
+            _ui = GameManager._i._interactText;
         }
 
         private void OnRaycastEnter(GameObject sender) {
@@ -32,7 +32,7 @@ namespace YoutubePlayer {
         }
 
         private void Update() {
-            if (_isPlayerLooking && !GameManager.Instance._isVideoPlaying)
+            if (_isPlayerLooking && !GameManager._i._isVideoPlaying)
             {
                 //_ui.SetActive(true);
 

@@ -49,7 +49,7 @@ namespace VHS
 
             void LateUpdate()
             {
-                if (!GameManager.Instance._isVideoPlaying && !GameManager.Instance._isCutscenePlaying) {
+                if (!GameManager._i._isVideoPlaying && !GameManager._i._isCutscenePlaying) {
                     CalculateRotation();
                     SmoothRotation();
                     ApplyRotation();

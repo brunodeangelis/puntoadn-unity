@@ -26,9 +26,9 @@ public class InputNumbersWinButton : MonoBehaviour
 
                 string concatenatedValues = string.Join("", values);
 
-                if (concatenatedValues == GameManager.Instance._inputStationWinnerNumber)
+                if (concatenatedValues == GameManager._i._inputStationWinnerNumber)
                 {
-                    GameManager.Instance.OpenNearbyWall();
+                    GameManager._i.OpenNearbyWall();
                     SoundManager.PlaySound(SoundManager.Sound.Success);
                 } else
                 {

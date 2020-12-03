@@ -15,16 +15,16 @@ namespace YoutubePlayer
         {
             if (other.CompareTag("Player"))
             {
-                if (GameManager.Instance._lastStationSpawned != null)
-                    Destroy(GameManager.Instance._lastStationSpawned);
+                if (GameManager._i._lastStationSpawned != null)
+                    Destroy(GameManager._i._lastStationSpawned);
 
                 SpawnRandomStation();
             }
         }
         private void SpawnRandomStation()
         {
-            List<GameObject> stations = GameManager.Instance._stations;
-            List<Station> stationBlueprints = GameManager.Instance._stationBlueprints;
+            List<GameObject> stations = GameManager._i._stations;
+            List<Station> stationBlueprints = GameManager._i._stationBlueprints;
 
             int r = UnityEngine.Random.Range(0, stations.Count);
             int r2 = UnityEngine.Random.Range(0, stationBlueprints.Count);
@@ -41,9 +41,9 @@ namespace YoutubePlayer
             stations.RemoveAt(r);
             stationBlueprints.RemoveAt(r2);
 
-            GameManager.Instance._stations = stations;
-            GameManager.Instance._stationBlueprints = stationBlueprints;
-            GameManager.Instance._lastStationSpawned = instancedStation;
+            GameManager._i._stations = stations;
+            GameManager._i._stationBlueprints = stationBlueprints;
+            GameManager._i._lastStationSpawned = instancedStation;
 
             Debug.Log("Station spawned.");
 
@@ -53,7 +53,7 @@ namespace YoutubePlayer
         private void FillStation(GameObject station, Station stationBlueprint)
         {
             // Preparo para agarrar un stationItem aleatorio
-            int r = UnityEngine.Random.Range(0, GameManager.Instance._stationItems.Count);
+            int r = UnityEngine.Random.Range(0, GameManager._i._stationItems.Count);
 
             MaterialPropertyBlock mpb = new MaterialPropertyBlock();
 
@@ -69,7 +69,7 @@ namespace YoutubePlayer
                     //Debug.Log(stationBlueprint._stationData._projects);
                     //Debug.Log(r2);
 
-                    GameObject stationItem = Instantiate(GameManager.Instance._stationItems[r], child.parent);
+                    GameObject stationItem = Instantiate(GameManager._i._stationItems[r], child.parent);
                     stationItem.transform.position = child.transform.position;
 
                     Transform screen = stationItem.transform.Find("Screen");
@@ -84,7 +84,7 @@ namespace YoutubePlayer
             }
 
             // Saco stationItem de la lista, ya lo instancié
-            GameManager.Instance._stationItems.RemoveAt(r);
+            GameManager._i._stationItems.RemoveAt(r);
         }
     }
 }
