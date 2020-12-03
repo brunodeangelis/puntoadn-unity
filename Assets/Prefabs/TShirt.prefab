@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8214583164423304558}
   - component: {fileID: 718589730775258120}
   - component: {fileID: 21758716091087642}
+  - component: {fileID: 5867639276433477709}
   m_Layer: 8
   m_Name: TShirt
   m_TagString: TShirt
@@ -48,6 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isCorrectTShirt: 1
+  _particlesVFX: {fileID: 0}
+  _wall: {fileID: 0}
 --- !u!65 &718589730775258120
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -80,6 +83,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5867639276433477709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972081657741645395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 253ddf2bc7502164781cf45a5afd30f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: Seleccionar
 --- !u!1 &3325380101474645003
 GameObject:
   m_ObjectHideFlags: 0
