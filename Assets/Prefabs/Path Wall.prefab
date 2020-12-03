@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _focusCrosshair: 0
-  _text: "No pod\xE9s retroceder."
+  _text: "No pod\xE9s pasar."
 --- !u!1 &8667546985523524591
 GameObject:
   m_ObjectHideFlags: 0

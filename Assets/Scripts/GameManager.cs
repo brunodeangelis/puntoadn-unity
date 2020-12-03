@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour {
     public float _wallCheckRadius = 15f;
     public int _choosePathsColorCycles = 6;
     public SoundAudioClip[] _soundAudioClipArray;
+    public Color _chosenPathColor;
 
     [HideInInspector] public Vector3 _lastCheckpointPosition;
     [HideInInspector] public bool _isVideoPlaying;
