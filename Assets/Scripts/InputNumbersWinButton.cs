@@ -17,7 +17,7 @@ public class InputNumbersWinButton : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 NumberInput[] inputs = FindObjectsOfType<NumberInput>();
-                string[] values = new string[5];
+                string[] values = new string[inputs.Length];
 
                 foreach (NumberInput input in inputs)
                 {
@@ -25,12 +25,11 @@ public class InputNumbersWinButton : MonoBehaviour
                 }
 
                 string concatenatedValues = string.Join("", values);
-                Debug.Log(concatenatedValues);
 
                 if (concatenatedValues == GameManager.Instance._inputStationWinnerNumber)
                 {
                     GameManager.Instance.OpenNearbyWall();
-                    Debug.Log("ganaste!");
+                    SoundManager.PlaySound(SoundManager.Sound.Success);
                 } else
                 {
                     //foreach (NumberInput input in inputs)
@@ -40,7 +39,7 @@ public class InputNumbersWinButton : MonoBehaviour
                     //    input.GetComponent<TextMeshProUGUI>().material.color = newColor;
                     //    DOTween.To(() => newColor, x => newColor = x, Color.white, 0.2f);
                     //}
-                    Debug.Log("perdiste!");
+                    SoundManager.PlaySound(SoundManager.Sound.Error);
                 }
             }
         }

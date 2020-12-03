@@ -526,6 +526,7 @@ MonoBehaviour:
   _closeVideo: {fileID: 0}
   _taskPrefab: {fileID: 0}
   _crosshair: {fileID: 1279886062}
+  _actionLabel: {fileID: 0}
   _stationBlueprints: []
   _stations: []
   _stationItems: []
@@ -540,8 +541,10 @@ MonoBehaviour:
   _inputStationWinnerNumber: 12345
   _wallCheckRadius: 15
   _choosePathsColorCycles: 6
+  _soundAudioClipArray: []
   _lastCheckpointPosition: {x: 0, y: 0, z: 0}
   _isVideoPlaying: 0
+  _isVideoPaused: 0
   _playingVideo: {fileID: 0}
   _chosenDirection: 0
   _isCutscenePlaying: 0
@@ -553,7 +556,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199945684}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.058018, y: -15.021245, z: -8.944677}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -699,6 +702,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cylinder Screen
       objectReference: {fileID: 0}
+    - target: {fileID: 6516002807567331334, guid: 975b63def4685e64885ec5611cd3b463,
+        type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: e8ad3d856826aad45a512f24bba4e14c,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 975b63def4685e64885ec5611cd3b463, type: 3}
 --- !u!1 &330435533
@@ -1959,6 +1968,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 732810964390305025, guid: bc8794edd7dfe2e48b48e626186d80c3,
+        type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: bca7768e0a92c5b46877f6b4ad2bf9fd,
+        type: 3}
     - target: {fileID: 897439208068420970, guid: bc8794edd7dfe2e48b48e626186d80c3,
         type: 3}
       propertyPath: m_Name

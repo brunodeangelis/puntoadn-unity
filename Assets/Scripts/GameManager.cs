@@ -13,6 +13,7 @@ using TMPro;
 public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject _closeVideo;
     [SerializeField] private GameObject _taskPrefab;
+    [SerializeField] private List<Color> _colorsToChooseFromForPaths = new List<Color>();
 
     private List<GameObject> _spawns;
     //private List<GameObject> _stations;
@@ -29,7 +30,6 @@ public class GameManager : MonoBehaviour {
     private RenderTexture _loadingVideoTexture;
     private RenderTexture _youtubeVideoTexture;
     private int _coroutineCount = 0;
-
 
     public static Transform RecursiveFindChild(Transform parent, string childName) {
         Transform child = null;
@@ -56,9 +56,11 @@ public class GameManager : MonoBehaviour {
     public string _inputStationWinnerNumber;
     public float _wallCheckRadius = 15f;
     public int _choosePathsColorCycles = 6;
+    public SoundAudioClip[] _soundAudioClipArray;
 
     [HideInInspector] public Vector3 _lastCheckpointPosition;
     [HideInInspector] public bool _isVideoPlaying;
+    [HideInInspector] public bool _isVideoPaused;
     [HideInInspector] public GameObject _playingVideo;
     [HideInInspector] public PathDirection _chosenDirection;
     [HideInInspector] public bool _isCutscenePlaying;
@@ -137,6 +139,16 @@ public class GameManager : MonoBehaviour {
         _playingVideo = null;
     }
 
+    private void PauseVideo() {
+        _isVideoPaused = true;
+        _playingVideo.GetComponent<VideoPlayer>().Pause();
+    }
+
+    private void ResumeVideo() {
+        _isVideoPaused = false;
+        _playingVideo.GetComponent<VideoPlayer>().Play();
+    }
+
     private void PressToPlay_OnMainVideoStartLoading(GameObject videoGO) {
         _isVideoPlaying = true;
         //_youtubeVideoTexture.Create();
@@ -208,6 +220,13 @@ public class GameManager : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 CloseVideo();
             }
+
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                if (_isVideoPaused)
+                    ResumeVideo();
+                else
+                    PauseVideo();
+            }
         }
     }
 
@@ -241,17 +260,24 @@ public class GameManager : MonoBehaviour {
     }
 
     IEnumerator SetPathsColor() {
+        int emissionIntensity = 3;
+
         while (true) {
             if (_coroutineCount >= _choosePathsColorCycles) {
                 _coroutineCount = 0;
                 yield break;
             }
 
+            List<Color> clonedColors = new List<Color>(_colorsToChooseFromForPaths);
+
             foreach (var path in _paths) {
                 MaterialPropertyBlock _materialPropertyBlock = new MaterialPropertyBlock();
 
                 //Color color = Color.HSVToRGB(30f * (index + 1) / 360, 1, 1, true);
-                _materialPropertyBlock.SetColor("_EmissionColor", UnityEngine.Random.ColorHSV(0, 1, 1, 1, 1, 1) * 2);
+                //_materialPropertyBlock.SetColor("_EmissionColor", UnityEngine.Random.ColorHSV(0, 1, 1, 1, 1, 1) * 2);
+                int randomColorIndex = UnityEngine.Random.Range(0, clonedColors.Count - 1);
+                _materialPropertyBlock.SetColor("_EmissionColor", clonedColors[randomColorIndex] * emissionIntensity);
+                clonedColors.RemoveAt(randomColorIndex);
 
                 var led1 = path.transform.GetChild(0);
                 var led2 = path.transform.GetChild(1);
@@ -273,7 +299,7 @@ public class GameManager : MonoBehaviour {
 
             _coroutineCount++;
 
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(0.3f);
         }
     }
 
@@ -289,5 +315,11 @@ public class GameManager : MonoBehaviour {
     public void CreateTask(string task) {
         var taskGO = Instantiate(_taskPrefab);
         taskGO.GetComponent<Task>()._text = task;
+    }
+
+    [Serializable]
+    public class SoundAudioClip {
+        public SoundManager.Sound _sound;
+        public AudioClip _audioClip;
     }
 }

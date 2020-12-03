@@ -16,7 +16,7 @@ public class AudioTrigger : MonoBehaviour
             //if (_audioSource.isPlaying) return;
             //_audioSource.PlayOneShot(_audioClip);
             //Destroy(gameObject, _audioClip.length);
-            SoundManager.PlayAudioClip(_audioClip);
+            SoundManager.PlaySound(_audioClip);
             Destroy(gameObject);
         }
     }

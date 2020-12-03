@@ -479,7 +479,8 @@ namespace VHS
                     {
                         if(!m_duringCrouchAnimation) // we want to make our head bob only if we are moving and not during crouch routine
                         {
-                            m_headBob.ScrollHeadBob(movementInputData.IsRunning && CanRun(),movementInputData.IsCrouching, movementInputData.InputVector);
+                            //m_headBob.ScrollHeadBob(movementInputData.IsRunning && CanRun(),movementInputData.IsCrouching, movementInputData.InputVector);
+                            m_headBob.ScrollHeadBob(true,movementInputData.IsCrouching, movementInputData.InputVector);
                             m_yawTransform.localPosition = Vector3.Lerp(m_yawTransform.localPosition,(Vector3.up * m_headBob.CurrentStateHeight) + m_headBob.FinalOffset,Time.deltaTime * smoothHeadBobSpeed);
                         }
                     }

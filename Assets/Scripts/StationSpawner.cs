@@ -45,6 +45,8 @@ namespace YoutubePlayer
             GameManager.Instance._stationBlueprints = stationBlueprints;
             GameManager.Instance._lastStationSpawned = instancedStation;
 
+            Debug.Log("Station spawned.");
+
             Destroy(gameObject);
         }
 
@@ -64,8 +66,8 @@ namespace YoutubePlayer
 
                     Project project = stationBlueprint._stationData._projects[r2];
 
-                    Debug.Log(stationBlueprint._stationData._projects);
-                    Debug.Log(r2);
+                    //Debug.Log(stationBlueprint._stationData._projects);
+                    //Debug.Log(r2);
 
                     GameObject stationItem = Instantiate(GameManager.Instance._stationItems[r], child.parent);
                     stationItem.transform.position = child.transform.position;

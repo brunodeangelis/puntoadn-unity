@@ -154,10 +154,10 @@ namespace UnityTemplateProjects
             translation = GetInputTranslationDirection() * Time.deltaTime;
 
             // Speed up movement when shift key held
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
+            //if (Input.GetKey(KeyCode.LeftShift))
+            //{
                 translation *= 10.0f;
-            }
+            //}
 
             // Modify movement by a boost factor (defined in Inspector and modified in play mode through the mouse scroll wheel)
             boost += Input.mouseScrollDelta.y * 0.2f;
