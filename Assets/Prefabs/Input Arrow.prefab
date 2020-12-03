@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7027710728296014447}
   - component: {fileID: 7027710728296014445}
   - component: {fileID: 7027710728296014449}
+  - component: {fileID: 7537814236281648919}
   m_Layer: 0
   m_Name: Input Arrow
   m_TagString: Untagged
@@ -97,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _arrowType: 1
+  _input: {fileID: 0}
 --- !u!65 &7027710728296014449
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -110,3 +112,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.14, y: 0.18, z: 0.03}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7537814236281648919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7027710728296014442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 253ddf2bc7502164781cf45a5afd30f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _focusCrosshair: 1
+  _text: "Disminuir n\xFAmero"

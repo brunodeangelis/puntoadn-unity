@@ -208,7 +208,6 @@ GameObject:
   - component: {fileID: 6516002807567331352}
   - component: {fileID: 6516002807567331334}
   - component: {fileID: 6516002807567331353}
-  - component: {fileID: 6516002807567331335}
   - component: {fileID: 1542635109892617128}
   m_Layer: 0
   m_Name: Screen
@@ -357,20 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 711b93eac095ae04195aa4661075670c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainYoutubePlayer: {fileID: 3749323359603646854}
---- !u!114 &6516002807567331335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6516002807567331332}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3768fe280903842fdaa2a016022624f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  youtubeUrl: 
+  _mainPlayer: {fileID: 3749323359603646854}
 --- !u!114 &1542635109892617128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,6 +369,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 253ddf2bc7502164781cf45a5afd30f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _focusCrosshair: 1
+  _text: 
 --- !u!1001 &7331693659800480767
 PrefabInstance:
   m_ObjectHideFlags: 0

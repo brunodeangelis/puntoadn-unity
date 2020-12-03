@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5888224734731815526}
   - component: {fileID: 5888224734731815524}
-  - component: {fileID: 5888224734731815527}
   m_Layer: 0
   m_Name: Youtube Player
   m_TagString: Untagged
@@ -67,16 +66,3 @@ VideoPlayer:
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
---- !u!114 &5888224734731815527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5888224734731815545}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3768fe280903842fdaa2a016022624f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  youtubeUrl: 
