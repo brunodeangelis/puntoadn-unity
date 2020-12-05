@@ -261,7 +261,7 @@ public class GameManager : MonoBehaviour {
     }
 
     IEnumerator SetPathsColor() {
-        int emissionIntensity = 3;
+        float emissionIntensity = 2.3f;
 
         while (true) {
             if (_coroutineCount >= _choosePathsColorCycles) {
