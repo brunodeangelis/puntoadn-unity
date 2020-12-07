@@ -165,6 +165,8 @@ public class GameManager : MonoBehaviour {
         _videosPlayed++;
         if (_videosPlayed == 1) {
             GameObject.Find("How to/First Station/Text 2").GetComponent<TextMeshProUGUI>().DOFade(0f, 0.2f);
+            PauseVideo();
+            PlayTimeline("First Video Timeline");
         }
 
         _canvasPlayingVideo.GetComponent<RawImage>().DOFade(1f, 0.3f);
@@ -323,6 +325,11 @@ public class GameManager : MonoBehaviour {
     public void CreateTask(string task) {
         var taskGO = Instantiate(_taskPrefab);
         taskGO.GetComponent<Task>()._text = task;
+    }
+
+    public void EndFirstVideoTimeline() {
+        GameObject.Find("How to/First Video").GetComponent<CanvasGroup>().DOFade(0, 0.2f);
+        ResumeVideo();
     }
 
     [Serializable]
