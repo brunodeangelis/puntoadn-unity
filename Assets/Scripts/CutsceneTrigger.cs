@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-[RequireComponent(typeof(PlayableDirector))]
 public class CutsceneTrigger : MonoBehaviour
 {
     private PlayableDirector _timeline;
+    private PlayableDirector _gameObjectTimeline;
+    [SerializeField] private string _timelineName;
 
     private void Awake()
     {
         _timeline = GetComponent<PlayableDirector>();
+        //_gameObjectTimeline = GameObject.Find(_timelineName).GetComponent<PlayableDirector>();
     }
 
     private void OnTriggerEnter(Collider other)

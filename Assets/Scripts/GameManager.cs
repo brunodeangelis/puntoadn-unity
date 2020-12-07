@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour {
     private RenderTexture _loadingVideoTexture;
     private RenderTexture _youtubeVideoTexture;
     private int _coroutineCount = 0;
+    private int _videosPlayed = 0;
 
     public static Transform RecursiveFindChild(Transform parent, string childName) {
         Transform child = null;
@@ -160,6 +161,12 @@ public class GameManager : MonoBehaviour {
         VideoPlayerProgress.Instance.videoPlayer = _playingVideo.GetComponent<VideoPlayer>();
 
         #region UI
+
+        _videosPlayed++;
+        if (_videosPlayed == 1) {
+            GameObject.Find("How to/First Station/Text 2").GetComponent<TextMeshProUGUI>().DOFade(0f, 0.2f);
+        }
+
         _canvasPlayingVideo.GetComponent<RawImage>().DOFade(1f, 0.3f);
 
         _canvasLoadingVideo.GetComponent<VideoPlayer>().enabled = true;
