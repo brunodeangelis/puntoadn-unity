@@ -12,7 +12,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject _closeVideo;
-    [SerializeField] private GameObject _taskPrefab;
+    [SerializeField] private Task _taskPrefab;
     [SerializeField] private List<Color> _colorsForPaths = new List<Color>();
 
     private List<GameObject> _spawns;
@@ -322,9 +322,17 @@ public class GameManager : MonoBehaviour {
         );
     }
 
-    public void CreateTask(string task) {
-        var taskGO = Instantiate(_taskPrefab);
-        taskGO.GetComponent<Task>()._text = task;
+    public void CreateTask(string name) {
+        var newTask = Instantiate(_taskPrefab, GameObject.Find("[UI]/Tasks").transform);
+        newTask.name = name;
+        newTask._text = name;
+        newTask.Enter();
+    }
+
+    public void DeleteTask(string name) {
+        var go = GameObject.Find($"[UI]/Tasks/{name}");
+        var taskText = go.GetComponent<TextMeshProUGUI>();
+        taskText.DOFade(0f, 0.2f).OnComplete(() => Destroy(go));
     }
 
     public void EndFirstVideoTimeline() {
