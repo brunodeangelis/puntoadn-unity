@@ -36,7 +36,7 @@ public class StationSpawner : MonoBehaviour {
         GameManager._i._stationBlueprints = stationBlueprints;
         GameManager._i._lastStationSpawned = instancedStation;
 
-        Debug.Log("Station spawned.");
+        Debug.Log($"Station index {r2} spawned.");
 
         Destroy(gameObject);
     }

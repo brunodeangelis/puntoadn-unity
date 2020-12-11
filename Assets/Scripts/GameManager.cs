@@ -61,8 +61,6 @@ public class GameManager : MonoBehaviour {
     public int _choosePathsColorCycles = 6;
     public SoundAudioClip[] _soundAudioClipArray;
     public Color _chosenPathColor;
-    public SignalReceiver _signalReceiver;
-    public CinemachineBrain _cinemachineBrain;
 
     [HideInInspector] public Vector3 _lastCheckpointPosition;
     [HideInInspector] public bool _isVideoPlaying;
@@ -102,9 +100,6 @@ public class GameManager : MonoBehaviour {
 
         _loadingVideoTexture = Resources.Load<RenderTexture>("RenderTextures/Loading Video");
         _youtubeVideoTexture = Resources.Load<RenderTexture>("RenderTextures/Youtube Video");
-
-        _signalReceiver = FindObjectOfType<SignalReceiver>();
-        _cinemachineBrain = FindObjectOfType<CinemachineBrain>();
 
         //GameObject.Find("Start Station Pillar").transform.DOScale(new Vector3(0, 0, 0), 0f);
 
