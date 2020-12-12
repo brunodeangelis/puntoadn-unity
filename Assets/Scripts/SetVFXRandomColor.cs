@@ -14,7 +14,6 @@ public class SetVFXRandomColor : MonoBehaviour {
     private void Start() {
         float intensity = 0.03f;
         Vector4 color = new Vector4(Random.Range(0, 255) * intensity, Random.Range(0, 255) * intensity, Random.Range(0, 255) * intensity, 1);
-        Debug.Log($"Color: {color}");
         _vfx.SetVector4(_paramName, color);
     }
 }

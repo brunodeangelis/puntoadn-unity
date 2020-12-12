@@ -31,7 +31,6 @@ public class ReelScreen : MonoBehaviour
             .Join(transform.DOScaleZ(0, 0.2f))
             .OnComplete(() =>
             {
-                Debug.Log("termina animación!");
                 Destroy(gameObject);
             });
     }

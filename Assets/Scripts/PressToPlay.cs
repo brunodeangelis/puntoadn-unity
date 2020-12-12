@@ -7,12 +7,11 @@ using UnityEngine.Video;
 [RequireComponent(typeof(VideoPlayer))]
 public class PressToPlay : MonoBehaviour {
     private GameObject _ui;
-
     private bool _isPlayerLooking = false;
 
     public GameObject _mainPlayer;
-
     public static event Action<GameObject> OnMainVideoStartLoading;
+    [HideInInspector] public bool _alreadySeen = false;
 
     private void Awake() {
         CloseVideo.OnCloseVideo += CloseVideo_OnCloseVideo;
@@ -42,6 +41,10 @@ public class PressToPlay : MonoBehaviour {
     private void PlayVideo() {
         _mainPlayer.GetComponent<VideoPlayer>().clip = GetComponent<VideoPlayer>().clip;
         _mainPlayer.GetComponent<VideoPlayer>().enabled = true;
+
+        if (!_alreadySeen) GameManager._i._videosPlayed++;
+        _alreadySeen = true;
+
         OnMainVideoStartLoading?.Invoke(_mainPlayer);
     }
 

@@ -27,12 +27,11 @@ public class GameManager : MonoBehaviour {
     private GameObject _backdrop;
     public GameObject _crosshair;
     public TextMeshProUGUI _actionLabel;
-    private GameObject _canvasLoadingVideo;
+    //private GameObject _canvasLoadingVideo;
     private GameObject _canvasPlayingVideo;
-    private RenderTexture _loadingVideoTexture;
+    //private RenderTexture _loadingVideoTexture;
     private RenderTexture _youtubeVideoTexture;
     private int _coroutineCount = 0;
-    private int _videosPlayed = 0;
 
     public static Transform RecursiveFindChild(Transform parent, string childName) {
         Transform child = null;
@@ -68,6 +67,7 @@ public class GameManager : MonoBehaviour {
     [HideInInspector] public GameObject _playingVideo;
     [HideInInspector] public PathDirection _chosenDirection;
     [HideInInspector] public bool _isCutscenePlaying;
+    [HideInInspector] public int _videosPlayed = 0;
 
     static System.Random rnd = new System.Random();
 
@@ -95,10 +95,10 @@ public class GameManager : MonoBehaviour {
 
         _backdrop = GameObject.Find("Backdrop");
         _crosshair = GameObject.Find("Crosshair");
-        _canvasLoadingVideo = GameObject.Find("Loading Video");
+        //_canvasLoadingVideo = GameObject.Find("Loading Video");
         _canvasPlayingVideo = GameObject.Find("Playing Video");
 
-        _loadingVideoTexture = Resources.Load<RenderTexture>("RenderTextures/Loading Video");
+        //_loadingVideoTexture = Resources.Load<RenderTexture>("RenderTextures/Loading Video");
         _youtubeVideoTexture = Resources.Load<RenderTexture>("RenderTextures/Youtube Video");
 
         //GameObject.Find("Start Station Pillar").transform.DOScale(new Vector3(0, 0, 0), 0f);
@@ -127,9 +127,9 @@ public class GameManager : MonoBehaviour {
         _playingVideo.GetComponent<VideoPlayer>().enabled = false;
         _canvasPlayingVideo.GetComponent<RawImage>().DOFade(0f, 0.3f);
 
-        _canvasLoadingVideo.GetComponent<VideoPlayer>().enabled = false;
-        _canvasLoadingVideo.GetComponent<RawImage>().DOFade(0f, 0.3f)
-            .OnComplete(() => _canvasLoadingVideo.GetComponent<RawImage>().enabled = false);
+        //_canvasLoadingVideo.GetComponent<VideoPlayer>().enabled = false;
+        //_canvasLoadingVideo.GetComponent<RawImage>().DOFade(0f, 0.3f)
+        //    .OnComplete(() => _canvasLoadingVideo.GetComponent<RawImage>().enabled = false);
 
         //_backdrop.GetComponent<Image>().DOFade(0f, 0.3f);
         _crosshair.SetActive(true);
@@ -164,18 +164,20 @@ public class GameManager : MonoBehaviour {
 
         #region UI
 
-        _videosPlayed++;
+        Debug.Log($"Videos played: {_videosPlayed}");
         if (_videosPlayed == 1) {
             GameObject.Find("How to/First Station/Text 2").GetComponent<TextMeshProUGUI>().DOFade(0f, 0.2f);
             PauseVideo();
             PlayTimeline("First Video Timeline");
+        } else if (_videosPlayed == 3) {
+            CreateTask("Si ya terminaste, continuá por el camino que no está iluminado");
         }
 
         _canvasPlayingVideo.GetComponent<RawImage>().DOFade(1f, 0.3f);
 
-        _canvasLoadingVideo.GetComponent<VideoPlayer>().enabled = true;
-        _canvasLoadingVideo.GetComponent<RawImage>().enabled = true;
-        _canvasLoadingVideo.GetComponent<RawImage>().DOFade(1f, 0.3f);
+        //_canvasLoadingVideo.GetComponent<VideoPlayer>().enabled = true;
+        //_canvasLoadingVideo.GetComponent<RawImage>().enabled = true;
+        //_canvasLoadingVideo.GetComponent<RawImage>().DOFade(1f, 0.3f);
 
         //_backdrop.GetComponent<Image>().DOFade(0.7f, 0.3f);
         _crosshair.SetActive(false);
@@ -213,7 +215,7 @@ public class GameManager : MonoBehaviour {
         PressToPlay.OnMainVideoStartLoading -= PressToPlay_OnMainVideoStartLoading;
         global::CloseVideo.OnCloseVideo -= CloseVideo;
 
-        _loadingVideoTexture.Release();
+        //_loadingVideoTexture.Release();
         _youtubeVideoTexture.Release();
     }
 
@@ -260,6 +262,7 @@ public class GameManager : MonoBehaviour {
     public void StartCutscene() {
         _isCutscenePlaying = true;
         _crosshair.GetComponent<Image>().DOFade(0f, 0f);
+        _actionLabel.DOFade(0f, 0f);
     }
 
     public void PlayTimeline(string name) {
@@ -329,7 +332,7 @@ public class GameManager : MonoBehaviour {
         var newTask = Instantiate(_taskPrefab, tasks.transform);
 
         newTask.name = name;
-        newTask._text = name;
+        newTask._text = $"• {name}.";
 
         if (tasks.transform.childCount > 0) {
             Vector3 newTaskPos = newTask.transform.localPosition;
@@ -340,14 +343,18 @@ public class GameManager : MonoBehaviour {
     }
 
     public void DeleteTask(string name) {
-        var tasks = GameObject.Find("[UI]/Tasks");
         var go = GameObject.Find($"[UI]/Tasks/{name}");
         if (go == null) return;
+
+        var tasks = GameObject.Find("[UI]/Tasks");
         var taskText = go.GetComponent<TextMeshProUGUI>();
 
-        foreach (Transform childTask in tasks.transform) {
+        for (int i = 0; i < tasks.transform.childCount; i++) {
+            Transform childTask = tasks.transform.GetChild(i);
             if (tasks.transform.childCount > 1) {
-                childTask.DOLocalMoveY(childTask.localPosition.y + 40, 0.3f);
+                if (i > 0) {
+                    childTask.DOLocalMoveY(childTask.localPosition.y + 40, 0.3f);
+                }
             }
         }
 
