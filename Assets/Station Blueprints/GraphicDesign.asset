@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: GraphicDesign
   m_EditorClassIdentifier: 
   _stationData:
+    _category: "Dise\xF1o Gr\xE1fico"
     _stationType: 0
     _projects:
     - _name: AIMBOT

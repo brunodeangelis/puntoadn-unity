@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Modelling
   m_EditorClassIdentifier: 
   _stationData:
+    _category: Modelado 3D
     _stationType: 1
     _projects:
     - _name: Among Us

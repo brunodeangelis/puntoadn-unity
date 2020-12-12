@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Campaigns
   m_EditorClassIdentifier: 
   _stationData:
+    _category: "Campa\xF1as Publicitarias"
     _stationType: 4
     _projects:
     - _name: Tastypach

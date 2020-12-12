@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MotionGraphics
   m_EditorClassIdentifier: 
   _stationData:
+    _category: Motion Graphics
     _stationType: 2
     _projects:
     - _name: Drako

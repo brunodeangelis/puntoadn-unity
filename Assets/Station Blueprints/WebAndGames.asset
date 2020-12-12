@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: WebAndGames
   m_EditorClassIdentifier: 
   _stationData:
+    _category: Web y Juegos
     _stationType: 3
     _projects:
     - _name: Tastypach

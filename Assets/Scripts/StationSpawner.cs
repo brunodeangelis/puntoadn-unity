@@ -25,6 +25,11 @@ public class StationSpawner : MonoBehaviour {
 
         FillStation(instancedStation, stationBlueprint);
 
+        // Le asigno el nombre que le corresponde para poder mostrarlo en la UI
+        // cuando el jugador está cerca o lejos
+        StationNameSetter nameSetter = instancedStation.GetComponentInChildren<StationNameSetter>();
+        nameSetter._nameForUI = stationBlueprint._stationData._category;
+
         // Ubico estación en la posición del "Station Position"
         instancedStation.transform.position = transform.GetChild(0).transform.position;
         instancedStation.transform.LookAt(Player.Instance.transform);
