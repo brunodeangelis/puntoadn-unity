@@ -331,7 +331,7 @@ public class GameManager : MonoBehaviour {
         newTask.name = name;
         newTask._text = name;
 
-        if (tasks.transform.childCount > 1) {
+        if (tasks.transform.childCount > 0) {
             Vector3 newTaskPos = newTask.transform.localPosition;
             newTask.transform.localPosition = new Vector3(newTaskPos.x, newTaskPos.y - 40 * tasks.transform.childCount, newTaskPos.z);
         }
@@ -340,9 +340,17 @@ public class GameManager : MonoBehaviour {
     }
 
     public void DeleteTask(string name) {
+        var tasks = GameObject.Find("[UI]/Tasks");
         var go = GameObject.Find($"[UI]/Tasks/{name}");
         if (go == null) return;
         var taskText = go.GetComponent<TextMeshProUGUI>();
+
+        foreach (Transform childTask in tasks.transform) {
+            if (tasks.transform.childCount > 1) {
+                childTask.DOLocalMoveY(childTask.localPosition.y + 40, 0.3f);
+            }
+        }
+
         taskText.DOFade(0f, 0.2f).OnComplete(() => Destroy(go));
     }
 
