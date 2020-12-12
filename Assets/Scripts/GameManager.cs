@@ -325,9 +325,17 @@ public class GameManager : MonoBehaviour {
     }
 
     public void CreateTask(string name) {
-        var newTask = Instantiate(_taskPrefab, GameObject.Find("[UI]/Tasks").transform);
+        var tasks = GameObject.Find("[UI]/Tasks");
+        var newTask = Instantiate(_taskPrefab, tasks.transform);
+
         newTask.name = name;
         newTask._text = name;
+
+        if (tasks.transform.childCount > 1) {
+            Vector3 newTaskPos = newTask.transform.localPosition;
+            newTask.transform.localPosition = new Vector3(newTaskPos.x, newTaskPos.y - 40 * tasks.transform.childCount, newTaskPos.z);
+        }
+
         newTask.Enter();
     }
 
