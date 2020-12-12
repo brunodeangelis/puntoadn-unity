@@ -21,8 +21,8 @@ public class IlluminateNearbyPath : MonoBehaviour
                 led1.gameObject.SetActive(true);
                 led2.gameObject.SetActive(true);
 
-                led1.transform.DOScaleX(1f, 5f);
-                led2.transform.DOScaleX(1f, 5f);
+                led1.transform.DOScaleX(1f, path._growSpeed < 0.5f ? 5f : path._growSpeed);
+                led2.transform.DOScaleX(1f, path._growSpeed < 0.5f ? 5f : path._growSpeed);
 
                 MaterialPropertyBlock _materialPropertyBlock = new MaterialPropertyBlock();
 

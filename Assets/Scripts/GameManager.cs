@@ -9,8 +9,6 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 using YoutubePlayer;
 using TMPro;
-using Cinemachine;
-using UnityEngine.Timeline;
 
 public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject _closeVideo;
@@ -32,6 +30,7 @@ public class GameManager : MonoBehaviour {
     //private RenderTexture _loadingVideoTexture;
     private RenderTexture _youtubeVideoTexture;
     private int _coroutineCount = 0;
+    private bool _takeScreenshotOnNextFrame;
 
     public static Transform RecursiveFindChild(Transform parent, string childName) {
         Transform child = null;
@@ -226,9 +225,9 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Update() {
-        //if (Input.GetKeyDown(KeyCode.Q)) {
-
-        //}
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            TakeScreenshot();
+        }
 
         if (_isVideoPlaying) {
             if (Input.GetKeyDown(KeyCode.Escape)) {
@@ -371,4 +370,33 @@ public class GameManager : MonoBehaviour {
         public SoundManager.Sound _sound;
         public AudioClip _audioClip;
     }
+
+    private void TakeScreenshot() {
+        ScreenCapture.CaptureScreenshot("../CaminoRecorrido.png");
+        Debug.Log("Screenshot saved.");
+    }
+
+    //private void OnPostRender() {
+    //    if (_takeScreenshotOnNextFrame) {
+    //        _takeScreenshotOnNextFrame = false;
+
+    //        RenderTexture renderTexture = Camera.main.targetTexture;
+    //        Texture2D renderResult = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, false);
+    //        Rect rect = new Rect(0, 0, renderTexture.width, renderTexture.height);
+    //        renderResult.ReadPixels(rect, 0, 0);
+
+    //        byte[] byteArray = renderResult.EncodeToPNG();
+    //        Debug.Log(byteArray);
+    //        System.IO.File.WriteAllBytes(Application.dataPath + "/CaminoRecorrido.png", byteArray);
+    //        Debug.Log("Screenshot saved.");
+
+    //        RenderTexture.ReleaseTemporary(renderTexture);
+    //        Camera.main.targetTexture = null;
+    //    }
+    //}
+
+    //public void TakeScreenshot(int width, int height) {
+    //    Camera.main.targetTexture = RenderTexture.GetTemporary(width, height, 16);
+    //    _takeScreenshotOnNextFrame = true;
+    //}
 }

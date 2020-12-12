@@ -28,6 +28,8 @@ public class InputNumbersWinButton : MonoBehaviour {
                     foreach (NumberInput input in inputs) {
                         input.GetComponent<TextMeshProUGUI>().color = Color.green;
                     }
+
+                    GameManager._i.CreateTask("Continuá por el camino para llegar a la próxima estación");
                 } else {
                     foreach (NumberInput input in inputs) {
                         input.GetComponent<TextMeshProUGUI>().color = Color.red;
