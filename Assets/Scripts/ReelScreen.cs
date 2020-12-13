@@ -10,18 +10,21 @@ public class ReelScreen : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            VideoPlayer videoPlayer = GetComponent<VideoPlayer>();
-            videoPlayer.enabled = true;
-            videoPlayer.loopPointReached += OnReelEnded;
-
-            foreach (var collider in GetComponents<BoxCollider>())
-            {
-                if (collider.isTrigger) Destroy(collider);
-            }
+            PlayReel();
         }
     }
 
-    private void OnReelEnded(VideoPlayer source)
+    public void PlayReel() {
+        VideoPlayer videoPlayer = GetComponent<VideoPlayer>();
+        videoPlayer.enabled = true;
+        videoPlayer.loopPointReached += OnReelEnded;
+
+        foreach (var collider in GetComponents<BoxCollider>()) {
+            if (collider.isTrigger) Destroy(collider);
+        }
+    }
+
+    public void OnReelEnded(VideoPlayer source)
     {
         if (source.isPlaying) source.Stop();
 

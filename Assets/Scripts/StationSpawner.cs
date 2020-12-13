@@ -17,8 +17,8 @@ public class StationSpawner : MonoBehaviour {
         List<GameObject> stations = GameManager._i._stations;
         List<Station> stationBlueprints = GameManager._i._stationBlueprints;
 
-        int r = Random.Range(0, stations.Count - 1);
-        int r2 = Random.Range(0, stationBlueprints.Count - 1);
+        int r = Random.Range(0, stations.Count);
+        int r2 = Random.Range(0, stationBlueprints.Count);
 
         Station stationBlueprint = Instantiate(stationBlueprints[r2]);
         GameObject instancedStation = Instantiate(stations[r]);
@@ -48,14 +48,14 @@ public class StationSpawner : MonoBehaviour {
 
     private void FillStation(GameObject station, Station stationBlueprint) {
         // Preparo para agarrar un stationItem aleatorio
-        int r = Random.Range(0, GameManager._i._stationItems.Count - 1);
+        int r = Random.Range(0, GameManager._i._stationItems.Count);
 
         MaterialPropertyBlock mpb = new MaterialPropertyBlock();
 
         foreach (Transform child in station.transform) {
             if (child.CompareTag("StationItemSpawner") && stationBlueprint._stationData._projects.Count > 0) {
                 // Agarro proyecto random de la lista
-                int r2 = Random.Range(0, stationBlueprint._stationData._projects.Count - 1);
+                int r2 = Random.Range(0, stationBlueprint._stationData._projects.Count);
 
                 Project project = stationBlueprint._stationData._projects[r2];
 

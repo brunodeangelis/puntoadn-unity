@@ -12,17 +12,11 @@ using TMPro;
 
 public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject _closeVideo;
+    [SerializeField] private GameObject _lastStationPlayerSpawn;
     [SerializeField] private Task _taskPrefab;
     [SerializeField] private List<Color> _colorsForPaths = new List<Color>();
 
-    private List<GameObject> _spawns;
-    //private List<GameObject> _stations;
-    //private List<GameObject> _stationItems;
     private GameObject[] _paths;
-    private MaterialPropertyBlock _materialPropertyBlock;
-    private int[] _hueValues = new int[] { 0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360 };
-    private List<int> _hueValuesList = new List<int>();
-    private GameObject _backdrop;
     public GameObject _crosshair;
     public TextMeshProUGUI _actionLabel;
     //private GameObject _canvasLoadingVideo;
@@ -66,6 +60,7 @@ public class GameManager : MonoBehaviour {
     [HideInInspector] public GameObject _playingVideo;
     [HideInInspector] public PathDirection _chosenDirection;
     [HideInInspector] public bool _isCutscenePlaying;
+    [HideInInspector] public int _currentStation;
     [HideInInspector] public int _videosPlayed = 0;
 
     static System.Random rnd = new System.Random();
@@ -88,19 +83,12 @@ public class GameManager : MonoBehaviour {
         PressToPlay.OnMainVideoStartLoading += PressToPlay_OnMainVideoStartLoading;
         global::CloseVideo.OnCloseVideo += CloseVideo;
 
-        _spawns = GameObject.FindGameObjectsWithTag("StationSpawner").ToList();
-        //_stations = GameObject.FindGameObjectsWithTag("Station").ToList();
-        //_stationItems = GameObject.FindGameObjectsWithTag("StationItem").ToList();
-
-        _backdrop = GameObject.Find("Backdrop");
         _crosshair = GameObject.Find("Crosshair");
         //_canvasLoadingVideo = GameObject.Find("Loading Video");
         _canvasPlayingVideo = GameObject.Find("Playing Video");
 
         //_loadingVideoTexture = Resources.Load<RenderTexture>("RenderTextures/Loading Video");
         _youtubeVideoTexture = Resources.Load<RenderTexture>("RenderTextures/Youtube Video");
-
-        //GameObject.Find("Start Station Pillar").transform.DOScale(new Vector3(0, 0, 0), 0f);
 
         InitializeGame();
     }
@@ -113,8 +101,6 @@ public class GameManager : MonoBehaviour {
         //{
         //    path.transform.localScale = new Vector3(0, 0, 0);
         //}
-
-        _hueValuesList = _hueValues.ToList();
 
         RenderSettings.fog = true;
     }
@@ -130,7 +116,6 @@ public class GameManager : MonoBehaviour {
         //_canvasLoadingVideo.GetComponent<RawImage>().DOFade(0f, 0.3f)
         //    .OnComplete(() => _canvasLoadingVideo.GetComponent<RawImage>().enabled = false);
 
-        //_backdrop.GetComponent<Image>().DOFade(0f, 0.3f);
         _crosshair.SetActive(true);
 
         //VideoPlayerProgress.Instance.GetComponent<Image>().DOFade(0.0f, 0.3f);
@@ -178,7 +163,6 @@ public class GameManager : MonoBehaviour {
         //_canvasLoadingVideo.GetComponent<RawImage>().enabled = true;
         //_canvasLoadingVideo.GetComponent<RawImage>().DOFade(1f, 0.3f);
 
-        //_backdrop.GetComponent<Image>().DOFade(0.7f, 0.3f);
         _crosshair.SetActive(false);
 
         _actionLabel.DOFade(0f, 0.2f);
@@ -199,10 +183,15 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Player_OnPlayerDeath(Player player) {
-        player.transform.position = _lastCheckpointPosition;
+        if (_currentStation >= 5) {
+            player.transform.position = _lastStationPlayerSpawn.transform.position;
+        } else {
+            player.transform.position = _lastCheckpointPosition;
+        }
     }
 
     private void Checkpoint_OnCheckpointHit(Checkpoint checkpoint) {
+        Debug.Log("Checkpoint hit.");
         _lastCheckpointPosition = checkpoint.gameObject.transform.position;
         Destroy(checkpoint.gameObject);
     }
@@ -289,7 +278,7 @@ public class GameManager : MonoBehaviour {
 
                 //Color color = Color.HSVToRGB(30f * (index + 1) / 360, 1, 1, true);
                 //_materialPropertyBlock.SetColor("_EmissionColor", UnityEngine.Random.ColorHSV(0, 1, 1, 1, 1, 1) * 2);
-                int randomColorIndex = UnityEngine.Random.Range(0, clonedColors.Count - 1);
+                int randomColorIndex = UnityEngine.Random.Range(0, clonedColors.Count);
                 _materialPropertyBlock.SetColor("_EmissionColor", clonedColors[randomColorIndex] * emissionIntensity);
                 clonedColors.RemoveAt(randomColorIndex);
 

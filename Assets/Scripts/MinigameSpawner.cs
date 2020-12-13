@@ -14,7 +14,7 @@ public class MinigameSpawner : MonoBehaviour
     {
         List<GameObject> minigames = GameManager._i._minigames;
 
-        int r = Random.Range(0, minigames.Count - 1);
+        int r = Random.Range(0, minigames.Count);
 
         GameObject instancedMinigame = Instantiate(minigames[r]);
         instancedMinigame.transform.position = transform.GetChild(0).transform.position;
