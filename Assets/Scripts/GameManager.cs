@@ -216,10 +216,6 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Q)) {
-            TakeScreenshot();
-        }
-
         if (_isVideoPlaying) {
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 CloseVideo();
