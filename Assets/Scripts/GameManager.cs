@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour {
     public float _wallCheckRadius = 15f;
     public int _choosePathsColorCycles = 6;
     public SoundAudioClip[] _soundAudioClipArray;
+    public List<Sprite> _hanoiSprites = new List<Sprite>();
 
     [HideInInspector] public Color _chosenPathColor;
     [HideInInspector] public Vector3 _lastCheckpointPosition;

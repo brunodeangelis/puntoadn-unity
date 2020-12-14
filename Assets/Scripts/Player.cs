@@ -38,8 +38,12 @@ public class Player : MonoBehaviour
     {
         RaycastHit hit;
 
+        // Capa de Ignore Raycasts
+        int layerMask = 1 << 2;
+        layerMask = ~layerMask;
+
         //Debug.DrawRay(_cameraPivot.transform.position, _cameraPivot.transform.forward * 100f, Color.magenta);
-        if (Physics.Raycast(_cameraPivot.transform.position, _cameraPivot.transform.forward, out hit, _pointAndClickLength))
+        if (Physics.Raycast(_cameraPivot.transform.position, _cameraPivot.transform.forward, out hit, _pointAndClickLength, layerMask))
         {
             GameObject current = hit.collider.gameObject;
             if (previous != current)

@@ -12,6 +12,7 @@ TagManager:
   - Path
   - TShirt
   - Level
+  - HanoiSymbol
   layers:
   - Default
   - TransparentFX

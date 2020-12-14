@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 39456303456274723}
   - component: {fileID: 7322335646560382749}
   - component: {fileID: 4786992640094857550}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1643218506491653633}
   - component: {fileID: 7295068466953644821}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Area Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 2902924631051866017}
   - component: {fileID: 7124993198671348421}
   - component: {fileID: 2008256587583729508}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5008,7 +5008,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4410873373516083588}
   - component: {fileID: 6998150013550605788}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: vcam Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5075,7 +5075,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5569523820012081031}
   - component: {fileID: 963126511994078916}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5167,7 +5167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3843716869363435366}
   - component: {fileID: 3843716869363435367}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Camera_Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5297,7 +5297,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3843716869417167136}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Camera_Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5334,7 +5334,7 @@ GameObject:
   - component: {fileID: 3843716870190975470}
   - component: {fileID: 4604254027882529052}
   - component: {fileID: 3575412713355053844}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -5501,7 +5501,7 @@ GameObject:
   - component: {fileID: 3843716870331872635}
   - component: {fileID: 3843716870331872632}
   - component: {fileID: 5602834637758703450}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: P_First_Person_Controller
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5758,7 +5758,7 @@ GameObject:
   - component: {fileID: 2527204397682297594}
   - component: {fileID: 2231208076924555486}
   - component: {fileID: 2145982822546781720}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Visibility Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
