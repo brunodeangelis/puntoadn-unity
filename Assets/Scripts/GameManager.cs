@@ -319,9 +319,13 @@ public class GameManager : MonoBehaviour {
 
     public void ActivateDisableAtStartObjects() {
         var objs = FindObjectsOfTypeAll<DisableAtStart>();
+        Debug.Log($"Found {objs.Count} objects");
+        int i = 0;
         foreach (var obj in objs) {
+            i++;
             obj.gameObject.SetActive(true);
         }
+        Debug.Log($"Ran loop {i} times.");
     }
 
     public void DeactivateDisableAtStartObjects() {
