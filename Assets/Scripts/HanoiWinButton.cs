@@ -5,6 +5,7 @@ using UnityEngine;
 public class HanoiWinButton : MonoBehaviour {
     private bool _isPlayerLooking;
     private List<Sprite> _sprites = new List<Sprite>();
+    [SerializeField] private SpriteRenderer[] symbols;
 
     private void Start() {
         _sprites = GameManager._i._hanoiSprites;
@@ -13,11 +14,9 @@ public class HanoiWinButton : MonoBehaviour {
     private void Update() {
         if (_isPlayerLooking) {
             if (Input.GetMouseButtonDown(0)) {
-                var symbols = GameObject.FindGameObjectsWithTag("HanoiSymbol");
-
-                if (symbols[0].GetComponent<SpriteRenderer>().sprite == _sprites[0] &&
-                    symbols[1].GetComponent<SpriteRenderer>().sprite == _sprites[1] &&
-                    symbols[2].GetComponent<SpriteRenderer>().sprite == _sprites[2]) {
+                if (symbols[0].sprite == _sprites[0] &&
+                    symbols[1].sprite == _sprites[1] &&
+                    symbols[2].sprite == _sprites[2]) {
                     GameManager._i.OpenNearbyWall();
                     SoundManager.PlaySound(SoundManager.Sound.Success);
                     GameManager._i.CreateTask("Continuá por el camino para llegar a la próxima estación");
