@@ -92,5 +92,15 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 972f32c6c140ed84db5fb0e094b4a966, type: 2}
+    - target: {fileID: 7387627213134766659, guid: 1d7e0f765471cea49b2f9b01defc0a04,
+        type: 3}
+      propertyPath: _isCorrectTShirt
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9068035365813924903, guid: 1d7e0f765471cea49b2f9b01defc0a04,
+        type: 3}
+      propertyPath: _isCorrectTShirt
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d7e0f765471cea49b2f9b01defc0a04, type: 3}
