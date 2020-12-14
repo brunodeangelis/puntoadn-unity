@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DisableAtStart : MonoBehaviour {    
+public class DisableAtStart : MonoBehaviour {
+    private bool _hasAlreadyBeenActivated;
+
     void Start()
     {
-        gameObject.SetActive(false);
+        if (!_hasAlreadyBeenActivated) {
+            _hasAlreadyBeenActivated = true;
+            gameObject.SetActive(false);
+        }
     }
 }

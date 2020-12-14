@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 using YoutubePlayer;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject _closeVideo;
@@ -315,6 +316,20 @@ public class GameManager : MonoBehaviour {
         );
     }
 
+    public void ActivateDisableAtStartObjects() {
+        var objs = FindObjectsOfTypeAll<DisableAtStart>();
+        foreach (var obj in objs) {
+            obj.gameObject.SetActive(true);
+        }
+    }
+
+    public void DeactivateDisableAtStartObjects() {
+        var objs = FindObjectsOfTypeAll<DisableAtStart>();
+        foreach (var obj in objs) {
+            obj.gameObject.SetActive(false);
+        }
+    }
+
     public void CreateTask(string name) {
         var tasks = GameObject.Find("[UI]/Tasks");
         var newTask = Instantiate(_taskPrefab, tasks.transform);
@@ -360,7 +375,7 @@ public class GameManager : MonoBehaviour {
         public AudioClip _audioClip;
     }
 
-    private void TakeScreenshot() {
+    public void TakeScreenshot() {
         ScreenCapture.CaptureScreenshot("../CaminoRecorrido.png");
         Debug.Log("Screenshot saved.");
     }
@@ -388,4 +403,19 @@ public class GameManager : MonoBehaviour {
     //    Camera.main.targetTexture = RenderTexture.GetTemporary(width, height, 16);
     //    _takeScreenshotOnNextFrame = true;
     //}
+
+    public static List<T> FindObjectsOfTypeAll<T>() {
+        List<T> results = new List<T>();
+        for (int i = 0; i < SceneManager.sceneCount; i++) {
+            var s = SceneManager.GetSceneAt(i);
+            if (s.isLoaded) {
+                var allGameObjects = s.GetRootGameObjects();
+                for (int j = 0; j < allGameObjects.Length; j++) {
+                    var go = allGameObjects[j];
+                    results.AddRange(go.GetComponentsInChildren<T>(true));
+                }
+            }
+        }
+        return results;
+    }
 }
