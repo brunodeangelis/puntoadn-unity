@@ -65,7 +65,7 @@ public class StationSpawner : MonoBehaviour {
                 GameObject stationItem = Instantiate(GameManager._i._stationItems[r], child.parent);
                 stationItem.transform.position = child.transform.position;
 
-                Transform screen = stationItem.transform.Find("Screen");
+                Transform screen = GameManager.RecursiveFindChild(stationItem.transform, "Screen");
 
                 screen.GetComponent<Label>()._text = $"Reproducir '{project._name}'";
                 screen.GetComponent<VideoPlayer>().clip = project._videoClip;
