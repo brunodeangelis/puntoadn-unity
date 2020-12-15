@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour {
     //private RenderTexture _loadingVideoTexture;
     private RenderTexture _youtubeVideoTexture;
     private int _coroutineCount = 0;
-    private bool _takeScreenshotOnNextFrame;
+    private bool _hasSeenVideos = false;
+    private bool _hasSeenVideoTimeline = false;
 
     public static Transform RecursiveFindChild(Transform parent, string childName) {
         Transform child = null;
@@ -151,12 +152,14 @@ public class GameManager : MonoBehaviour {
         #region UI
 
         Debug.Log($"Videos played: {_videosPlayed}");
-        if (_videosPlayed == 1) {
+        if (_videosPlayed == 1 && !_hasSeenVideoTimeline) {
             GameObject.Find("How to/First Station/Text 2").GetComponent<TextMeshProUGUI>().DOFade(0f, 0.2f);
             PauseVideo();
             PlayTimeline("First Video Timeline");
-        } else if (_videosPlayed == 3) {
+            _hasSeenVideoTimeline = true;
+        } else if (_videosPlayed == 3 && !_hasSeenVideos) {
             CreateTask("Si ya terminaste, continuá por el camino que no está iluminado");
+            _hasSeenVideos = true;
         }
 
         _canvasPlayingVideo.GetComponent<RawImage>().DOFade(1f, 0.3f);
@@ -367,6 +370,7 @@ public class GameManager : MonoBehaviour {
 
     public void EndFirstVideoTimeline() {
         GameObject.Find("How to/First Video").GetComponent<CanvasGroup>().DOFade(0, 0.2f);
+        GameObject.Find("Backdrop").GetComponent<Image>().DOFade(0f, 0.2f);
         ResumeVideo();
     }
 
