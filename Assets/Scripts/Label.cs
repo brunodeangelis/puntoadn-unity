@@ -35,6 +35,7 @@ public class Label : MonoBehaviour {
         );
 
         _crosshair.GetComponent<Image>().DOColor(new Color(0.53f, 0.34f, 0.63f), 0.15f);
+        SoundManager.PlaySound(SoundManager.Sound.Hover);
     }
 
     private void OnRaycastExit() {

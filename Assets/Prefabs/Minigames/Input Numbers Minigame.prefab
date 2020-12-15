@@ -2185,6 +2185,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 444367734544949316}
     m_Modifications:
+    - target: {fileID: 5009599617578877395, guid: 95d71a8dc8cad9147ab5b5e3aa6914e8,
+        type: 3}
+      propertyPath: _playsWaitSound
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6391763546017383623, guid: 95d71a8dc8cad9147ab5b5e3aa6914e8,
         type: 3}
       propertyPath: m_Name
@@ -2248,7 +2253,7 @@ PrefabInstance:
     - target: {fileID: 7633843173615878332, guid: 95d71a8dc8cad9147ab5b5e3aa6914e8,
         type: 3}
       propertyPath: m_SceneBindings.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7633843173615878332, guid: 95d71a8dc8cad9147ab5b5e3aa6914e8,
         type: 3}
@@ -2299,6 +2304,12 @@ PrefabInstance:
       propertyPath: m_WrapMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7633843173615878332, guid: 95d71a8dc8cad9147ab5b5e3aa6914e8,
+        type: 3}
+      propertyPath: m_SceneBindings.Array.data[6].key
+      value: 
+      objectReference: {fileID: 7915184622482156543, guid: 89894129c74187344967bd49000ad525,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95d71a8dc8cad9147ab5b5e3aa6914e8, type: 3}
 --- !u!4 &8959065035415086795 stripped

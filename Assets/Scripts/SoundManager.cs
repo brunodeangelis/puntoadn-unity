@@ -6,7 +6,11 @@ public static class SoundManager
 {
     public enum Sound {
         Success,
-        Error
+        Error,
+        Hover,
+        Reminder,
+        Wait,
+        Door
     }
 
     private static AudioSource _oneShotAudioSource;

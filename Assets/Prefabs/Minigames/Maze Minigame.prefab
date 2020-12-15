@@ -652,6 +652,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 271531281550143788}
     m_Modifications:
+    - target: {fileID: 5009599617578877395, guid: 95d71a8dc8cad9147ab5b5e3aa6914e8,
+        type: 3}
+      propertyPath: _playsWaitSound
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6391763546017383623, guid: 95d71a8dc8cad9147ab5b5e3aa6914e8,
         type: 3}
       propertyPath: m_Name

@@ -14,6 +14,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject _closeVideo;
     [SerializeField] private GameObject _lastStationPlayerSpawn;
+    [SerializeField] private GameObject _backgroundMusicGO;
     [SerializeField] private Task _taskPrefab;
     [SerializeField] private List<Color> _colorsForPaths = new List<Color>();
 
@@ -358,6 +359,7 @@ public class GameManager : MonoBehaviour {
         }
 
         newTask.Enter();
+        SoundManager.PlaySound(SoundManager.Sound.Reminder);
     }
 
     public void DeleteTask(string name) {
@@ -462,5 +464,9 @@ public class GameManager : MonoBehaviour {
             IlluminatePath(path);
             break;
         }
+    }
+
+    public void PlayBackgroundMusic() {
+        _backgroundMusicGO.SetActive(true);
     }
 }

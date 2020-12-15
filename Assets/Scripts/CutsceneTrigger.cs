@@ -8,6 +8,7 @@ public class CutsceneTrigger : MonoBehaviour
     private PlayableDirector _timeline;
     private PlayableDirector _gameObjectTimeline;
     [SerializeField] private string _timelineName;
+    [SerializeField] private bool _playsWaitSound = false;
 
     private void Awake()
     {
@@ -26,6 +27,8 @@ public class CutsceneTrigger : MonoBehaviour
             {
                 if (collider.isTrigger) Destroy(collider);
             }
+
+            if (_playsWaitSound) SoundManager.PlaySound(SoundManager.Sound.Wait);
         }
     }
 }
