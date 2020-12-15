@@ -367,8 +367,8 @@ namespace VHS
             #region Crouching Methods
                 protected virtual void HandleCrouch()
                 {
-                    if(movementInputData.CrouchClicked && m_isGrounded)
-                        InvokeCrouchRoutine();
+                    //if(movementInputData.CrouchClicked && m_isGrounded)
+                    //    InvokeCrouchRoutine();
                 }
 
                 protected virtual void InvokeCrouchRoutine()
