@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour {
     public List<GameObject> _minigames = new List<GameObject>();
     public GameObject _lastStationSpawned;
     public GameObject _interactText;
+    public GameObject _trampolinePrefab;
     public string _inputStationWinnerNumber;
     public float _wallCheckRadius = 15f;
     public int _choosePathsColorCycles = 6;
@@ -149,17 +150,28 @@ public class GameManager : MonoBehaviour {
 
         VideoPlayerProgress.Instance.videoPlayer = _playingVideo.GetComponent<VideoPlayer>();
 
-        #region UI
-
         Debug.Log($"Videos played: {_videosPlayed}");
-        if (_videosPlayed == 1 && !_hasSeenVideoTimeline) {
-            GameObject.Find("How to/First Station/Text 2").GetComponent<TextMeshProUGUI>().DOFade(0f, 0.2f);
-            PauseVideo();
-            PlayTimeline("First Video Timeline");
-            _hasSeenVideoTimeline = true;
-        } else if (_videosPlayed == 3 && !_hasSeenVideos) {
-            CreateTask("Si ya terminaste, continuá por el camino que no está iluminado");
-            _hasSeenVideos = true;
+
+        if (_currentStation == 5) {
+            if (_videosPlayed > 5) {
+                _videosPlayed = 1;
+            }
+
+            if (_videosPlayed > 3) {
+                // ACTIVAR GUÍA VISUAL PARA CUTSCENE SALTO FINAL
+            }
+        } else if (_currentStation < 5) {
+            if (_videosPlayed == 1 && !_hasSeenVideoTimeline) {
+                GameObject.Find("How to/First Station/Text 2").GetComponent<TextMeshProUGUI>().DOFade(0f, 0.2f);
+                PauseVideo();
+                PlayTimeline("First Video Timeline");
+                _hasSeenVideoTimeline = true;
+            }
+
+            if (_videosPlayed == 3 && !_hasSeenVideos) {
+                CreateTask("Si ya terminaste, continuá por el camino que no está iluminado");
+                _hasSeenVideos = true;
+            }
         }
 
         _canvasPlayingVideo.GetComponent<RawImage>().DOFade(1f, 0.3f);
@@ -180,7 +192,6 @@ public class GameManager : MonoBehaviour {
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        #endregion
     }
 
     private void OnMainVideoEnded(VideoPlayer source) {
@@ -422,5 +433,34 @@ public class GameManager : MonoBehaviour {
             }
         }
         return results;
+    }
+
+    public void IlluminatePath(WalkingPath path) {
+        var led1 = path.transform.GetChild(0);
+        var led2 = path.transform.GetChild(1);
+
+        led1.gameObject.SetActive(true);
+        led2.gameObject.SetActive(true);
+
+        led1.transform.DOScaleX(1f, path._growSpeed < 0.5f ? 5f : path._growSpeed);
+        led2.transform.DOScaleX(1f, path._growSpeed < 0.5f ? 5f : path._growSpeed);
+
+        MaterialPropertyBlock _materialPropertyBlock = new MaterialPropertyBlock();
+
+        _materialPropertyBlock.SetColor("_EmissionColor", _chosenPathColor);
+
+        led1.GetComponent<Renderer>().SetPropertyBlock(_materialPropertyBlock);
+        led2.GetComponent<Renderer>().SetPropertyBlock(_materialPropertyBlock);
+    }
+
+    public void IlluminatePathNearPlayer() {
+        Collider[] hitColliders = Physics.OverlapSphere(Player.Instance.transform.position, 30f);
+
+        foreach (var hitCollider in hitColliders) {
+            WalkingPath path = hitCollider.GetComponent<WalkingPath>();
+            if (path == null) continue;
+            IlluminatePath(path);
+            break;
+        }
     }
 }

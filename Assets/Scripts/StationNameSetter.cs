@@ -12,7 +12,7 @@ public class StationNameSetter : MonoBehaviour
 
     [SerializeField] private float _checkDistance = 11f;
 
-    [HideInInspector] public string _nameForUI;
+    public string _nameForUI;
 
     private void Start() {
         _textElement = GameObject.Find("Current Station UI/Current Station Text").GetComponent<TextMeshProUGUI>();
