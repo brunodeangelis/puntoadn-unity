@@ -14,7 +14,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject _closeVideo;
     [SerializeField] private GameObject _lastStationPlayerSpawn;
-    [SerializeField] private GameObject _backgroundMusicGO;
     [SerializeField] private Task _taskPrefab;
     [SerializeField] private List<Color> _colorsForPaths = new List<Color>();
 
@@ -57,6 +56,7 @@ public class GameManager : MonoBehaviour {
     public int _choosePathsColorCycles = 6;
     public SoundAudioClip[] _soundAudioClipArray;
     public List<Sprite> _hanoiSprites = new List<Sprite>();
+    public AudioSource _backgroundMusic;
 
     [HideInInspector] public Color _chosenPathColor;
     [HideInInspector] public Vector3 _lastCheckpointPosition;
@@ -128,6 +128,10 @@ public class GameManager : MonoBehaviour {
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        if (_backgroundMusic.volume < 0.2f) {
+            // FADE IN
+        }
 
         _playingVideo = null;
     }
@@ -467,6 +471,6 @@ public class GameManager : MonoBehaviour {
     }
 
     public void PlayBackgroundMusic() {
-        _backgroundMusicGO.SetActive(true);
+        _backgroundMusic.gameObject.SetActive(true);
     }
 }

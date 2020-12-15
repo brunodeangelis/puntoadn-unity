@@ -206,6 +206,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1178780924024939931, guid: ebbeacc0d00adc94ab73fca3127e61b8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.70710236
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178780924024939931, guid: ebbeacc0d00adc94ab73fca3127e61b8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70711124
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178780924024939931, guid: ebbeacc0d00adc94ab73fca3127e61b8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.02113533
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178780924024939931, guid: ebbeacc0d00adc94ab73fca3127e61b8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.98480225
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178780924024939931, guid: ebbeacc0d00adc94ab73fca3127e61b8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382370226310448272, guid: ebbeacc0d00adc94ab73fca3127e61b8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2480333969720967403, guid: ebbeacc0d00adc94ab73fca3127e61b8,
         type: 3}
       propertyPath: m_ExposedReferences.m_References.Array.size
@@ -214,7 +244,7 @@ PrefabInstance:
     - target: {fileID: 2480333969720967403, guid: ebbeacc0d00adc94ab73fca3127e61b8,
         type: 3}
       propertyPath: m_SceneBindings.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2480333969720967403, guid: ebbeacc0d00adc94ab73fca3127e61b8,
         type: 3}
@@ -282,10 +312,31 @@ PrefabInstance:
       propertyPath: m_SceneBindings.Array.data[4].value
       value: 
       objectReference: {fileID: 808727950}
+    - target: {fileID: 2480333969720967403, guid: ebbeacc0d00adc94ab73fca3127e61b8,
+        type: 3}
+      propertyPath: m_SceneBindings.Array.data[5].key
+      value: 
+      objectReference: {fileID: -5970508610369276984, guid: 5ed3db6659ea4ba4a9cd42d95d1f11da,
+        type: 2}
+    - target: {fileID: 3239494276851287040, guid: ebbeacc0d00adc94ab73fca3127e61b8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3997469426934503653, guid: ebbeacc0d00adc94ab73fca3127e61b8,
         type: 3}
       propertyPath: m_Name
       value: Last Station
+      objectReference: {fileID: 0}
+    - target: {fileID: 4802009538030568580, guid: ebbeacc0d00adc94ab73fca3127e61b8,
+        type: 3}
+      propertyPath: _zAxis
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4802009538030568580, guid: ebbeacc0d00adc94ab73fca3127e61b8,
+        type: 3}
+      propertyPath: _xAxis
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6964824337273237799, guid: ebbeacc0d00adc94ab73fca3127e61b8,
         type: 3}
@@ -573,6 +624,7 @@ MonoBehaviour:
   - {fileID: 616849042403732374, guid: 2b330795721c3b14494f658164875a62, type: 3}
   _lastStationSpawned: {fileID: 0}
   _interactText: {fileID: 0}
+  _trampolinePrefab: {fileID: 0}
   _inputStationWinnerNumber: 12345
   _wallCheckRadius: 15
   _choosePathsColorCycles: 6
@@ -584,6 +636,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9e86d99e8435c104b958a1d4db20b9b2, type: 3}
   - {fileID: 21300000, guid: 334ebe7b151915e4d8c3f2d2a3aca19e, type: 3}
   - {fileID: 21300000, guid: 275a4bdc8f09e6d46b2bd8585c728359, type: 3}
+  _backgroundMusic: {fileID: 0}
   _chosenPathColor: {r: 0, g: 0, b: 0, a: 0}
   _lastCheckpointPosition: {x: 0, y: 0, z: 0}
   _isVideoPlaying: 0
@@ -1504,7 +1557,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-154054
+  m_Name: pb_Mesh-218136
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1979,7 +2032,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-189234
+  m_Name: pb_Mesh-217824
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2202,17 +2255,17 @@ PrefabInstance:
     - target: {fileID: 3843716870331872634, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -316.55
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870331872634, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -30.19
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870331872634, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 290.64
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870331872634, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
@@ -4552,6 +4605,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2397224296390397493, guid: 8f7d424421f87c84f97853b23c9065c1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2397224296390397493, guid: 8f7d424421f87c84f97853b23c9065c1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.1949143
+      objectReference: {fileID: 0}
+    - target: {fileID: 2397224296390397493, guid: 8f7d424421f87c84f97853b23c9065c1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -1e-45
+      objectReference: {fileID: 0}
     - target: {fileID: 5714900997755100914, guid: 8f7d424421f87c84f97853b23c9065c1,
         type: 3}
       propertyPath: m_Mesh
@@ -4566,6 +4634,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Torre de Hanoi
+      objectReference: {fileID: 0}
+    - target: {fileID: 5714900998067579665, guid: 8f7d424421f87c84f97853b23c9065c1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5714900998067579670, guid: 8f7d424421f87c84f97853b23c9065c1,
         type: 3}

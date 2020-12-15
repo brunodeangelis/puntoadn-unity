@@ -15,13 +15,15 @@ public class Label : MonoBehaviour {
 
     public string _text;
     
-    void Start() {
+    private void Start() {
         _actionLabel = GameManager._i._actionLabel;
         _crosshair = GameManager._i._crosshair;
         _rectTransform = _crosshair.GetComponent<RectTransform>();
     }
 
     private void OnRaycastEnter() {
+        if (GameManager._i._isVideoPlaying) return;
+
         _actionLabel.text = _text;
         _actionLabel.DOFade(1f, 0.2f);
 
@@ -39,6 +41,8 @@ public class Label : MonoBehaviour {
     }
 
     private void OnRaycastExit() {
+        if (GameManager._i._isVideoPlaying) return;
+
         _actionLabel.DOFade(0f, 0.2f);
 
         if (!_focusCrosshair) return;

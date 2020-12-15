@@ -6,6 +6,8 @@ using UnityEngine.Video;
 
 [RequireComponent(typeof(VideoPlayer))]
 public class PressToPlay : MonoBehaviour {
+    [SerializeField] private bool _fadeBackgroundMusic = true;
+
     private GameObject _ui;
     private bool _isPlayerLooking = false;
 
@@ -44,6 +46,9 @@ public class PressToPlay : MonoBehaviour {
 
         if (!_alreadySeen) GameManager._i._videosPlayed++;
         _alreadySeen = true;
+
+        if (_fadeBackgroundMusic) {
+        }
 
         OnMainVideoStartLoading?.Invoke(_mainPlayer);
     }

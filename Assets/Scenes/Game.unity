@@ -461,27 +461,27 @@ PrefabInstance:
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.17735453
-      objectReference: {fileID: 0}
-    - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.1274975
-      objectReference: {fileID: 0}
-    - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
-        type: 3}
-      propertyPath: m_LocalRotation.z
       value: 0.02317832
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
-      propertyPath: m_LocalRotation.w
+      propertyPath: m_LocalRotation.y
       value: 0.97557807
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.17735453
+      objectReference: {fileID: 0}
+    - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.1274975
+      objectReference: {fileID: 0}
+    - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.8
+      value: -3.8
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
@@ -491,7 +491,7 @@ PrefabInstance:
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 115.93
+      value: -115.93
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870190975471, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
@@ -4148,7 +4148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &528151070
 Transform:
   m_ObjectHideFlags: 0
@@ -5242,7 +5242,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _closeVideo: {fileID: 1777357141}
   _lastStationPlayerSpawn: {fileID: 1913865868}
-  _backgroundMusicGO: {fileID: 610429310}
   _taskPrefab: {fileID: 5310473365995249810, guid: 4d778249cba4a0747bfc87d2cffd65b6,
     type: 3}
   _colorsForPaths:
@@ -5300,6 +5299,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9e86d99e8435c104b958a1d4db20b9b2, type: 3}
   - {fileID: 21300000, guid: 334ebe7b151915e4d8c3f2d2a3aca19e, type: 3}
   - {fileID: 21300000, guid: 275a4bdc8f09e6d46b2bd8585c728359, type: 3}
+  _backgroundMusic: {fileID: 610429311}
   _chosenPathColor: {r: 0, g: 0, b: 0, a: 0}
   _lastCheckpointPosition: {x: 0, y: 0, z: 0}
   _isVideoPlaying: 0
