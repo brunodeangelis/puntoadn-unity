@@ -5856,6 +5856,11 @@ PrefabInstance:
       propertyPath: _timeline
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5296804671179399518, guid: 95d71a8dc8cad9147ab5b5e3aa6914e8,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 6.41
+      objectReference: {fileID: 0}
     - target: {fileID: 6391763546017383623, guid: 95d71a8dc8cad9147ab5b5e3aa6914e8,
         type: 3}
       propertyPath: m_Name
@@ -5880,7 +5885,7 @@ PrefabInstance:
     - target: {fileID: 6622575389890915617, guid: 95d71a8dc8cad9147ab5b5e3aa6914e8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 282.6
+      value: 284.16
       objectReference: {fileID: 0}
     - target: {fileID: 6622575389890915617, guid: 95d71a8dc8cad9147ab5b5e3aa6914e8,
         type: 3}

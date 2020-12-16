@@ -7,7 +7,7 @@ using DG.Tweening;
 public class MainMenu : MonoBehaviour {
 
     private void Start() {
-        GameObject.Find("UI Group").GetComponent<CanvasGroup>().DOFade(1f, 0.3f)
+        GameObject.Find("UI Group").GetComponent<CanvasGroup>().DOFade(1f, 1.25f)
             .OnComplete(() => {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;

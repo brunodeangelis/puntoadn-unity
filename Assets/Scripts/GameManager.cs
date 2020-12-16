@@ -479,6 +479,7 @@ public class GameManager : MonoBehaviour {
 
     public void PlayBackgroundMusic() {
         _backgroundMusic.gameObject.SetActive(true);
+        if (!_backgroundMusic.isPlaying) _backgroundMusic.Play();
     }
     
     public void PauseBackgroundMusic() {

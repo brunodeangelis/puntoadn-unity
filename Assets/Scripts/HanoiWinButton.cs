@@ -7,6 +7,7 @@ public class HanoiWinButton : MonoBehaviour {
     private bool _isPlayerLooking;
     private List<Sprite> _sprites = new List<Sprite>();
     [SerializeField] private SpriteRenderer[] symbols;
+    private bool _hasWon = false;
 
     private void Start() {
         _sprites = GameManager._i._hanoiSprites;
@@ -18,11 +19,14 @@ public class HanoiWinButton : MonoBehaviour {
                 if (symbols[0].sprite == _sprites[0] &&
                     symbols[1].sprite == _sprites[1] &&
                     symbols[2].sprite == _sprites[2]) {
-                    GameManager._i.OpenNearbyWall();
-                    SoundManager.PlaySound(SoundManager.Sound.Success);
-                    GameManager._i.CreateTask("Continuá por el camino para llegar a la próxima estación");
-                    for (int i = 0; i < 3; i++) {
-                        symbols[i].color = Color.green;
+                    if (!_hasWon) {
+                        _hasWon = true;
+                        GameManager._i.OpenNearbyWall();
+                        SoundManager.PlaySound(SoundManager.Sound.Success);
+                        GameManager._i.CreateTask("Continuá por el camino para llegar a la próxima estación");
+                        for (int i = 0; i < 3; i++) {
+                            symbols[i].color = Color.green;
+                        }
                     }
                 } else {
                     for (int i = 0; i < 3; i++) {

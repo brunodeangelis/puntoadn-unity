@@ -7,6 +7,7 @@ using DG.Tweening;
 
 public class InputNumbersWinButton : MonoBehaviour {
     private bool _isPlayerLooking;
+    private bool _hasWon = false;
 
     // Update is called once per frame
     void Update() {
@@ -22,14 +23,17 @@ public class InputNumbersWinButton : MonoBehaviour {
                 string concatenatedValues = string.Join("", values);
 
                 if (concatenatedValues == GameManager._i._inputStationWinnerNumber) {
-                    GameManager._i.OpenNearbyWall();
-                    SoundManager.PlaySound(SoundManager.Sound.Success);
+                    if (!_hasWon) {
+                        _hasWon = true;
+                        GameManager._i.OpenNearbyWall();
+                        SoundManager.PlaySound(SoundManager.Sound.Success);
 
-                    foreach (NumberInput input in inputs) {
-                        input.GetComponent<TextMeshProUGUI>().color = Color.green;
+                        foreach (NumberInput input in inputs) {
+                            input.GetComponent<TextMeshProUGUI>().color = Color.green;
+                        }
+
+                        GameManager._i.CreateTask("Continuá por el camino para llegar a la próxima estación");
                     }
-
-                    GameManager._i.CreateTask("Continuá por el camino para llegar a la próxima estación");
                 } else {
                     foreach (NumberInput input in inputs) {
                         input.GetComponent<TextMeshProUGUI>().color = Color.red;

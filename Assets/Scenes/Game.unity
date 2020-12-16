@@ -449,27 +449,27 @@ PrefabInstance:
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.17735453
+      value: 0.07218759
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.1274975
+      value: -0.51647645
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.02317832
+      value: 0.09389248
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.97557807
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.2100098
+      value: -121.940025
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
@@ -479,7 +479,7 @@ PrefabInstance:
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -514.7
+      value: -593.15
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870190975471, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
@@ -514,7 +514,7 @@ PrefabInstance:
     - target: {fileID: 3843716870331872634, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 630.63
+      value: 596.95
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870331872634, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
@@ -1083,7 +1083,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 166985876}
-  m_LocalRotation: {x: 0.06275183, y: -0.003977854, z: 0.0002501125, w: 0.99802125}
+  m_LocalRotation: {x: 0.066131204, y: -0.0041939258, z: 0.0002779602, w: 0.99780214}
   m_LocalPosition: {x: 11.2, y: 52.2, z: -20.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3284,7 +3284,7 @@ PrefabInstance:
     - target: {fileID: 5195239132953062090, guid: 464040b54a9b2634d97a089761f93dd2,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.12749764
+      value: -0.12749755
       objectReference: {fileID: 0}
     - target: {fileID: 5195239132953062090, guid: 464040b54a9b2634d97a089761f93dd2,
         type: 3}
@@ -3304,7 +3304,7 @@ PrefabInstance:
     - target: {fileID: 7100092967546013471, guid: 464040b54a9b2634d97a089761f93dd2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.00020223108
+      value: 0.0002022199
       objectReference: {fileID: 0}
     - target: {fileID: 7100092967546013471, guid: 464040b54a9b2634d97a089761f93dd2,
         type: 3}
@@ -16709,6 +16709,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: f4061ffb6a4150a43b2f35478d2da087, type: 2}
     - {fileID: 11400000, guid: 447e2330caff68442920e874641ddfae, type: 2}
     - {fileID: 11400000, guid: ea041b58f241056488926343021d20fe, type: 2}
+    - {fileID: 11400000, guid: 23bd5e07d1ea4d04fa499bc2ee1b0714, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -16883,6 +16884,20 @@ MonoBehaviour:
         - m_Target: {fileID: 626353738}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
           m_MethodName: PlayBackgroundMusic
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 626353738}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: PauseBackgroundMusic
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
