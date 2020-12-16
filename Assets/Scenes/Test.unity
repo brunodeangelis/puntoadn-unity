@@ -206,6 +206,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 367440101349065500, guid: ebbeacc0d00adc94ab73fca3127e61b8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 367440101349065500, guid: ebbeacc0d00adc94ab73fca3127e61b8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 802976454375275875, guid: ebbeacc0d00adc94ab73fca3127e61b8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 802976454375275875, guid: ebbeacc0d00adc94ab73fca3127e61b8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1178780924024939931, guid: ebbeacc0d00adc94ab73fca3127e61b8,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -235,6 +255,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1459098490238636553, guid: ebbeacc0d00adc94ab73fca3127e61b8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1459098490238636553, guid: ebbeacc0d00adc94ab73fca3127e61b8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1811582087714922117, guid: ebbeacc0d00adc94ab73fca3127e61b8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1811582087714922117, guid: ebbeacc0d00adc94ab73fca3127e61b8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2381413764709177257, guid: ebbeacc0d00adc94ab73fca3127e61b8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2381413764709177257, guid: ebbeacc0d00adc94ab73fca3127e61b8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2480333969720967403, guid: ebbeacc0d00adc94ab73fca3127e61b8,
         type: 3}
@@ -323,10 +373,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3422557517943914374, guid: ebbeacc0d00adc94ab73fca3127e61b8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422557517943914374, guid: ebbeacc0d00adc94ab73fca3127e61b8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3997469426934503653, guid: ebbeacc0d00adc94ab73fca3127e61b8,
         type: 3}
       propertyPath: m_Name
       value: Last Station
+      objectReference: {fileID: 0}
+    - target: {fileID: 3997469426934503653, guid: ebbeacc0d00adc94ab73fca3127e61b8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4802009538030568580, guid: ebbeacc0d00adc94ab73fca3127e61b8,
         type: 3}
@@ -622,7 +687,6 @@ MonoBehaviour:
   - {fileID: 616849042403732374, guid: 2b330795721c3b14494f658164875a62, type: 3}
   - {fileID: 616849042403732374, guid: 2b330795721c3b14494f658164875a62, type: 3}
   - {fileID: 616849042403732374, guid: 2b330795721c3b14494f658164875a62, type: 3}
-  _lastStationSpawned: {fileID: 0}
   _interactText: {fileID: 0}
   _trampolinePrefab: {fileID: 0}
   _inputStationWinnerNumber: 12345
@@ -638,6 +702,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 275a4bdc8f09e6d46b2bd8585c728359, type: 3}
   _musicFromVideo: {fileID: 0}
   _backgroundMusic: {fileID: 0}
+  _lastStationSpawned: {fileID: 0}
   _chosenPathColor: {r: 0, g: 0, b: 0, a: 0}
   _lastCheckpointPosition: {x: 0, y: 0, z: 0}
   _isVideoPlaying: 0

@@ -152,7 +152,7 @@ namespace VHS
                 if(m_yawTransform != null && !GameManager._i._isVideoPlaying && !GameManager._i._isCutscenePlaying)
                     RotateTowardsCamera();
 
-                if(m_characterController && !GameManager._i._isVideoPlaying && !GameManager._i._isCutscenePlaying)
+                if(m_characterController && !GameManager._i._isVideoPlaying && !GameManager._i._isCutscenePlaying && !GameManager._i._isManifiestoPlaying)
                 {
                     // Check if Grounded,Wall etc
                     CheckIfGrounded();

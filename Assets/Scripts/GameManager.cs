@@ -48,7 +48,6 @@ public class GameManager : MonoBehaviour {
     public List<GameObject> _stations = new List<GameObject>();
     public List<GameObject> _stationItems = new List<GameObject>();
     public List<GameObject> _minigames = new List<GameObject>();
-    public GameObject _lastStationSpawned;
     public GameObject _interactText;
     public GameObject _trampolinePrefab;
     public string _inputStationWinnerNumber;
@@ -58,7 +57,9 @@ public class GameManager : MonoBehaviour {
     public List<Sprite> _hanoiSprites = new List<Sprite>();
     public AudioSource _musicFromVideo;
     public AudioSource _backgroundMusic;
+    public GameObject _manifiestoSphere;
 
+    [HideInInspector] public GameObject _lastStationSpawned;
     [HideInInspector] public Color _chosenPathColor;
     [HideInInspector] public Vector3 _lastCheckpointPosition;
     [HideInInspector] public bool _isVideoPlaying;
@@ -66,7 +67,8 @@ public class GameManager : MonoBehaviour {
     [HideInInspector] public GameObject _playingVideo;
     [HideInInspector] public PathDirection _chosenDirection;
     [HideInInspector] public bool _isCutscenePlaying;
-    [HideInInspector] public int _currentStation;
+    [HideInInspector] public bool _isManifiestoPlaying;
+    public int _currentStation;
     [HideInInspector] public int _videosPlayed = 0;
 
     static System.Random rnd = new System.Random();
@@ -163,8 +165,8 @@ public class GameManager : MonoBehaviour {
                 _videosPlayed = 1;
             }
 
-            if (_videosPlayed > 3) {
-                // ACTIVAR GUÍA VISUAL PARA CUTSCENE SALTO FINAL
+            if (_videosPlayed > 2) {
+                CreateTask("Cuando termines de ver todo, continuá por el camino");
             }
         } else if (_currentStation < 5) {
             if (_videosPlayed == 1 && !_hasSeenVideoTimeline) {
@@ -236,6 +238,10 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Update() {
+        if (_manifiestoSphere != null) {
+            _manifiestoSphere.transform.position = new Vector3(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 1.75f, Player.Instance.transform.position.z);
+        }
+
         if (_isVideoPlaying) {
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 CloseVideo();
@@ -473,5 +479,16 @@ public class GameManager : MonoBehaviour {
 
     public void PlayBackgroundMusic() {
         _backgroundMusic.gameObject.SetActive(true);
+    }
+    
+    public void PauseBackgroundMusic() {
+        _backgroundMusic.Pause();
+    }
+
+    public void ClearOutRenderTexture(RenderTexture renderTexture) {
+        RenderTexture rt = RenderTexture.active;
+        RenderTexture.active = renderTexture;
+        GL.Clear(true, true, Color.clear);
+        RenderTexture.active = rt;
     }
 }

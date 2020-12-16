@@ -5,14 +5,13 @@ using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 public class MainMenu : MonoBehaviour {
-    // Start is called before the first frame update
-    void Start() {
 
-    }
-
-    // Update is called once per frame
-    void Update() {
-
+    private void Start() {
+        GameObject.Find("UI Group").GetComponent<CanvasGroup>().DOFade(1f, 0.3f)
+            .OnComplete(() => {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            });
     }
 
     public void StartGame() {
