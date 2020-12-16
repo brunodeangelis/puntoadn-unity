@@ -3,19 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FloatingObject : MonoBehaviour {
+    private Vector3 _pos;
+    private bool _canFloat = false;
+
     [SerializeField] [Range(0f, 5f)] private float _speed = 1f;
     [SerializeField] [Range(0f, 1f)] private float _amplitude = 0.3f;
     [SerializeField] private bool _xAxis = false;
     [SerializeField] private bool _yAxis = true;
     [SerializeField] private bool _zAxis = false;
     [SerializeField] private bool _inverseDirection = false;
-    private Vector3 _pos;
-
+    
     private void Start() {
         _pos = transform.localPosition;
+        Invoke("EnableFloating", Random.Range(0.3f, 2f));
+    }
+
+    private void EnableFloating() {
+        _canFloat = true;
     }
 
     private void Update() {
+        if (!_canFloat) return;
+
         float _deviation = _amplitude * Mathf.Sin(Time.time * _speed);
         Vector3 newPos;
 

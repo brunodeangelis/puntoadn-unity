@@ -7,18 +7,21 @@ using UnityEngine.Video;
 [RequireComponent(typeof(VideoPlayer))]
 public class PressToPlay : MonoBehaviour {
     [SerializeField] private bool _fadeBackgroundMusic = true;
+    private AudioSource _musicFromVideo;
 
     private GameObject _ui;
     private bool _isPlayerLooking = false;
 
     public GameObject _mainPlayer;
+    public VideoPlayer _videoPlayer;
     public static event Action<GameObject> OnMainVideoStartLoading;
     [HideInInspector] public bool _alreadySeen = false;
 
     private void Awake() {
         CloseVideo.OnCloseVideo += CloseVideo_OnCloseVideo;
-
         _ui = GameManager._i._interactText;
+        _musicFromVideo = GameManager._i._musicFromVideo;
+        _videoPlayer = _mainPlayer.GetComponent<VideoPlayer>();
     }
 
     private void OnRaycastEnter(GameObject sender) {
@@ -41,19 +44,21 @@ public class PressToPlay : MonoBehaviour {
     }
 
     private void PlayVideo() {
-        _mainPlayer.GetComponent<VideoPlayer>().clip = GetComponent<VideoPlayer>().clip;
-        _mainPlayer.GetComponent<VideoPlayer>().enabled = true;
+        _videoPlayer.clip = GetComponent<VideoPlayer>().clip;
+        _videoPlayer.SetTargetAudioSource(0, _musicFromVideo);
+        _videoPlayer.enabled = true;
 
         if (!_alreadySeen) GameManager._i._videosPlayed++;
         _alreadySeen = true;
 
         if (_fadeBackgroundMusic) {
+            GameManager._i._backgroundMusic.volume = 0;
         }
 
         OnMainVideoStartLoading?.Invoke(_mainPlayer);
     }
 
     private void CloseVideo_OnCloseVideo() {
-        _mainPlayer.GetComponent<VideoPlayer>().enabled = false;
+        _videoPlayer.enabled = false;
     }
 }

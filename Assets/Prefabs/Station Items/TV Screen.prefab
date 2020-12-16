@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b2cf4b1342bf54488d281c3c5552d94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _onlyYAxis: 0
 --- !u!1 &3515908986602378012
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,6 +94,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 1
   _amplitude: 0.3
+  _xAxis: 0
+  _yAxis: 1
+  _zAxis: 0
+  _inverseDirection: 0
 --- !u!1 &6633180962660024853
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,6 +408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 711b93eac095ae04195aa4661075670c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fadeBackgroundMusic: 1
   _mainPlayer: {fileID: 7613255471106033685}
   _alreadySeen: 0
 --- !u!114 &2318508475753085760
@@ -520,6 +526,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 339913636564615809}
     m_Modifications:
+    - target: {fileID: 5888224734731815524, guid: a13a1e4880aee1e40b42e3dcf2ec0e73,
+        type: 3}
+      propertyPath: m_AudioOutputMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5888224734731815526, guid: a13a1e4880aee1e40b42e3dcf2ec0e73,
         type: 3}
       propertyPath: m_LocalPosition.x

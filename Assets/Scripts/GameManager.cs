@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour {
     public int _choosePathsColorCycles = 6;
     public SoundAudioClip[] _soundAudioClipArray;
     public List<Sprite> _hanoiSprites = new List<Sprite>();
+    public AudioSource _musicFromVideo;
     public AudioSource _backgroundMusic;
 
     [HideInInspector] public Color _chosenPathColor;
@@ -130,7 +131,7 @@ public class GameManager : MonoBehaviour {
         Cursor.visible = false;
 
         if (_backgroundMusic.volume < 0.2f) {
-            // FADE IN
+            _backgroundMusic.volume = 1;
         }
 
         _playingVideo = null;
