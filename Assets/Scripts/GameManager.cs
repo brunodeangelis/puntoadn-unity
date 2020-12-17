@@ -151,6 +151,7 @@ public class GameManager : MonoBehaviour {
         _playingVideo.GetComponent<VideoPlayer>().Play();
     }
 
+    private bool _hasReceveiedTaskInFinalStation = false;
     private void PressToPlay_OnMainVideoStartLoading(GameObject videoGO) {
         _isVideoPlaying = true;
         //_youtubeVideoTexture.Create();
@@ -167,8 +168,9 @@ public class GameManager : MonoBehaviour {
                 _videosPlayed = 1;
             }
 
-            if (_videosPlayed == 2) {
+            if (_videosPlayed == 2 && !_hasReceveiedTaskInFinalStation) {
                 CreateTask("Cuando termines de ver todo, continuá por el camino");
+                _hasReceveiedTaskInFinalStation = true;
             }
         } else if (_currentStation == 5) {
             if (_videosPlayed > 3) {
@@ -362,22 +364,22 @@ public class GameManager : MonoBehaviour {
 
     public void ActivateDisableAtStartObjects() {
         var objs = FindObjectsOfTypeAll<DisableAtStart>();
-        //Debug.Log($"Found {objs.Count} objects");
+        Debug.Log($"Found {objs.Count} objects");
         int i = 0;
         foreach (var obj in objs) {
             i++;
-            obj.gameObject.SetActive(true);
+            if (obj.gameObject.activeSelf == false) obj.gameObject.SetActive(true);
         }
-        foreach (var cta in FindObjectsOfTypeAll<CallToAction>()) {
-            Destroy(cta.gameObject);
-        }
-        //Debug.Log($"Ran loop {i} times.");
+        Debug.Log($"Ran loop {i} times.");
+        //foreach (var cta in FindObjectsOfTypeAll<CallToAction>()) {
+        //    Destroy(cta.gameObject);
+        //}
     }
 
     public void DeactivateDisableAtStartObjects() {
         var objs = FindObjectsOfTypeAll<DisableAtStart>();
         foreach (var obj in objs) {
-            obj.gameObject.SetActive(false);
+            if (obj.gameObject.activeSelf == true) obj.gameObject.SetActive(false);
         }
     }
 
