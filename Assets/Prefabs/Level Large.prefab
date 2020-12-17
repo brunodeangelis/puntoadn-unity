@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5538307328407649370}
   m_Layer: 0
   m_Name: Station 5 L
-  m_TagString: Untagged
+  m_TagString: DisableAtStart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 1851182503232532879}
   m_Layer: 0
   m_Name: Right
-  m_TagString: Untagged
+  m_TagString: DisableAtStart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 6063042688339541975}
   m_Layer: 0
   m_Name: Left
-  m_TagString: Untagged
+  m_TagString: DisableAtStart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 2918214373061971590}
   m_Layer: 0
   m_Name: Station 5 R
-  m_TagString: Untagged
+  m_TagString: DisableAtStart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 6822212596139964257}
   m_Layer: 0
   m_Name: Extras Left
-  m_TagString: Untagged
+  m_TagString: DisableAtStart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 3534580842891639031}
   m_Layer: 0
   m_Name: Station 5 R
-  m_TagString: Untagged
+  m_TagString: DisableAtStart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -480,7 +480,7 @@ GameObject:
   - component: {fileID: 7297767829503541651}
   m_Layer: 0
   m_Name: Extras Right
-  m_TagString: Untagged
+  m_TagString: DisableAtStart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -571,7 +571,7 @@ GameObject:
   - component: {fileID: 7164472841812631062}
   m_Layer: 0
   m_Name: Station 5 L
-  m_TagString: Untagged
+  m_TagString: DisableAtStart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -623,7 +623,7 @@ GameObject:
   - component: {fileID: 421809975472958129}
   m_Layer: 0
   m_Name: Level Large
-  m_TagString: Untagged
+  m_TagString: DisableAtStart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3959,6 +3959,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7232227403714195062, guid: 55b4af149440f044cae06f74ed1efff0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55b4af149440f044cae06f74ed1efff0, type: 3}
 --- !u!4 &686715818712697985 stripped
@@ -5414,6 +5419,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232227403714195062, guid: 55b4af149440f044cae06f74ed1efff0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55b4af149440f044cae06f74ed1efff0, type: 3}
@@ -7374,6 +7384,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7232227403714195062, guid: 55b4af149440f044cae06f74ed1efff0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55b4af149440f044cae06f74ed1efff0, type: 3}
 --- !u!4 &2412703942371529485 stripped
@@ -8098,6 +8113,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7232227403714195062, guid: 55b4af149440f044cae06f74ed1efff0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55b4af149440f044cae06f74ed1efff0, type: 3}
 --- !u!4 &3348592469469045212 stripped
@@ -8753,6 +8773,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7232227403714195062, guid: 55b4af149440f044cae06f74ed1efff0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55b4af149440f044cae06f74ed1efff0, type: 3}
 --- !u!4 &2964382724779872331 stripped
@@ -9172,6 +9197,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232227403714195062, guid: 55b4af149440f044cae06f74ed1efff0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55b4af149440f044cae06f74ed1efff0, type: 3}
@@ -9916,6 +9946,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232227403714195062, guid: 55b4af149440f044cae06f74ed1efff0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55b4af149440f044cae06f74ed1efff0, type: 3}
@@ -12197,6 +12232,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232227403714195062, guid: 55b4af149440f044cae06f74ed1efff0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55b4af149440f044cae06f74ed1efff0, type: 3}

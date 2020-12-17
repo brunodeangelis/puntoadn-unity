@@ -162,6 +162,7 @@ GameObject:
   - component: {fileID: 8255149867041365427}
   - component: {fileID: 6157784466926201209}
   - component: {fileID: 2515095420191944738}
+  - component: {fileID: 4245890916693940418}
   m_Layer: 0
   m_Name: mesh
   m_TagString: Untagged
@@ -248,6 +249,24 @@ MonoBehaviour:
   _xAxis: 0
   _yAxis: 1
   _zAxis: 0
+--- !u!114 &4245890916693940418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5653183190167341228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4023868a5448dfd418af477fae354e1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 0.8
+  _amplitude: 0.2
+  _xAxis: 0
+  _yAxis: 1
+  _zAxis: 0
+  _inverseDirection: 0
 --- !u!1 &7863350914824560457
 GameObject:
   m_ObjectHideFlags: 0

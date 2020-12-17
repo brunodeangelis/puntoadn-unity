@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour {
     public AudioSource _backgroundMusic;
     public GameObject _manifiestoSphere;
 
+    public List<GameObject> _disableAtStartObjects = new List<GameObject>();
     [HideInInspector] public GameObject _lastStationSpawned;
     [HideInInspector] public Color _chosenPathColor;
     [HideInInspector] public Vector3 _lastCheckpointPosition;
@@ -200,7 +201,7 @@ public class GameManager : MonoBehaviour {
             }
 
             if (_videosPlayed == 3 && !_hasSeenVideos) {
-                CreateTask("Si ya terminaste, continuá por el camino que no está iluminado");
+                CreateTask("Si ya terminaste, continuá por el camino sin luces");
                 _hasSeenVideos = true;
             }
         }
@@ -368,7 +369,10 @@ public class GameManager : MonoBehaviour {
         int i = 0;
         foreach (var obj in objs) {
             i++;
-            if (obj.gameObject.activeSelf == false) obj.gameObject.SetActive(true);
+            obj.gameObject.SetActive(true);
+            //if (!obj.activeSelf || !obj.activeInHierarchy) {
+            //    obj.SetActive(true);
+            //}
         }
         Debug.Log($"Ran loop {i} times.");
         //foreach (var cta in FindObjectsOfTypeAll<CallToAction>()) {
@@ -379,7 +383,10 @@ public class GameManager : MonoBehaviour {
     public void DeactivateDisableAtStartObjects() {
         var objs = FindObjectsOfTypeAll<DisableAtStart>();
         foreach (var obj in objs) {
-            if (obj.gameObject.activeSelf == true) obj.gameObject.SetActive(false);
+            obj.gameObject.SetActive(false);
+            //if (obj.gameObject.activeSelf || obj.gameObject.activeInHierarchy) {
+            //    obj.gameObject.SetActive(false);
+            //}
         }
     }
 

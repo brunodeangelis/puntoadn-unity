@@ -921,7 +921,7 @@ PrefabInstance:
     - target: {fileID: 1255264469813470032, guid: c57dca17f4fb8ee49b62542834822e20,
         type: 3}
       propertyPath: _text
-      value: "Si ya terminaste, continu\xE1 por el camino que no est\xE1 iluminado"
+      value: "Si ya terminaste, continu\xE1 por el camino sin luces"
       objectReference: {fileID: 0}
     - target: {fileID: 1255264469813470032, guid: c57dca17f4fb8ee49b62542834822e20,
         type: 3}

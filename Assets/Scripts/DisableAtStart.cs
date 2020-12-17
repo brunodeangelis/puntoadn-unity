@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DisableAtStart : MonoBehaviour {
-    void Start()
-    {
+    void Awake() {
         gameObject.SetActive(false);
     }
 }
