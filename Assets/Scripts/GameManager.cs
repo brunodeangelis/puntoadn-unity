@@ -10,6 +10,7 @@ using UnityEngine.Video;
 using YoutubePlayer;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.VFX;
 
 public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject _closeVideo;
@@ -169,7 +170,22 @@ public class GameManager : MonoBehaviour {
             if (_videosPlayed == 2) {
                 CreateTask("Cuando termines de ver todo, continuá por el camino");
             }
-        } else if (_currentStation <= 5) {
+        } else if (_currentStation == 5) {
+            if (_videosPlayed > 5) {
+                _videosPlayed = 1;
+            }
+
+            if (_videosPlayed == 3) {
+                CreateTask("Acercate al camino que no está iluminado");
+
+                //int ctaLayerMask = 1 << LayerMask.NameToLayer("Walls");
+                //Collider[] hitColliders = Physics.OverlapSphere(Player.Instance.transform.position, 20f, ctaLayerMask);
+
+                //foreach (var collider in hitColliders) {
+                //    collider.GetComponent<VisualEffect>().enabled = true;
+                //}
+            }
+        } else if (_currentStation < 5) {
             if (_videosPlayed == 1 && !_hasSeenVideoTimeline) {
                 GameObject.Find("How to/First Station/Text 2").GetComponent<TextMeshProUGUI>().DOFade(0f, 0.2f);
                 PauseVideo();
@@ -468,7 +484,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void IlluminatePathNearPlayer() {
-        Collider[] hitColliders = Physics.OverlapSphere(Player.Instance.transform.position, 30f);
+        Collider[] hitColliders = Physics.OverlapSphere(Player.Instance.transform.position, 20f);
 
         foreach (var hitCollider in hitColliders) {
             WalkingPath path = hitCollider.GetComponent<WalkingPath>();
