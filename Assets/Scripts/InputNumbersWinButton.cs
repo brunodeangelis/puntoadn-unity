@@ -32,6 +32,12 @@ public class InputNumbersWinButton : MonoBehaviour {
                             input.GetComponent<TextMeshProUGUI>().color = Color.green;
                         }
 
+                        foreach (InputArrow input in FindObjectsOfType<InputArrow>()) {
+                            input.GetComponent<SpriteRenderer>().DOFade(0f, 0.3f).OnComplete(() => {
+                                Destroy(input.gameObject);
+                            });
+                        }
+
                         GameManager._i.CreateTask("Continuá por el camino para llegar a la próxima estación");
                     }
                 } else {

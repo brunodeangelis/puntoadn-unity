@@ -17,6 +17,7 @@ public class ManifiestoTrigger : MonoBehaviour
         if (other.CompareTag("Player")) {
             GameObject.Find("Final Path/Walking Path").transform.DOScaleX(0f, 1f)
                     .OnComplete(() => {
+                        GameManager._i._manifiestoSphere.SetActive(true);
                         GameManager._i._isManifiestoPlaying = true;
 
                         VideoPlayer manifiestoPlayer = _manifiestoSphere.GetComponent<VideoPlayer>();

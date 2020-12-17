@@ -27,6 +27,11 @@ public class HanoiWinButton : MonoBehaviour {
                         for (int i = 0; i < 3; i++) {
                             symbols[i].color = Color.green;
                         }
+                        foreach (var arrow in FindObjectsOfType<HanoiSpriteSwitcher>()) {
+                            arrow.GetComponent<SpriteRenderer>().DOFade(0f, 0.3f).OnComplete(() => {
+                                Destroy(arrow.gameObject);
+                            });
+                        }
                     }
                 } else {
                     for (int i = 0; i < 3; i++) {
