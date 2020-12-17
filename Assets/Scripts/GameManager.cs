@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour {
     [HideInInspector] public PathDirection _chosenDirection;
     [HideInInspector] public bool _isCutscenePlaying;
     [HideInInspector] public bool _isManifiestoPlaying;
+    [HideInInspector] public bool _isStationNameShowing;
     public int _currentStation;
     [HideInInspector] public int _videosPlayed = 0;
 
@@ -160,15 +161,15 @@ public class GameManager : MonoBehaviour {
 
         Debug.Log($"Videos played: {_videosPlayed}");
 
-        if (_currentStation == 5) {
+        if (_currentStation > 5) {
             if (_videosPlayed > 5) {
                 _videosPlayed = 1;
             }
 
-            if (_videosPlayed > 2) {
+            if (_videosPlayed == 2) {
                 CreateTask("Cuando termines de ver todo, continuá por el camino");
             }
-        } else if (_currentStation < 5) {
+        } else if (_currentStation <= 5) {
             if (_videosPlayed == 1 && !_hasSeenVideoTimeline) {
                 GameObject.Find("How to/First Station/Text 2").GetComponent<TextMeshProUGUI>().DOFade(0f, 0.2f);
                 PauseVideo();
@@ -238,9 +239,9 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Update() {
-        if (_manifiestoSphere != null) {
-            _manifiestoSphere.transform.position = new Vector3(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 1.75f, Player.Instance.transform.position.z);
-        }
+        //if (_manifiestoSphere != null) {
+        //    _manifiestoSphere.transform.position = new Vector3(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 1.75f, Player.Instance.transform.position.z);
+        //}
 
         if (_isVideoPlaying) {
             if (Input.GetKeyDown(KeyCode.Escape)) {
