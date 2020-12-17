@@ -163,7 +163,7 @@ public class GameManager : MonoBehaviour {
         Debug.Log($"Videos played: {_videosPlayed}");
 
         if (_currentStation > 5) {
-            if (_videosPlayed > 5) {
+            if (_videosPlayed > 3) {
                 _videosPlayed = 1;
             }
 
@@ -171,14 +171,18 @@ public class GameManager : MonoBehaviour {
                 CreateTask("Cuando termines de ver todo, continuá por el camino");
             }
         } else if (_currentStation == 5) {
-            if (_videosPlayed > 5) {
+            if (_videosPlayed > 3) {
                 _videosPlayed = 1;
             }
 
             if (_videosPlayed == 3) {
                 CreateTask("Acercate al camino que no está iluminado");
 
-                //int ctaLayerMask = 1 << LayerMask.NameToLayer("Walls");
+                var callToActions = FindObjectsOfTypeAll<CallToAction>();
+                foreach (var cta in callToActions) {
+                    cta.gameObject.SetActive(true);
+                }
+                //int ctaLayerMask = 1 << LayerMask.NameToLayer("CallToAction");
                 //Collider[] hitColliders = Physics.OverlapSphere(Player.Instance.transform.position, 20f, ctaLayerMask);
 
                 //foreach (var collider in hitColliders) {
@@ -358,13 +362,16 @@ public class GameManager : MonoBehaviour {
 
     public void ActivateDisableAtStartObjects() {
         var objs = FindObjectsOfTypeAll<DisableAtStart>();
-        Debug.Log($"Found {objs.Count} objects");
+        //Debug.Log($"Found {objs.Count} objects");
         int i = 0;
         foreach (var obj in objs) {
             i++;
             obj.gameObject.SetActive(true);
         }
-        Debug.Log($"Ran loop {i} times.");
+        foreach (var cta in FindObjectsOfTypeAll<CallToAction>()) {
+            Destroy(cta.gameObject);
+        }
+        //Debug.Log($"Ran loop {i} times.");
     }
 
     public void DeactivateDisableAtStartObjects() {
