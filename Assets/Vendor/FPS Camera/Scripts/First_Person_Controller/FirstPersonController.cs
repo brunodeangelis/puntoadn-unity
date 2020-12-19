@@ -531,14 +531,14 @@ namespace VHS
                 }
                 protected virtual void HandleJump()
                 {
-                    if(movementInputData.JumpClicked && !movementInputData.IsCrouching)
-                    {
-                        //m_finalMoveVector.y += jumpSpeed /* m_currentSpeed */; // we are adding because ex. when we are going on slope we want to keep Y value not overwriting it
-                        m_finalMoveVector.y = jumpSpeed /* m_currentSpeed */; // turns out that when adding to Y it is too much and it doesn't feel correct because jumping on slope is much faster and higher;
+                    //if(movementInputData.JumpClicked && !movementInputData.IsCrouching)
+                    //{
+                    //    //m_finalMoveVector.y += jumpSpeed /* m_currentSpeed */; // we are adding because ex. when we are going on slope we want to keep Y value not overwriting it
+                    //    m_finalMoveVector.y = jumpSpeed /* m_currentSpeed */; // turns out that when adding to Y it is too much and it doesn't feel correct because jumping on slope is much faster and higher;
                     
-                        m_previouslyGrounded = true;
-                        m_isGrounded = false;
-                    }
+                    //    m_previouslyGrounded = true;
+                    //    m_isGrounded = false;
+                    //}
                 }
                 protected virtual void ApplyGravity()
                 {

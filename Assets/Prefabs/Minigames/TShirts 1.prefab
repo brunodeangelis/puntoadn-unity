@@ -2379,6 +2379,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TShirt 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3325380101474645000, guid: 2e06df7591f169a4ea33c022a21a68d5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fc66ef2e69bdbee40b3db45b4407abc0, type: 2}
     - target: {fileID: 8214583164423304558, guid: 2e06df7591f169a4ea33c022a21a68d5,
         type: 3}
       propertyPath: _TShirtBase

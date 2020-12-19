@@ -26,8 +26,6 @@ public class GameManager : MonoBehaviour {
     //private RenderTexture _loadingVideoTexture;
     private RenderTexture _youtubeVideoTexture;
     private int _coroutineCount = 0;
-    private bool _hasSeenVideos = false;
-    private bool _hasSeenVideoTimeline = false;
 
     public static Transform RecursiveFindChild(Transform parent, string childName) {
         Transform child = null;
@@ -192,17 +190,15 @@ public class GameManager : MonoBehaviour {
                 //    collider.GetComponent<VisualEffect>().enabled = true;
                 //}
             }
-        } else if (_currentStation < 5) {
-            if (_videosPlayed == 1 && !_hasSeenVideoTimeline) {
+        } else if (_currentStation == 1) {
+            if (_videosPlayed == 1) {
                 GameObject.Find("How to/First Station/Text 2").GetComponent<TextMeshProUGUI>().DOFade(0f, 0.2f);
                 PauseVideo();
                 PlayTimeline("First Video Timeline");
-                _hasSeenVideoTimeline = true;
             }
 
-            if (_videosPlayed == 3 && !_hasSeenVideos) {
+            if (_videosPlayed == 3) {
                 CreateTask("Si ya terminaste, continuá por el camino sin luces");
-                _hasSeenVideos = true;
             }
         }
 
