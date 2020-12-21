@@ -487,27 +487,27 @@ PrefabInstance:
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.14179814
+      value: 0.17735453
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.5996834
+      value: -0.1274975
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.109019026
+      value: 0.02317832
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7799923
+      value: 0.97557807
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 115.930016
+      value: 3.8
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
@@ -517,7 +517,7 @@ PrefabInstance:
     - target: {fileID: 3843716870190975468, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.8000183
+      value: 115.93
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870190975471, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
@@ -3437,7 +3437,7 @@ PrefabInstance:
     - target: {fileID: 7100092967546013471, guid: 464040b54a9b2634d97a089761f93dd2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.00020223108
+      value: 0.0002022199
       objectReference: {fileID: 0}
     - target: {fileID: 7100092967546013471, guid: 464040b54a9b2634d97a089761f93dd2,
         type: 3}
@@ -11831,7 +11831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.53333336, g: 0.34117648, b: 0.63529414, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
